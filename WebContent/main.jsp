@@ -38,7 +38,7 @@
 	#bestSeller1 ul li a{font-size:14px; color: hotpink; }
 	#bestSeller2 ul li a{font-size:14px; color: hotpink;}
 	#bestSeller3 ul li a{font-size:14px; color: hotpink;}
-	.bestSeller_right{margin-top: -40px; margin-left: 950px;}
+	.bestSeller_right{margin-top: -30px; margin-left: 970px;}
 	.bestSeller_right a{font-size: 14px; color: black;}
 	.modal-header{height: 60px;}
 	#banner{width: 1090px; margin-left: 50px; margin-top: 1px;}
