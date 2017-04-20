@@ -6,6 +6,7 @@
 <%@ page import="seunghwang.bms.customerService.faq.dao.FaqDaoImpl" %>
 <%@ page import="seunghwang.bms.customerService.faq.service.FaqService" %>
 <%@ page import="seunghwang.bms.customerService.faq.service.FaqServiceImpl" %>
+<%@ page import ="javax.servlet.http.*,seunghwang.bms.login.domain.User" %>
 <!DOCTYPE html>
 <%!
 	public Integer toInt(String x){
@@ -84,6 +85,8 @@
 	}
 	// [1][2][3].[10]
 	// [11][12]
+	
+	//관리자기능, 회원기능 구별
 %>
 <html lang="ko">
 <head>
