@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<properties resource="seunghwang/bms/config/jdbc.properties"/>
+	
+	<typeAliases>
+		<typeAlias alias="user" type="seunghwang.bms.login.domain.User"/>
+		<typeAlias alias="faq" type="seunghwang.bms.customerService.faq.domain.Faq"/>
+		<typeAlias alias="inquiry" type="seunghwang.bms.customerService.inquiry.domain.Inquiry"/>
+		<typeAlias alias="notice" type="seunghwang.bms.customerService.notice.domain.Notice"/>
+		<typeAlias alias="book" type="seunghwang.bms.book.domain.Book"/>
+		<typeAlias alias="detail" type="seunghwang.bms.book.domain.Detail"/>
+		<typeAlias alias="category" type="seunghwang.bms.book.domain.Category"/>
+		<typeAlias alias="review" type="seunghwang.bms.review.domain.Review"/>
+		<typeAlias type="seunghwang.bms.order.domain.Order" alias="order"/>
+		<typeAlias type="seunghwang.bms.cart.domain.Cart" alias="cart"/> 
+		<typeAlias type="seunghwang.bms.admin.domain.AdminOrder" alias="adminorder"/>
+		<typeAlias type="seunghwang.bms.login.domain.User" alias="user"/>
+		<typeAlias type="seunghwang.bms.admin.domain.Admin" alias="admin"/>
+	</typeAliases>
+	
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC"/>
+			<dataSource type="POOLED">
+				<property name="driver" value="${JDBC.Driver}" />
+				<property name="url" value="${JDBC.ConnectionURL}" />
+				<property name="username" value="${JDBC.Username}"/>
+				<property name="password" value="${JDBC.Password}"/>
+			</dataSource>
+		</environment>
+	</environments>
+	
+	<mappers>
+		<mapper resource="seunghwang/bms/login/dao/mapper/LoginMapper.xml" />
+		<mapper resource="seunghwang/bms/customerService/faq/dao/mapper/FaqMapper.xml" />
+		<mapper resource="seunghwang/bms/customerService/inquiry/dao/mapper/InquiryMapper.xml" />
+		<mapper resource="seunghwang/bms/customerService/notice/dao/mapper/NoticeMapper.xml" />
+		<mapper resource="seunghwang/bms/book/dao/mapper/BookMapper.xml"/>
+		<mapper resource="seunghwang/bms/book/dao/mapper/DetailMapper.xml"/>
+		<mapper resource="seunghwang/bms/review/dao/mapper/ReviewMapper.xml"/>
+		<mapper resource="seunghwang/bms/order/dao/mapper/OrderMapper.xml"/>
+		<mapper resource="seunghwang/bms/cart/dao/mapper/CartMapper.xml"/> 
+		<mapper resource="seunghwang/bms/admin/dao/mapper/AdminOrderMapper.xml"/>
+		<mapper resource="seunghwang/bms/login/dao/mapper/LoginMapper.xml"/> 
+		<mapper resource="seunghwang/bms/admin/dao/mapper/AdminMapper.xml"/>
+				
+	</mappers>
+</configuration>

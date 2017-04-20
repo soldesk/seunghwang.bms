@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="seunghwang.bms.customerService.faq.dao.mapper.FaqMapper">
+    <select id="getFaqs" resultType="faq">
+        select faq_id faqId, faq_category faqCategory, faq_title faqTitle, faq_content faqContent, read_cnt readCnt, user_id userId
+        from faqs
+        order by read_cnt desc
+    </select>
+    
+    <select id="userFaqs" resultType="faq">
+        select faq_id faqId, faq_category faqCategory, faq_title faqTitle, faq_content faqContent, read_cnt readCnt, user_id userId
+        from faqs
+        where faq_category='회원'
+        order by read_cnt desc
+    </select>
+    
+    <select id="orderFaqs" resultType="faq">
+        select faq_id faqId, faq_category faqCategory, faq_title faqTitle, faq_content faqContent, read_cnt readCnt, user_id userId
+        from faqs
+        where faq_category='주문'
+        order by read_cnt desc
+    </select>
+    
+    <select id="bookFaqs" resultType="faq">
+        select faq_id faqId, faq_category faqCategory, faq_title faqTitle, faq_content faqContent, read_cnt readCnt, user_id userId
+        from faqs
+        where faq_category='책'
+        order by read_cnt desc
+    </select>
+    
+    <select id="systemFaqs" resultType="faq">
+        select faq_id faqId, faq_category faqCategory, faq_title faqTitle, faq_content faqContent, read_cnt readCnt, user_id userId
+        from faqs
+        where faq_category='시스템'
+        order by read_cnt desc
+    </select>
+    
+    <select id="getFaq" parameterType="int" resultType="faq">
+        select faq_id faqId, faq_category faqCategory, faq_title faqTitle, faq_content faqContent, read_cnt readCnt, user_id userId
+        from faqs
+        where faq_id=#{faqId}
+    </select>
+    
+    <insert parameterType="faq" id="addFaq"> 
+		insert into faqs 
+		values(faq_id_seq.nextval, #{faqCategory}, #{faqTitle}, #{faqContent}, #{readCnt}, #{userId})
+	</insert> 
+	
+    <update id="visitCnt" parameterType="faq">
+        update faqs
+        set read_cnt=#{readCnt}
+        where faq_id=#{faqId}
+    </update>
+    
+    <delete id="delFaq" parameterType="int">
+	    delete faqs
+	    where faq_id=#{faqId}
+	</delete>
+	
+    <update id="modFaq" parameterType="faq">
+        update faqs
+        set faq_title=#{faqTitle}, faq_category=#{faqCategory}, faq_content=#{faqContent}
+        where faq_id=#{faqId}
+    </update>
+</mapper> 

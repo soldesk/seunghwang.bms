@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="seunghwang.bms.order.dao.mapper.OrderMapper">
+    
+    <resultMap id="userMap" type="seunghwang.bms.login.domain.User">
+        <id     property="userId"       column="user_id"/>
+        <result property="userEmail"    column="user_email"/>
+        <result property="userName"     column="user_name"/>
+        <result property="userPhone"    column="user_phone"/>        
+        <!--  association property="books" columnPrefix="book_" resultMap="bookMap"/-->
+    </resultMap>
+
+	<select id="getOrder" parameterType="String" resultMap="userMap">
+		select user_id, user_email ,user_name ,user_phone 
+		from   users 
+		where  user_id=#{userId} 
+	</select>     
+	
+	<resultMap id="bookMap" type="seunghwang.bms.book.domain.Book">
+        <id     property="bookId"       column="book_id"/>
+        <result property="bookName"    column="book_name"/>
+        <result property="bookPrice"     column="book_price"/>
+        <result property="bookImage"    column="book_image"/>        
+        <!--  association property="books" columnPrefix="book_" resultMap="bookMap"/-->
+    </resultMap>
+
+	<select id="getOrderBook" parameterType="String" resultMap="bookMap">
+		select book_id, book_name ,book_price ,book_image 
+		from   books 
+		where  book_id=#{bookId} 
+	</select>   
+	
+    <insert id="addOrder" parameterType="order">
+		insert into orders(order_id,book_id,book_name,book_price,
+			book_image,book_amount,payment_choice,payment_cost,
+			order_address,order_name,order_status,user_id,order_memo,order_phone,order_date)
+		values('ORDER'||to_char(sysdate,'yymmdd')|| lpad(order_id_seq.nextval,6,0),
+		       #{bookId}, #{bookName},#{bookPrice},#{bookImage},#{bookAmount},
+		       #{paymentChoice}, #{paymentCost},#{orderAddress},#{orderName},#{orderStatus}, 
+		       #{userId},#{orderMemo},#{orderPhone},sysdate
+		       )
+	</insert> 
+	
+	<insert id="addOrder2" parameterType="order">
+		insert into orders(order_id,book_id,book_name,book_price,
+			book_image,book_amount,payment_choice,payment_cost,
+			order_address,order_name,order_status,user_id,order_memo,order_phone,order_date)
+		values('ORDER'||to_char(sysdate,'yymmdd')|| lpad(order_id_seq.currval,6,0),
+		       #{bookId}, #{bookName},#{bookPrice},#{bookImage},#{bookAmount},
+		       #{paymentChoice}, #{paymentCost},#{orderAddress},#{orderName},#{orderStatus}, 
+		       #{userId},#{orderMemo},#{orderPhone},sysdate
+		       )
+	</insert>
+	<resultMap id="orderMap" type="seunghwang.bms.order.domain.Order">
+        <id     property="orderId"       column="order_id"/>
+        <result property="orderDate"    column="order_date"/>
+        <result property="bookName"     column="book_name"/>
+        <result property="bookPrice"    column="book_price"/>   
+        <result property="bookAmount"     column="book_amount"/>
+        <result property="orderStatus"    column="order_status"/>   
+    </resultMap>
+
+	<select id="orderList" parameterType="order" resultMap="orderMap">
+			select  order_id, order_date ,book_name ,book_price,book_amount,order_status from 
+			(  select order_id, order_date ,book_name ,book_price,book_amount,order_status, rownum rnum from 
+         		 (select * from orders where user_id=#{userId} order by order_id desc) 
+			)  where rnum &lt;=#{endRow} and rnum &gt;=#{startRow}
+	</select> 
+	
+	<select id="orderCount" parameterType="String" resultType="int">
+			select count(*) from orders where user_id=#{userId}  
+	</select> 
+
+</mapper>

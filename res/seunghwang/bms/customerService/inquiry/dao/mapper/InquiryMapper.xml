@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="seunghwang.bms.customerService.inquiry.dao.mapper.InquiryMapper">
+    <select id="getInquiries" resultType="inquiry">
+        select inquiry_id inquiryId, user_id userId, inquiry_category inquiryCategory, inquiry_title inquiryTitle, inquiry_content inquiryContent, user_email userEmail, inquiry_answer inquiryAnswer, reg_date regDate
+        from inquiries
+        order by inquiry_id desc
+    </select>
+    
+    <insert id="addInquiry" parameterType="inquiry">
+        insert into inquiries
+        values(inquiry_id_seq.nextVal, #{userId}, #{inquiryCategory}, #{inquiryTitle}, #{inquiryContent}, #{userEmail}, #{inquiryAnswer}, sysdate)
+    </insert>
+    
+    <delete id="delInquiry" parameterType="int">
+        delete inquiries
+        where inquiry_id=#{inquiryId}
+    </delete>
+    
+    <update id="modInquiry" parameterType="inquiry">
+        update inquiries
+        set inquiry_title=#{inquiryTitle}, user_email=#{userEmail}, inquiry_category=#{inquiryCategory}, inquiry_content=#{inquiryContent}
+        where inquiry_id=#{inquiryId}
+    </update>
+    
+    <update id="answerInquiry" parameterType="inquiry">
+        update inquiries
+        set inquiry_answer=#{inquiryAnswer}
+        where inquiry_id=#{inquiryId}
+    </update>
+</mapper>

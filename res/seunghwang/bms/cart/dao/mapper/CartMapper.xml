@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="seunghwang.bms.cart.dao.mapper.CartMapper">
+
+	<resultMap id="bookMap" type="seunghwang.bms.book.domain.Book">
+        <id     property="bookId"       column="book_id"/>
+        <result property="bookName"    column="book_name"/>
+        <result property="bookPrice"     column="book_price"/>
+        <result property="bookImage"    column="book_image"/>        
+        <!--  association property="books" columnPrefix="book_" resultMap="bookMap"/-->
+    </resultMap>
+
+	<select id="getOrderBook" parameterType="String" resultMap="bookMap">
+		select book_id, book_name ,book_price ,book_image 
+		from   books 
+		where  book_id=#{bookId} 
+	</select>   
+	
+    <insert id="addCart" parameterType="cart">
+		insert into carts(cart_id,book_name,book_image,book_price,
+						  book_amount,total_cost,book_id,user_id)
+		values('CART'||to_char(sysdate,'yymmdd')|| lpad(cart_id_seq.nextval,6,0),
+		       #{bookName}, #{bookImage},#{bookPrice},#{bookAmount},#{totalCost},
+		       #{bookId}, #{userId} )
+	</insert> 
+	
+	<resultMap id="cartMap" type="seunghwang.bms.cart.domain.Cart">
+        <id     property="cartId"       column="cart_id"/>
+        <result property="bookName"    column="book_name"/>
+        <result property="bookImage"     column="book_image"/>
+        <result property="bookPrice"    column="book_price"/>   
+        <result property="bookAmount"     column="book_amount"/>
+        <result property="totalCost"    column="total_cost"/>   
+        <result property="bookId"    column="book_id"/>
+        <result property="userId"    column="user_id"/>
+    </resultMap>
+
+	<select id="listCart" parameterType="seunghwang.bms.cart.domain.Cart" resultMap="cartMap">
+			select  cart_id,book_name,book_image,book_price,
+				book_amount,total_cost,book_id,user_id from 
+			(  select cart_id,book_name,book_image,book_price,
+				book_amount,total_cost,book_id,user_id, rownum rnum from 
+         		 (select * from carts where user_id=#{userId} order by cart_id desc) 
+			)  where rnum &lt;=#{endRow} and rnum &gt;=#{startRow}
+	</select> 
+	
+	<select id="cartCount" parameterType="String" resultType="int">
+			select count(*) from carts where user_id=#{userId}  
+	</select> 
+
+	<delete id="delCart" parameterType="String">
+		delete carts 
+		where cart_id=#{cartId}
+	</delete>
+</mapper>

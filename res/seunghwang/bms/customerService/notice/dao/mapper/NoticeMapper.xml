@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="seunghwang.bms.customerService.notice.dao.mapper.NoticeMapper">
+	<select id="getNotices" resultType="notice">
+	    select notice_id noticeId, notice_title noticeTitle, notice_Content noticeContent, read_cnt readCnt, reg_date regDate
+	    from notices
+	    order by read_cnt desc
+	</select>
+	
+	<insert parameterType="notice" id="addNotice">
+		insert into notices
+		values(notice_id_seq.nextval, #{noticeTitle}, #{noticeContent}, #{readCnt}, sysdate)
+	</insert>	
+	
+	<update id="visitCnt" parameterType="notice">
+        update notices
+        set read_cnt=#{readCnt}
+        where notice_id=#{noticeId}
+    </update>
+    
+	<delete id="delNotice" parameterType="int">
+	    delete notices
+	    where notice_id=#{noticeId}
+	</delete>
+	
+	<update id="modNotice" parameterType="notice">
+	    update notices
+	    set notice_title=#{noticeTitle}, notice_content=#{noticeContent}
+	    where notice_id=#{noticeId}
+	</update>
+</mapper>

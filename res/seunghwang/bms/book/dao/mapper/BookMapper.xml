@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="seunghwang.bms.book.dao.mapper.BookMapper">
+	<resultMap id="bookMap" type="book">
+		<id 	property="bookId"			column="book_id"/>
+		<result property="bookName"			column="book_name"/>
+		<result property="bookPrice"	 	column="book_price"/>
+		<result property="bookWriter"  	 	column="book_writer"/>
+		<result property="bookPublisher" 	column="book_publisher"/>
+		<result property="publicationDate"	column="publication_date"/>
+		<result property="bookGrade"	 	column="book_grade"/>
+		<result property="bookETC"		 	column="book_etc"/>
+		<result property="bookSale"		 	column="book_sale"/>
+		<result property="bookStock"	 	column="book_stock"/>
+		<result property="bookImage"		column="book_image"/>
+		<association property="detailId"	column="bookId" select="getDetails"/>
+	</resultMap>
+	
+	<select id="getDetails" parameterType="string" resultType="detail">
+		select detail_book,detail_review,detail_writer,detail_chapter
+		from details
+		where book_id=#{bookId}
+	</select>
+	
+	<select id="getBooks" parameterType="book" resultMap="bookMap">
+		select book_id, book_name, book_publisher, book_writer, book_price, publication_date, book_sale, book_stock, book_grade
+		from books
+		order by book_id
+	</select>
+	
+	<select id="searchBook" parameterType="string" resultMap="bookMap">
+		select book_id, book_name, book_price, book_writer, book_publisher, publication_date, book_grade, book_etc, book_sale, book_stock, book_image, category_id
+		from books
+		where book_id=#{bookId}
+	</select>
+	
+	<insert id="insertBook" parameterType="book">
+		insert into books 
+		values(#{bookId},#{categoryId},#{bookName},#{bookPrice},#{bookImage},
+		#{bookWriter},#{bookPublisher},#{publicationDate},#{bookGrade},#{bookETC},#{bookSale},#{bookStock})
+	</insert>
+	
+	<update id="updateBook" parameterType="book">
+		update books
+		set category_id=#{categoryId}, book_name=#{bookName}, book_price=#{bookPrice}, book_image=#{bookImage},
+			book_writer=#{bookWriter}, book_publisher=#{bookPublisher}, publication_date=#{publicationDate}, 
+			book_grade=#{bookGrade}, book_etc=#{bookETC}, book_sale=#{bookSale}, book_stock=#{bookStock}
+		where book_id=#{bookId}
+	</update>
+	
+	<delete id="deleteBook" parameterType="string">
+		delete books
+		where book_id=#{bookId}
+	</delete>
+</mapper> 
