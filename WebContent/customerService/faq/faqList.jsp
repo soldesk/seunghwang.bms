@@ -95,6 +95,11 @@
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script>
+  $(".myFrame").css({
+		height: "300px",
+	});
+  </script>
   <style>/*상징색 hotpink #ED4C00*/
   	.container-fluid{width: 1580px;	max-width: none !important;}
   	.table {max-width: none !important; max-height: none !important;}

@@ -847,10 +847,9 @@ ID, 비밀번호는 본인이 직접 사용하여야 하며 제 3자에게 이�
 </div>
 <br><br>
 	<div class="container-fluid" id="footer">
-		<p id="footer0">INTERNET BOOK STORE</p>
-		<p id="footer1">BOOK KING</p>
-		<p id="footer2">ⓒKS TEAM.</p>
-	</div>
-</body>
+	<p id="footer0">INTERNET BOOK STORE</p>
+	<p id="footer1">BOOK KING</p>
+	<p id="footer2">ⓒKS TEAM.</p>
+</div>
 </body>
 </html>
