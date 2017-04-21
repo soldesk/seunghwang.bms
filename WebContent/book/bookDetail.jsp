@@ -15,6 +15,7 @@
 <%@ page import="seunghwang.bms.book.service.DetailServiceImpl" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <% 
+	String bookId = request.getParameter("bookId");
 	BookMapper bookMapper = Configuration.getMapper(BookMapper.class);
 	BookDao bookDao = new BookDaoImpl(bookMapper);
 	BookService bookService = new BookServiceImpl(bookDao);
@@ -23,8 +24,8 @@
 	DetailDao detailDao = new DetailDaoImpl(detailMapper);
 	DetailService detailService = new DetailServiceImpl(detailDao);
 	
-	Book book = bookService.searchBook("PS000001");
-	Detail bookDetail = detailService.searchDetail("PS000001");
+	Book book = bookService.searchBook(bookId);
+	Detail bookDetail = detailService.searchDetail(bookId);
 %>
 <html lang="ko">
 <head>

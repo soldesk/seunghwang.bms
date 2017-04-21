@@ -1,6 +1,5 @@
 package seunghwang.bms.book.service;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -19,6 +18,9 @@ public class BookServiceImpl implements BookService{
 		return bookDao.getBooks();
 	}
 	
+	public List<Book> largeCategoryBooks(String largeCategory) {
+		return bookDao.largeCategoryBooks(largeCategory);
+	}
 	public List<Book> findBooks(Map map){
 		return bookDao.findBooks(map);
 	}

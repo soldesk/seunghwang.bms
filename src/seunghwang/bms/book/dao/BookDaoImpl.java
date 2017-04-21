@@ -1,6 +1,5 @@
 package seunghwang.bms.book.dao;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -17,6 +16,9 @@ public class BookDaoImpl implements BookDao{
 	}
 	public List<Book> getBooks(){
 		return bookMapper.getBooks();
+	}
+	public List<Book> largeCategoryBooks(String largeCategory) {
+		return bookMapper.largeCategoryBooks(largeCategory);
 	}
 	
 	public List<Book> findBooks(Map map) {

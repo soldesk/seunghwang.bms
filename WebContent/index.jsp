@@ -422,37 +422,37 @@
 		</div>
 	</div></li>
 			<li class="hiddenList" id="left-subcategory-margin-left">
-				<a href="/seunghwang.bms/category/novel.jsp" target="content">
+				<a href="book/largeCategory.jsp?largeCategory=소설" target="content">
 					<span class="glyphicon glyphicon-leaf"></span> 소설
 				</a>
 			</li>
 			<li class="hiddenList">
-				<a href="/seunghwang.bms/category/social_list.html" target="content">
+				<a href="book/largeCategory.jsp?largeCategory=경제/경영" target="content">
 					<span class="glyphicon glyphicon-usd"></span> 경제/경영
 				</a>
 			</li>
 			<li class="hiddenList">
-				<a href="/seunghwang.bms/category/economy_list.html" target="content">
+				<a href="book/largeCategory.jsp?largeCategory=인문" target="content">
 					<span class="glyphicon glyphicon-user"></span> 인문
 				</a>
 			</li>
 			<li class="hiddenList">
-				<a href="/seunghwang.bms/category/it_list.html" target="content">
+				<a href="book/largeCategory.jsp?largeCategory=역사/문화" target="content">
 					<span class="glyphicon glyphicon-header"></span> 역사/문화
 				</a>
 			</li>
 			<li class="hiddenList">
-				<a href="/seunghwang.bms/category/it_list.html" target="content">
+				<a href="book/largeCategory.jsp?largeCategory=정치/사회" target="content">
 					<span class="glyphicon glyphicon-comment"></span> 정치/사회
 				</a>
 			</li>
 			<li class="hiddenList">
-				<a href="/seunghwang.bms/category/it_list.html" target="content">
+				<a href="book/largeCategory.jsp?largeCategory=과학" target="content">
 					<span class="glyphicon glyphicon-magnet"></span> 과학
 				</a>
 			</li>
 			<li class="hiddenList">
-				<a href="/seunghwang.bms/category/it_list.html" target="content">
+				<a href="book/largeCategory.jsp?largeCategory=컴퓨터/IT" target="content">
 					<span class="glyphicon glyphicon-phone"></span> 컴퓨터/IT
 				</a>
 			</li>

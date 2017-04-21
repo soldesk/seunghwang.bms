@@ -206,7 +206,7 @@ a.item-green-hover:hover, a.item-green-hover:focus{ background-color: #EAEAEA;}
 	if(books.size() != 0) 
 		for(Book book : books) { %>
 		<div class="col-sm-4" id="imgSize">
-			<a href="../book/bookDetail.jsp" class="thumbnail">
+			<a href="bookDetail.jsp?bookId=<%=book.getBookId() %>" class="thumbnail">
 				<img src="../img/book2.jpg" style="width:150px;height:180px">
 					<dl><dt><%=book.getBookName() %></dt><dd>가격: <%=book.getBookPrice() %></dd></dl>
 			</a>
