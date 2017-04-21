@@ -1,6 +1,8 @@
 package seunghwang.bms.book.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import seunghwang.bms.book.dao.mapper.BookMapper;
 import seunghwang.bms.book.domain.Book;
@@ -15,6 +17,10 @@ public class BookDaoImpl implements BookDao{
 	}
 	public List<Book> getBooks(){
 		return bookMapper.getBooks();
+	}
+	
+	public List<Book> findBooks(Map map) {
+		return bookMapper.findBooks(map);
 	}
 	
 	public Book searchBook(String bookId) {

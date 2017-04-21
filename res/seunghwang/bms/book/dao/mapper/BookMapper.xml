@@ -28,9 +28,54 @@
 		order by book_id
 	</select>
 	
-	<select id="searchBook" parameterType="string" resultMap="bookMap">
-		select book_id, book_name, book_price, book_writer, book_publisher, publication_date, book_grade, book_etc, book_sale, book_stock, book_image, category_id
+	<select id="findBooks" parameterType="map" resultMap="bookMap">
+		select book_name, book_price, book_writer, book_publisher, book_grade, book_image
 		from books
+		<if test="searchBook != null and searchType.equals('total')">
+			where book_name like '%'||#{searchBook}||'%'
+			or book_writer like '%'||#{searchBook}||'%'
+			or book_publisher like '%'||#{searchBook}||'%'
+			or publication_date like '%'||#{searchBook}||'%'	
+		</if>
+		<if test="searchBook != null and searchType.equals('bookName')">
+        	where  book_name like '%'||#{searchBook}||'%'
+        </if>
+        <if test="searchBook != null and searchType.equals('bookWriter')">
+        	where  book_writer like '%'||#{searchBook}||'%'
+        </if>
+        <if test="searchBook != null and searchType.equals('bookPublisher')">
+        	where  book_publisher like '%'||#{searchBook}||'%'
+        </if>
+        <if test="searchBook != null and searchType.equals('publicationDate')">
+        	where  publication_date like '%'||#{searchBook}||'%'
+        </if>	
+	</select>
+	<!-- 
+		select book_name, book_price, book_writer, book_publisher, book_grade, book_image
+		from books
+		where book_name like '%'||#{searchBook}||'%' 
+		or book_publisher like '%'||#{searchBook}||'%'
+		or book_writer like '%'||#{searchBook}||'%'
+		or publication_date like '%'||#{searchBook}||'%'
+		
+		select book_name, book_price, book_writer, book_publisher, book_grade, book_image
+		from books
+		<if test="searchBook != null and searchType.equals('bookName')">
+        	where  book_name like '%'||#{searchBook}||'%'
+        </if>
+        <if test="searchBook != null and searchType.equals('bookWriter')">
+        	where  book_writer like '%'||#{searchBook}||'%'
+        </if>
+        <if test="searchBook != null and searchType.equals('bookPublisher')">
+        	where  book_publisher like '%'||#{searchBook}||'%'
+        </if>
+        <if test="searchBook != null and searchType.equals('publicationDate')">
+        	where  publication_date like '%'||#{searchBook}||'%'
+        </if>	
+	 -->
+	<select id="searchBook" parameterType="string" resultMap="bookMap">
+		select book_id, book_name, book_publisher, book_writer, book_price, publication_date, book_sale, book_stock, book_grade,category_id, book_etc, book_image
+		from books 
 		where book_id=#{bookId}
 	</select>
 	

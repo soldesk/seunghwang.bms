@@ -82,7 +82,7 @@
     #id:hover{text-decoration: underline; cursor: pointer;}
     #search{margin-left: 6px; margin-top: 8px;height:35px; border:1px solid white;padding:10px; width:250px; border-top-left-radius: .5em; border-bottom-left-radius: .5em;
     border-top-right-radius: .5em; border-bottom-right-radius: .5em;}
-    a {color:white; font-size: 20px; filter: drop-shadow(0 1px 1px rgba(0, 0, 0, .3));}
+    a {color:white; font-size: 15px; filter: drop-shadow(0 1px 1px rgba(0, 0, 0, .3));}
     a:hover{text-decoration: none;}
     #allList{filter: drop-shadow(0 1px 1px rgba(0, 0, 0, .3)); padding-top: 12px;}
     #search_button{margin-top: 8px; margin-left: 6px;}
@@ -102,7 +102,7 @@
 	.navbar-fixed-bottom .navbar-collapse, .navbar-fixed-top .navbar-collapse {max-height: none !important;}
 	.navbar {min-height: none !important;}
 	.modal-dialog{color: hotpink;}
-	#faq{margin-left: 480px;}
+	#faq{margin-left: 165px;}
 	/*로그인*/
 	#idSize{width: 300px;}
 	#usr{width: 550px; height:40px;}
@@ -153,7 +153,7 @@
 }
 .ease{
 	width: 130px;
-	height: 40px;
+	height: 30px;
 	margin: 5px 10px;
 	padding: 5px;
 	color: hotpink;
@@ -162,9 +162,12 @@
 	text-align:center;
 	font-weight: bold;
 	z-index: 99;
-	font-size: 20px;
+	font-size: 17px;
 	position: absolute;
 	transition: 0.1s ease;
+}
+.ease p{
+	filter: drop-shadow(0 1px 1px rgba(0, 0, 0, .3));
 }
 .ease1{
 	width: 140px;
@@ -299,7 +302,7 @@
 }
   </style>
 </head>
-<body data-spy="scroll" data-target=".navbar">
+<body data-spy="scroll" data-target=".navbar">	
 <nav class="navbar navbar-inverse navbar-fixed-top" id="navbar">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -312,19 +315,21 @@
     </div>
 	<div>
 	 <div class="collapse navbar-collapse" id="myNavbar">
+    	<form action="book/searchBookList.jsp" method="post" target="content">
     	<ul class="nav navbar-nav">
     		<li>
-    			<select class="selectSearch">
-					<option>전체</option>
-					<option>책이름</option>
-					<option>출판사</option>
-					<option>작가</option>
-					<option>출판일 기준</option>
+    			<select class="selectSearch" name="searchType">
+					<option value="total">전체</option>
+					<option value="bookName">책이름</option>
+					<option value="bookPublisher">출판사</option>
+					<option value="bookWriter">작가</option>
+					<option value="publicationDate">출판일 기준</option>
 				</select>
 			</li>
- 	   		<li><input type="text" placeholder="검색" id="search"/></li>
- 	   		<li><button type="button" class="btn btn-default" id="search_button"><a href="/seunghwang.bms/search/search_result.html" target="content">검색</a></button>
+ 	   		<li><input type="text" name="searchBook" id="search" placeholder="검색"/></li>
+ 	   		<li><input type="submit" class="btn btn-default" id="search_button" value="검색"/>
 		</ul>
+		</form>
 	 	<% 
 			HttpSession sess = request.getSession(false);
 	 		if (sess == null || sess.getAttribute("authUser") == null){ %>
@@ -364,30 +369,31 @@
 		<li><div id="ex">
 		<div class="ease" id="ease"><p><span class="glyphicon glyphicon-align-justify"></span> 전체분야</p>
 		<div class="all-ease">
-			<div class="ease1"><p>문학 ></p>
+			<div class="ease1"><p>소설 ></p>
 			<div id="ease1_div">
-	        	<a href="/seunghwang.bms/category/book_list.html" class="list-group-item item-hover" target="content">소설</a>
-	        	<a href="/seunghwang.bms/category/book_list.html" class="list-group-item item-hover" target="content">일반소설</a>
-	        	<a href="/seunghwang.bms/category/book_list.html" class="list-group-item item-hover" target="content">추리/스릴러</a>
-	        	<a href="/seunghwang.bms/category/book_list.html" class="list-group-item item-hover" target="content">SF소설</a>
-	        	<a href="/seunghwang.bms/category/book_list.html" class="list-group-item item-hover" target="content">판타지소설</a>
-	        	<a href="/seunghwang.bms/category/book_list.html" class="list-group-item item-hover" target="content">역사소설</a>
+	        	<a href="/seunghwang.bms/category/book_list.html" class="list-group-item item-hover" target="content">한국소설</a>
+	        	<a href="/seunghwang.bms/category/book_list.html" class="list-group-item item-hover" target="content">영미소설</a>
+	        	<a href="/seunghwang.bms/category/book_list.html" class="list-group-item item-hover" target="content">일본소설</a>
+	        	<a href="/seunghwang.bms/category/book_list.html" class="list-group-item item-hover" target="content">프랑스소설</a>
+	        	<a href="/seunghwang.bms/category/book_list.html" class="list-group-item item-hover" target="content">중국소설</a>
 			 </div>
 		</div>
-		<div class="ease2"><p>인문 ></p>
+		<div class="ease2"><p>경제/경영 ></p>
 			<div id="ease2_div">
-				<a href="/seunghwang.bms/category/book_list.html" class="list-group-item item-hover" target="content">정치/사회</a>
-	        	<a href="/seunghwang.bms/category/book_list.html" class="list-group-item item-hover" target="content">예술/문화</a>
-	        	<a href="/seunghwang.bms/category/book_list.html" class="list-group-item item-hover" target="content">역사</a>
-	        	<a href="/seunghwang.bms/category/book_list.html" class="list-group-item item-hover" target="content">인문학</a>
+				<a href="/seunghwang.bms/category/book_list.html" class="list-group-item item-hover" target="content">경영일반</a>
+	        	<a href="/seunghwang.bms/category/book_list.html" class="list-group-item item-hover" target="content">경영이론</a>
+	        	<a href="/seunghwang.bms/category/book_list.html" class="list-group-item item-hover" target="content">경영관리</a>
+	        	<a href="/seunghwang.bms/category/book_list.html" class="list-group-item item-hover" target="content">경제일반</a>
+	        	<a href="/seunghwang.bms/category/book_list.html" class="list-group-item item-hover" target="content">경제이론</a>
+	        	<a href="/seunghwang.bms/category/book_list.html" class="list-group-item item-hover" target="content">기업경제</a>
 			 </div>
 		</div>
-		<div class="ease3"><p>경영 ></p>
+		<div class="ease3"><p>인문 ></p>
 			<div id="ease3_div">
-				<a href="/seunghwang.bms/category/book_list.html" class="list-group-item item-hover" target="content">경영일반</a>
-	        	<a href="/seunghwang.bms/category/book_list.html" class="list-group-item item-hover" target="content">경제일반</a>
-	        	<a href="/seunghwang.bms/category/book_list.html" class="list-group-item item-hover" target="content">마케팅/세일즈</a>
-	        	<a href="/seunghwang.bms/category/book_list.html" class="list-group-item item-hover" target="content">재테크/금융</a>
+				<a href="/seunghwang.bms/category/book_list.html" class="list-group-item item-hover" target="content">심리학</a>
+	        	<a href="/seunghwang.bms/category/book_list.html" class="list-group-item item-hover" target="content">인문학일반</a>
+	        	<a href="/seunghwang.bms/category/book_list.html" class="list-group-item item-hover" target="content">철학</a>
+	        	<a href="/seunghwang.bms/category/book_list.html" class="list-group-item item-hover" target="content">교육학</a>
 			</div>
 		</div>
 		<div class="ease4">
@@ -416,23 +422,38 @@
 		</div>
 	</div></li>
 			<li class="hiddenList" id="left-subcategory-margin-left">
-				<a href="/seunghwang.bms/category/literature.jsp" target="content">
-					<span class="glyphicon glyphicon-leaf"></span> 문학
+				<a href="/seunghwang.bms/category/novel.jsp" target="content">
+					<span class="glyphicon glyphicon-leaf"></span> 소설
 				</a>
 			</li>
 			<li class="hiddenList">
 				<a href="/seunghwang.bms/category/social_list.html" target="content">
-					<span class="glyphicon glyphicon-user"></span> 사회
+					<span class="glyphicon glyphicon-usd"></span> 경제/경영
 				</a>
 			</li>
 			<li class="hiddenList">
 				<a href="/seunghwang.bms/category/economy_list.html" target="content">
-					<span class="glyphicon glyphicon-globe"></span> 경제
+					<span class="glyphicon glyphicon-user"></span> 인문
 				</a>
 			</li>
 			<li class="hiddenList">
 				<a href="/seunghwang.bms/category/it_list.html" target="content">
-					<span class="glyphicon glyphicon-phone"></span> IT
+					<span class="glyphicon glyphicon-header"></span> 역사/문화
+				</a>
+			</li>
+			<li class="hiddenList">
+				<a href="/seunghwang.bms/category/it_list.html" target="content">
+					<span class="glyphicon glyphicon-header"></span> 정치/사회
+				</a>
+			</li>
+			<li class="hiddenList">
+				<a href="/seunghwang.bms/category/it_list.html" target="content">
+					<span class="glyphicon glyphicon-magnet"></span> 과학
+				</a>
+			</li>
+			<li class="hiddenList">
+				<a href="/seunghwang.bms/category/it_list.html" target="content">
+					<span class="glyphicon glyphicon-phone"></span> 컴퓨터/IT
 				</a>
 			</li>
 			<li class="hiddenList" id="faq"><a href="customerService/faq/faqList.jsp" target="content"><span class="glyphicon glyphicon-phone-alt"></span> 고객센터</a></li>

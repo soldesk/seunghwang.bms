@@ -70,5 +70,4 @@
 	detailService.insertDetail(detail);
 
 	response.sendRedirect("bookManage.jsp");
-
 %>

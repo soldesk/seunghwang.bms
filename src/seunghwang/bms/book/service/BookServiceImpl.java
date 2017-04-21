@@ -1,6 +1,8 @@
 package seunghwang.bms.book.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import seunghwang.bms.book.dao.BookDao;
 import seunghwang.bms.book.domain.Book;
@@ -15,6 +17,10 @@ public class BookServiceImpl implements BookService{
 	}
 	public List<Book> getBooks() {
 		return bookDao.getBooks();
+	}
+	
+	public List<Book> findBooks(Map map){
+		return bookDao.findBooks(map);
 	}
 	
 	public Book searchBook(String bookId) {
