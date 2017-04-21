@@ -443,7 +443,7 @@
 			</li>
 			<li class="hiddenList">
 				<a href="/seunghwang.bms/category/it_list.html" target="content">
-					<span class="glyphicon glyphicon-header"></span> 정치/사회
+					<span class="glyphicon glyphicon-comment"></span> 정치/사회
 				</a>
 			</li>
 			<li class="hiddenList">
