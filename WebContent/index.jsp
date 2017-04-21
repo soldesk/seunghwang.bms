@@ -857,8 +857,7 @@ ID, 비밀번호는 본인이 직접 사용하여야 하며 제 3자에게 이�
 </div>
 <div class="container-fluid" id="category_sub">
 	<ul class="nav nav-pills category_sub_list">
-		<li><a href="/seunghwang.bms/category/newbook_list.html" targ
-		et="content">신간 도서</a></li>
+		<li><a href="/seunghwang.bms/category/newbook_list.html" target="content">신간 도서</a></li>
 		<li><a href="/seunghwang.bms/category/bestseller_list.html" target="content">베스트 셀러</a></li>
 		<li><a href="/seunghwang.bms/category/steadyseller_list.html" target="content">스테디 셀러</a></li>
 		<li><a href="/seunghwang.bms/event/event_page.html" target="content">이벤트</a></li>
@@ -869,10 +868,9 @@ ID, 비밀번호는 본인이 직접 사용하여야 하며 제 3자에게 이�
 </div>
 <br><br>
 	<div class="container-fluid" id="footer">
-		<p id="footer0">INTERNET BOOK STORE</p>
-		<p id="footer1">BOOK KING</p>
-		<p id="footer2">ⓒKS TEAM.</p>
-	</div>
-</body>
+	<p id="footer0">INTERNET BOOK STORE</p>
+	<p id="footer1">BOOK KING</p>
+	<p id="footer2">ⓒKS TEAM.</p>
+</div>
 </body>
 </html>
