@@ -201,9 +201,15 @@
 	visibility: hidden;
 	position: relative;
 }
+.ease p{
+	font-size: 15px;
+	filter: drop-shadow(0 1px 1px rgba(0, 0, 0, .3));
+	font-weight: normal;
+	margin-top: 4px;
+}
 #item-main {background-color: hotpink; color: white;}
 .item-hover{font-size: 16px;}
-#left-subcategory-margin-left{margin-left: 145px;}
+#left-subcategory-margin-left{margin-left: 130px;}
 .all-ease{background-color: white; width: 0px; height: 0px; margin-left: -7px; transition: 0.1s ease; margin-top: 80px;}
 .all-ease a{color: hotpink;}
 #ease:hover .all-ease{width:1110px; height: 347px; margin-top: -20px; margin-left: 3px;}
