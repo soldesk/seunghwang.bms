@@ -114,7 +114,7 @@ textarea{width: 600px; height: 60px; resize:none;}
 <body>
 	<div class="container-fluid" id="bookGuide">
 	<a class="navbar-brand" data-toggle="modal" data-target="#bookDetail">
-			<img src="../img/book2.jpg" width="200px" height="300px" id="bookImg"/>
+			<img src="../img/bookUpload/<%=book.getBookImage() %>" width="200px" height="300px" id="bookImg"/>
 		</a>
 		<div class="modal fade" id="bookDetail">
     <div class="modal-dialog">    
@@ -125,7 +125,7 @@ textarea{width: 600px; height: 60px; resize:none;}
           <h4 class="modal-title">책 이미지</h4>
         </div>
         <div class="modal-body">
-        	<img src="../img/book2.jpg" width="450px" height="500px" id="bookZoomin"/>
+        	<img src="../img/bookUpload/<%=book.getBookImage() %>" width="450px" height="500px" id="bookZoomin"/>
         </div>
         <div class="modal-footer">
         </div>

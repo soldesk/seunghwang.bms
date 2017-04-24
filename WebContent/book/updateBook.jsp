@@ -391,7 +391,8 @@ function chgsel1(){
 				</tr>
 				<tr>
 					<td>이미지 URL</td>
-					<td colspan="3"><input type="file" name="bookImage"/>
+					<td colspan="3"><input type="text" value="<%=book.getBookImage()%>" readonly/>
+									<input type="file" name="bookImage" />
 									<img src="../img/bookUpload/<%=book.getBookImage()%>"/></td>
 					<td>작가이름</td>
 					<td><input type="text" name="bookWriter" value="<%=book.getBookWriter()%>"/></td>
