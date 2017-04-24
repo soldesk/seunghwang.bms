@@ -13,6 +13,17 @@
 <%@ page import="seunghwang.bms.book.dao.DetailDaoImpl" %>
 <%@ page import="seunghwang.bms.book.service.DetailService" %>
 <%@ page import="seunghwang.bms.book.service.DetailServiceImpl" %>
+
+<!-- 2017 04 24 추가됨 -->
+<%@ page import="seunghwang.bms.review.dao.mapper.ReviewMapper" %>
+<%@ page import="seunghwang.bms.review.domain.Review" %>
+<%@ page import="seunghwang.bms.review.dao.ReviewDao" %>
+<%@ page import="seunghwang.bms.review.dao.ReviewDaoImpl" %>
+<%@ page import="seunghwang.bms.review.service.ReviewService" %>
+<%@ page import="seunghwang.bms.review.service.ReviewServiceImpl" %>
+<%@ page import="java.util.List" %>
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <% 
 	String bookId = request.getParameter("bookId");
@@ -26,6 +37,12 @@
 	
 	Book book = bookService.searchBook(bookId);
 	Detail bookDetail = detailService.searchDetail(bookId);
+	
+	ReviewMapper reviewMapper = Configuration.getMapper(ReviewMapper.class);
+	ReviewDao reviewDao = new ReviewDaoImpl(reviewMapper);
+	ReviewService reviewService = new ReviewServiceImpl(reviewDao);
+	List<Review> reviews = reviewService.getBookReviews(book);
+		
 %>
 <html lang="ko">
 <head>
@@ -84,10 +101,13 @@
 .bookguide_right{margin-left: 100px;}
 textarea{width: 600px; height: 60px; resize:none;}
 .review_write{margin-left: 20px; margin-top: -50px; height: 60px;}
-.panel-right{margin-top: -16px; margin-left: 630px; filter: drop-shadow(0 1px 1px rgba(0, 0, 0, .3)); font-size: 20px;}
+.panel-right{margin-top: -16px; margin-left: 480px; filter: drop-shadow(0 1px 1px rgba(0, 0, 0, .3)); font-size: 20px;}
 .panel-right p{float: right; margin-right: 10px; font-size: 15px; margin-top: 3px; filter: drop-shadow(0 0px 0px rgba(0, 0, 0, 0));}
 .panel-default>.panel-heading {
     background-color: #F6F6F6;
+}
+.panel-group{
+	margin-bottom: 0px;
 }
   </style>
 </head>
@@ -129,13 +149,9 @@ textarea{width: 600px; height: 60px; resize:none;}
 				</tr>
 			</table>
 			<div id="buyButt">
-				<form method="post">
-					<input type="hidden" name="bookId" value="<%=book.getBookId() %>">
-					<button type="button" id="buttSize1" class="btn btn-default"><span class="glyphicon glyphicon-thumbs-up"></span></button>
-					<button type="submit" id="buttSize1" class="btn btn-default" formaction="../order/addCart.ct"><span class="glyphicon glyphicon-shopping-cart"></span></button>
-					<button type="submit" id="buttSize2" class="btn btn-danger" formaction="../order/getOrder.do">구매하기</button>
-				</form>
-				
+				<button type="button" id="buttSize1" class="btn btn-default"><span class="glyphicon glyphicon-thumbs-up"></span></button>
+				<button type="button" id="buttSize1" class="btn btn-default" onclick="location.href='../order/order_basket.html'"><span class="glyphicon glyphicon-shopping-cart"></span></button>
+				<button type="button" id="buttSize2" class="btn btn-danger" onclick="location.href='../order/order_book.html'">구매하기</button>
 			</div>
 		</div>
 	</div>
@@ -169,56 +185,54 @@ textarea{width: 600px; height: 60px; resize:none;}
 		<h3>리뷰</h3>
 	<div class="bookguide_left">
 		구매자 평점
-		<h2>5.0</h2>
+		<h2>3.0</h2>
 	</div>
 	<div class="bookguide_right">
 		<textarea placeholder=" 리뷰 작성 시 광고 및 욕설, 비속어나 타인을 비방하는 문구를 사용하시면 비공개 될 수 있습니다."></textarea>
 		<button type="button" class="btn btn-default review_write">리뷰 남기기</button>
 	</div>
 </div>
-<div class="container-fluid" id="bookGuide6">
+
+	<div class="container-fluid" id="bookGuide6">
 		<h3>리뷰 보기</h3>
-		<div class="panel-group" id="accordion">
+		
+      
+
+<% 
+	if(reviews.size()!=0){
+		for(Review review:reviews){
+%>
+<div class="panel-group">
     <div class="panel panel-default">
-      <div class="panel-heading">
+			<div class="panel-heading">
         <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href="#c1">아이디</a>
+          <a data-toggle="collapse" data-parent="#accordion" href="#<%= review.getReviewId()%>"><%= review.getReviewTitle() %></a>
           <div class="panel-right">
-          	평점: 4.5 <p>2017.03.17</p> 
+          	아이디: <%= review.getUserId() %>
+          	평점: <%= review.getReviewGrade() %> 
+          	<p><%= review.getRegDate() %></p> 
           </div>
         </h4>
       </div>
-      <div id="c1" class="panel-collapse collapse">
-        <div class="panel-body">리뷰내용</div>
+      <div id="<%= review.getReviewId()%>" class="panel-collapse collapse">
+        <div class="panel-body"><%= review.getReviewContent() %></div>
       </div>
     </div>
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href="#c2">아이디</a>
-          <div class="panel-right">
-          	평점: 4.5 <p>2017.03.17</p> 
-          </div>
-        </h4>
-      </div>
-      <div id="c2" class="panel-collapse collapse">
-        <div class="panel-body">리뷰내용</div>
-      </div>
     </div>
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href="#c3">아이디</a>
-          <div class="panel-right">
-          	평점: 4.5 <p>2017.03.17</p> 
-          </div>
-        </h4>
-      </div>
-      <div id="c3" class="panel-collapse collapse">
-        <div class="panel-body">리뷰내용</div>
-      </div>
-    </div>
-  </div>
-	</div>
+<%	
+		}
+%>
+
+<%
+	}else{
+%>
+
+	<h2>리뷰가 없습니다.</h2>
+<% 
+	}
+%>
+
+
+</div>
 </body>
 </html>
