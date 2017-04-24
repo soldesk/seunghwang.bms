@@ -42,7 +42,7 @@
 	</select>
 	
 	<select id="findBooks" parameterType="map" resultMap="bookMap">
-		select book_id,book_name, book_price, book_writer, book_publisher, book_grade, book_image
+		select book_id, book_name, book_publisher, book_writer, book_price, publication_date, book_sale, book_stock, book_grade
 		from books
 		<if test="searchBook != null and searchType.equals('total')">
 			where book_name like '%'||#{searchBook}||'%'

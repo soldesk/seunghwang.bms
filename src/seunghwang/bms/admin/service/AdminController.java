@@ -15,7 +15,7 @@ public class AdminController extends HttpServlet {
 
 	public void service(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException{
-
+		
 		String RequestURI=request.getRequestURI();
 		String contextPath=request.getContextPath();
 		String command=RequestURI.substring(contextPath.length());
@@ -27,12 +27,37 @@ public class AdminController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}else if(command.equals("/admin/adminUserAdddAction.admin")){
-			try {
-				forward=adminService.AdminUserAddAction(request, response);
+		}else if(command.equals("/admin/AdminUserListAction.admin")){
+			try {			System.out.println("asdasdad");	
+				forward=adminService.AdminUserListAction(request, response);
 			} catch (Exception e) {
-				e.printStackTrace();
+				e.printStackTrace();	
 			}
+		}else if(command.equals("/admin/AdminUserDetailAction.admin")){
+			try {			
+			forward=adminService.AdminUserDetailAction(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();	
+			}
+		}else if(command.equals("/admin/AdminUserDelAction.admin")){
+			try {		
+			forward=adminService.AdminUserDelAction(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();	
+			}
+		}else if(command.equals("/admin/AdminUserModifyAction.admin")){
+			try {		
+			forward=adminService.AdminUserModifyAction(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();	
+			}
+		}else if(command.equals("/AdminUserSerchAction.admin")){
+			try {		
+			forward=adminService.AdminUserSerchAction(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();	
+			}
+		}
 
 			if(forward != null){
 				if(forward.isRedirect()){
@@ -44,5 +69,5 @@ public class AdminController extends HttpServlet {
 				}	 
 			}
 		}
-	}
 }
+

@@ -95,7 +95,7 @@ select{height: 25px; width: 150px;}
       </div>
       <div id="c1" class="panel-collapse collapse">
         <div class="panel-body list-group">
-        	<a href="user_manage.jsp" class="list-group-item item-green-hover">회원 정보 관리</a>
+        	<a href="/seunghwang.bms/admin/AdminUserListAction.admin" class="list-group-item item-green-hover">회원 정보 관리</a>
         	<a href="../book/bookManage.jsp" class="list-group-item item-green-hover">책 정보 관리</a>
         	<a href="/seunghwang.bms/admin/listOrder.ag" class="list-group-item item-green-hover">주문 정보 관리</a>
         	<a href="banner_manage.html" class="list-group-item item-green-hover">배너관리</a>
@@ -106,23 +106,32 @@ select{height: 25px; width: 150px;}
 	</div>
 	</div>
 		<div id="book_info_body">
+		<form method="post">
 			<table class="table table-boardered">
 			<tbody>
 				<tr>
 					<td>회원이름</td>
-					<td><input type="text"/></td>
-					<td>ID</td>
-					<td><input type="text"/></td>
+					<td><input type="text" name="userName" placeholder="${User.getUserName()}"/></td>
+					<td>ID <input type="hidden" name="userId" value="${User.getUserId()}"/></td>
+					<td>${User.getUserId()}</td>
 					<td>이메일</td>
-					<td><input type="text"/></td>
+					<td><input type="text" name="userEmail" placeholder="${User.getUserEmail()}" /></td>
 				</tr>
 				<tr>
 					<td>가입일</td>
-					<td><input type="text"/></td>
+					<td>${User.getRegDate()}</td>
 					<td>탈퇴상태</td>
 					<td>
-						<label><input type="radio" name="user_del" checked>탈퇴</label>
-						<label><input type="radio" name="user_del">탈퇴함</label>
+						<c:choose>
+							<c:when test="${User.getUserState()>=3}"> 메일 인증 된 회원</c:when>
+							<c:when test="${User.getUserState()<=0}">탈퇴 중인 회원</c:when>
+							<c:when test="${User.getUserState()==1}">메일 인증 안된 회원"</c:when>
+						</c:choose> <br>
+						<select name="userState"> 
+							<option>--</option>
+							<option>메일인증</option>
+							<option>메일인증미완</option>
+						</select>
 					</td>
 					<td>광고수신여부</td>
 					<td>
@@ -131,16 +140,24 @@ select{height: 25px; width: 150px;}
 					</td>
 				</tr>
 				<tr>
-					<td>전화번호</td>
-					<td><input type="text"/></td>
+				<td>우편번호</td>
+				<td><input type="text" name="userPost" placeholder="${User.getUserPost()}"/></td>					
 					<td>회원주소</td>
-					<td colspan="3"><input type="text" id="text_size"/></td>
+					<td colspan="3"><input type="text" id="text_size" placeholder="${User.getUserAddress()}" /></td>
+				</tr>
+				<tr>
+				<td>전화번호</td>
+				<td><input type="text" name="userPhone" placeholder="${User.getUserPhone()}"/></td>
+				<td>비밀번호</td>
+				<td><input type="text"  name="userPw" placeholder="${User.getUserPw()}"/></td>
 				</tr>
 			</tbody>
 		</table>
-		<button type="button" class="btn btn-default btn-pos">수정</button>
-		<button type="button" class="btn btn-default">삭제하기</button>
-		<button type="button" class="btn btn-default" onclick="location.href='user_manage.html'">목록</button>
+
+		<button type="submit" formaction="/seunghwang.bms/admin/AdminUserModifyAction.admin" class="btn btn-default btn-pos">수정</button>
+		<button type="submit" formaction="/seunghwang.bms/admin/AdminUserDelAction.admin" class="btn btn-default">삭제하기</button>
+		<button type="submit" formaction="/seunghwang.bms/admin/AdminUserListAction.admin" class="btn btn-default" onclick="location.href='user_manage.html'">목록</button>
+		</form>
 	</div>
 </div>
 </body>

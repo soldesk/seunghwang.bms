@@ -59,7 +59,7 @@
 	String bookETC = multiRequest.getParameter("bookETC");
 	int bookSale = Integer.parseInt(multiRequest.getParameter("bookSale"));
 	int bookStock = Integer.parseInt(multiRequest.getParameter("bookStock"));
-	String bookImage = multiRequest.getParameter("bookImage");
+	String bookImage = multiRequest.getFilesystemName("bookImage");
 	
 	String detailBook = multiRequest.getParameter("detailBook");
 	String detailReview = multiRequest.getParameter("detailReview");
@@ -81,7 +81,6 @@
 
 	Detail detail = new Detail(bookId, detailBook, detailReview, detailWriter, detailChapter);
 	detailService.insertDetail(detail);
-
 	
+	response.sendRedirect("bookManage.jsp");
 %>
-<jsp:forward page=""/>

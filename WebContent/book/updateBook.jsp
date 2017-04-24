@@ -14,6 +14,7 @@
 <%@ page import="seunghwang.bms.book.service.DetailService" %>
 <%@ page import="seunghwang.bms.book.service.DetailServiceImpl" %>
 <%@ page import="java.sql.Date" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="ko">
 <head>
@@ -390,7 +391,9 @@ function chgsel1(){
 				</tr>
 				<tr>
 					<td>이미지 URL</td>
-					<td colspan="3"><input type="text" name="bookImage" value="<%=book.getBookImage()%>"/></td>
+					<td colspan="3"><input type="text" value="<%=book.getBookImage()%>" readonly/>
+									<input type="file" name="bookImage" />
+									<img src="../img/bookUpload/<%=book.getBookImage()%>"/></td>
 					<td>작가이름</td>
 					<td><input type="text" name="bookWriter" value="<%=book.getBookWriter()%>"/></td>
 				</tr>

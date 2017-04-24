@@ -88,8 +88,18 @@ public class LoginServiceImpl implements LoginService {
 	}
 
 	public ActionForward findSameIdAction(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		forward.setPath("/login/login_idCheckPro.jsp");
+		System.out.println("아이디찾기 도착 "+request.getParameter("id"));
+		
+		User user = loginDao.getUser(request.getParameter("id"));
+		if(user!=null) {
+			System.out.println("유저 눌 아님");
+			request.setAttribute("check",2);
+		}else {
+			System.out.println("유저 눌임");
+			request.setAttribute("check",1);
+		}
+		return forward;
 	}
 
 	public ActionForward loginFindPwChangeAction(HttpServletRequest request, HttpServletResponse response)
@@ -219,8 +229,7 @@ public class LoginServiceImpl implements LoginService {
 		
     	System.out.println("탈퇴돡");
     	HttpSession session = request.getSession(false); 
-    	User user = (User) session.getAttribute("authUser");
-    	System.out.println(user.toString());
+    	User user = (User)session.getAttribute("authUser");
     	if(!user.getUserPw().equals(request.getParameter("userPw"))) {
     		request.setAttribute("alertMessage", "비밀번호가 틀립니다");
         	return forward;
@@ -231,8 +240,10 @@ public class LoginServiceImpl implements LoginService {
     	
     	if(result==1) {
     		request.setAttribute("alertMessage", "성공 했습니다.");
+    		request.setAttribute("reload","yes");
     	}else {
     		request.setAttribute("alertMessage", "실패했습니다.");
+    		request.setAttribute("reload","yes");	
     	}
     	
     	return forward;
@@ -265,10 +276,13 @@ public class LoginServiceImpl implements LoginService {
 		String userPhone = request.getParameter("userPhone");
 		String userName = request.getParameter("userName");
 		String userAddress = request.getParameter("userAddress1") + " " +  request.getParameter("userAddress2");
-		String userEmail = request.getParameter("userEmail");
+		String userEmail = request.getParameter("userEmail")+ "@" + request.getParameter("userEmail2");
 		String userPost = request.getParameter("userPost");
 		int userState = 1;
-
+		
+		System.out.println(userId); System.out.println(userPw); System.out.println(userPhone);System.out.println(userName);System.out.println(userAddress);
+		System.out.println(userEmail);System.out.println(userPost);
+		
 		User signUpUser = new User(userId, userPw, userName, userPhone, userPost, userAddress, userEmail, userState,
 				new Date());
 		LoginDao loginDao = new LoginDaoImpl();

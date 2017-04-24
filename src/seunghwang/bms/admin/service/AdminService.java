@@ -11,5 +11,6 @@ public interface AdminService {
 	public ActionForward AdminUserSerchAction(HttpServletRequest request, HttpServletResponse response) throws Exception; 
 	public ActionForward AdminUserModifyAction(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ActionForward AdminUserListAction(HttpServletRequest request, HttpServletResponse response) throws Exception;
-
+	public ActionForward AdminUserDetailAction(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	
 }

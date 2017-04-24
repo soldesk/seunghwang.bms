@@ -17,10 +17,24 @@
 		from reviews
 		order by review_id 
 	</select>
-
+	
+	<select id="getBookReviews" parameterType="book" resultMap="reviewMap" >
+		select review_id, book_name, review_title, review_content, review_grade, reg_date, book_id, user_id
+		from reviews
+		where book_id = #{bookId}
+		order by reg_date desc
+	</select>
+	
+	
+	<select id="searchReview" parameterType="string" resultMap="reviewMap">
+		select review_id, book_name, review_title, review_content, review_grade, reg_date, user_id
+		from reviews
+		where book_id = #{bookId}
+	</select>
+	
 	<insert id="insertReview" parameterType="review">
 		insert into reviews
-		values(#{reviewId},#{bookName},#{reviewTitle},#{reviewContent}, #{reviewGrade}, sysdate, #{bookId},#{userId})
+		values(#{reviewId},#{bookName},#{reviewTitle},#{reviewContent}, #{reviewGrade}, #{regDate}, #{bookId},#{userId})
 	</insert>
 	
 	<update id="updateReview" parameterType="review">
@@ -33,4 +47,19 @@
 		delete reviews
 		where review_id =#{reviewId}
 	</delete>
+	
+	<select id="getIdGrade" parameterType="string" resultMap="reviewMap">
+		select review_grade
+		from reviews
+		where book_id =#{bookId}
+		and user_id =#{userId}
+	</select>
+	
+	<select id="getAvgGrade" parameterType="string" resultMap="reviewMap">
+		select AVG(review_grade)
+		from reviews
+		where book_id =#{bookId}
+		group by book_id
+	</select>
+	
 </mapper>

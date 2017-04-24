@@ -95,10 +95,5 @@ public class Review {
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
-	
-	@Override
-	public String toString(){
-		return String.format("%s %s %s %-6s", reviewTitle,reviewContent,userId,regDate);
-	}
-	
+		
 }
