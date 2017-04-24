@@ -17,6 +17,7 @@
 		<typeAlias type="seunghwang.bms.admin.domain.AdminOrder" alias="adminorder"/>
 		<typeAlias type="seunghwang.bms.login.domain.User" alias="user"/>
 		<typeAlias type="seunghwang.bms.admin.domain.Admin" alias="admin"/>
+		<typeAlias type="seunghwang.bms.admin.domain.Page" alias="page"/>
 	</typeAliases>
 	
 	<environments default="development">
