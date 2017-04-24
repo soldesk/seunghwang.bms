@@ -6,6 +6,7 @@ import seunghwang.bms.customerService.faq.domain.Faq;
 
 public interface FaqService {
 	List<Faq> listFaqs();
+	List<Faq> searchFaqs(String faqTitle);
 	List<Faq> userFaqs();
 	List<Faq> orderFaqs();
 	List<Faq> bookFaqs();

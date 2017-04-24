@@ -5,6 +5,7 @@ import seunghwang.bms.customerService.faq.domain.Faq;
 
 public interface FaqMapper {
 	List<Faq> getFaqs();
+	List<Faq> searchFaqs(String faqTitle);
 	List<Faq> userFaqs();
 	List<Faq> orderFaqs();
 	List<Faq> bookFaqs();

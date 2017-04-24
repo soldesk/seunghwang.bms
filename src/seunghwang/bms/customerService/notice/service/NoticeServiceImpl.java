@@ -38,4 +38,9 @@ public class NoticeServiceImpl implements NoticeService{
 	public boolean modNotice(Notice notice) {
 		return noticeDao.modNotice(notice)>0;
 	}
+
+	@Override
+	public List<Notice> searchNotices(String noticeTitle) {
+		return noticeDao.searchNotices(noticeTitle);
+	}
 }

@@ -5,11 +5,13 @@
 <%@ page import="seunghwang.bms.customerService.faq.dao.FaqDaoImpl" %>
 <%@ page import="seunghwang.bms.customerService.faq.service.FaqService" %>
 <%@ page import="seunghwang.bms.customerService.faq.service.FaqServiceImpl" %>
+<%@ page import ="javax.servlet.http.*,seunghwang.bms.login.domain.User" %>
 <!DOCTYPE html>
 <%
 	request.setCharacterEncoding("utf-8");
 	FaqDao faqDao = new FaqDaoImpl();
 	FaqService faqService = new FaqServiceImpl(faqDao);
+	HttpSession sess = request.getSession(false);
 	
 	String faqId = request.getParameter("faqId");
 	String faqTitle = request.getParameter("faqTitle");
@@ -97,6 +99,7 @@ hr{margin-top: -35px; border-top: 2px solid #D5D5D5; width: 700px; margin-left: 
 	border-bottom-right-radius: 1em; /*오른쪽 하단 코너를 부드럽게*/
 	}
 #controlDiv button{height: 30px;}
+#btnPos{margin-left: 1045px; margin-top: -55px;}
   </style>
 </head>
  
@@ -110,12 +113,20 @@ hr{margin-top: -35px; border-top: 2px solid #D5D5D5; width: 700px; margin-left: 
 		<div id="inbox"><%=faqContent%></div><br><br>
 
 	</div>
+	<br>
 		<div id="write_button">
-			<!-- 수정, 삭제버튼은 관리자만 가능. -->
+		<%
+		if(sess == null || sess.getAttribute("authUser") != null){ 
+		if(sess.getAttribute("authUser").getClass().getSimpleName().equals("Admin")){ 
+		%>
 			<button type="button" class="btn btn-default" onclick="location.href='faqUpdate.jsp?faqId=<%=faqId%>&faqTitle=<%=faqTitle %>&faqCategory=<%=faqCategory %>&faqContent=<%=faqContent%>'">수정</button>
 			<button type="button" class="btn btn-default" onclick="location.href='faqDelProc.jsp?faqId=<%=faqId%>'">삭제</button>
-			<button type="button" class="btn btn-default" onclick="location.href='faqList.jsp'">목록</button>
-		</div>
+		<%
+		}
+	}
+	%>
+	</div>
+			<button type="button" class="btn btn-default" id="btnPos" onclick="location.href='faqList.jsp'">목록</button>
 <br><br>
 </div>
 </body>

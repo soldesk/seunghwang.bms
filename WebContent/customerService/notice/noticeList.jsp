@@ -22,6 +22,7 @@
 	NoticeDao noticeDao = new NoticeDaoImpl();
 	NoticeService noticeService = new NoticeServiceImpl(noticeDao);
 	List<Notice> notices = noticeService.listNotices();
+	List<Notice> searchNotices =(List)request.getAttribute("searchNotices");
 	HttpSession sess = request.getSession(false);
 	
 	int pageno = toInt(request.getParameter("pageno"));
@@ -95,7 +96,7 @@
   	.table {max-width: none !important; max-height: none !important;}
 	.table-responsive {min-height: none !important;	overflow-x: 0}
       body {position: relative;}
-    #boardSection {height: 600px;color: black; background-color: white;}
+    #boardSection {height: 200px;color: black; background-color: white;}
 	#board_table{width: 900px; margin-left: 350px;}
 	#freeBoard_title{margin-left: 350px; filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, .3)); width: 150px; height: 30px; padding-top: 5px; text-align: center;
 		color: white;
@@ -198,7 +199,10 @@ p{padding-left: 750px;}
   </div>
 		</div>
 	</div><br>
-		<% if(notices.size() != 0){ %>
+		<%
+			if(searchNotices == null){
+			if(notices.size() != 0){ 
+		%>
 		<table class="table table-hover" id="board_table">
 			<thead>
 				<tr>
@@ -248,6 +252,38 @@ p{padding-left: 750px;}
 				<li><a href="noticeList.jsp?pageno=<%=total_page%>">>></a></li>
 			</ul>
 		</div>
+		<%}else if(searchNotices!=null){
+			if(searchNotices.size() != 0){ 
+		%>
+		<table class="table table-hover" id="board_table">
+			<thead>
+				<tr>
+					<th>번호</th>
+					<th>제목</th>
+					<th>일시</th>
+					<th>조회수</th>
+				</tr>
+			</thead>
+			<tbody>
+			<%
+				for(Notice notice:searchNotices){
+					String noticeContent = notice.getNoticeContent().replaceAll("\r\n", "<br>");
+			%>
+				<tr onclick="location.href='noticeDetail.jsp?noticeId=<%=notice.getNoticeId()%>&noticeTitle=<%=notice.getNoticeTitle()%>&noticeContent=<%=noticeContent%>&readCnt=<%=notice.getReadCnt()%>'">
+					<td><%=notice.getNoticeId() %></td>
+					<td class="tdTitle"><%=notice.getNoticeTitle() %></td>
+					<td><%=notice.getRegDate()%></td>
+					<td><%=notice.getReadCnt() %></td>
+				</tr>
+				<%
+				} 
+				%>
+			</tbody>
+		</table>
+		<%}else{ %>
+		<p>게시물이 없습니다.</p>
+		<%}	%>
+		<%}%>
 	<div id="pageBoard">
 	<%
 		if(sess == null || sess.getAttribute("authUser") != null){ 
@@ -259,10 +295,12 @@ p{padding-left: 750px;}
 	}
 	%>
 	</div>
-	<div id="selectBoard">
-		제목: <input type="text" placeholder=" 찾을 글 제목" />
-		<button type="button" class="btn btn-default">검색</button>
-	</div>
+	<form action="noticeSearchProc.jsp" method="post">
+		<div id="selectBoard">
+			제목: <input type="text" name="searchNoticeTitle" placeholder="찾을 글 제목" required/>
+			<button type="submit" class="btn btn-default">검색</button>
+		</div>
+	</form>	
 </div>
 </body>
 </html>

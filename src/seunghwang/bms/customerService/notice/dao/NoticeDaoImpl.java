@@ -42,4 +42,9 @@ public class NoticeDaoImpl implements NoticeDao{
 		return noticeMapper.modNotice(notice);
 	}
 
+	@Override
+	public List<Notice> searchNotices(String noticeTitle) {
+		return noticeMapper.searchNotices(noticeTitle);
+	}
+
 }

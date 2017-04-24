@@ -5,11 +5,13 @@
 <%@ page import="seunghwang.bms.customerService.notice.dao.NoticeDaoImpl" %>
 <%@ page import="seunghwang.bms.customerService.notice.service.NoticeService" %>
 <%@ page import="seunghwang.bms.customerService.notice.service.NoticeServiceImpl" %>
+<%@ page import ="javax.servlet.http.*,seunghwang.bms.login.domain.User" %>
 <!DOCTYPE html>
 <% 
 	request.setCharacterEncoding("utf-8");
 	NoticeDao noticeDao = new NoticeDaoImpl();
 	NoticeService noticeService = new NoticeServiceImpl(noticeDao);
+	HttpSession sess = request.getSession(false);
 	
 	String noticeId = request.getParameter("noticeId");
 	String noticeTitle = request.getParameter("noticeTitle");
@@ -91,6 +93,7 @@ hr{margin-top: -35px; border-top: 2px solid #D5D5D5; width: 700px; margin-left: 
 	border-top-right-radius: 1em; /*오른족 상단 코너를 부드럽게*/
 	border-bottom-right-radius: 1em; /*오른쪽 하단 코너를 부드럽게*/
 	}
+#btnPos{margin-left: 1040px; margin-top: -55px;}
   </style>
 </head>
  
@@ -102,12 +105,21 @@ hr{margin-top: -35px; border-top: 2px solid #D5D5D5; width: 700px; margin-left: 
 		<hr>
 		<div id="inbox"><%=noticeContent %></div><br><br>
 		</div>
+		<br>
 		<div id="write_button">
+		<%
+			if(sess == null || sess.getAttribute("authUser") != null){ 
+			if(sess.getAttribute("authUser").getClass().getSimpleName().equals("Admin")){ 
+		%>
 			<button type="button" class="btn btn-default" onclick="location.href='noticeWrite.jsp'">글쓰기</button>
 			<button type="button" class="btn btn-default" onclick="location.href='noticeUpdate.jsp?noticeId=<%=noticeId %>&noticeTitle=<%=noticeTitle%>&noticeContent=<%=noticeContent%>'">수정</button>
 			<button type="button" class="btn btn-default" onclick="location.href='noticeDelProc.jsp?noticeId=<%=noticeId%>'">삭제</button>
-			<button type="button" class="btn btn-default" onclick="location.href='noticeList.jsp'">목록</button>
+			<%
+		}
+	}
+	%>
 		</div>
+			<button type="button" class="btn btn-default" id="btnPos" onclick="location.href='noticeList.jsp'">목록</button>
 	</div>
 </body>
 </html>

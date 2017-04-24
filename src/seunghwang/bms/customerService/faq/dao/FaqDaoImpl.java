@@ -66,4 +66,9 @@ public class FaqDaoImpl implements FaqDao{
 	public int modFaq(Faq faq) {
 		return faqMapper.modFaq(faq);
 	}
+
+	@Override
+	public List<Faq> searchFaqs(String faqTitle) {
+		return faqMapper.searchFaqs(faqTitle);
+	}
 }
