@@ -41,7 +41,7 @@
 	ReviewMapper reviewMapper = Configuration.getMapper(ReviewMapper.class);
 	ReviewDao reviewDao = new ReviewDaoImpl(reviewMapper);
 	ReviewService reviewService = new ReviewServiceImpl(reviewDao);
-	List<Review> reviews = reviewService.getBookReviews(book);
+	List<Review> reviews = reviewService.getBookReviews(bookId);
 		
 %>
 <html lang="ko">

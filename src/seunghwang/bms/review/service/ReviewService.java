@@ -2,12 +2,11 @@ package seunghwang.bms.review.service;
 
 import java.util.List;
 
-import seunghwang.bms.book.domain.Book;
 import seunghwang.bms.review.domain.Review;
 
 public interface ReviewService {
 	List<Review> getReviews(); //리뷰 리스트
-	List<Review> getBookReviews(Book book); 
+	List<Review> getBookReviews(String bookId); 
 	Review searchReview(String bookId); //리뷰 하나
 	void insertReview(Review review); //리뷰 추가
 	void updateReview(Review review); //리뷰 수정
