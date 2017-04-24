@@ -19,6 +19,8 @@
 <%@ page import="seunghwang.bms.book.dao.CategoryDaoImpl" %>
 <%@ page import="seunghwang.bms.book.service.CategoryService" %>
 <%@ page import="seunghwang.bms.book.service.CategoryServiceImpl" %>
+<%@ page import="com.oreilly.servlet.MultipartRequest" %>
+<%@ page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy" %>
 <%@ page import="java.sql.Date" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -35,23 +37,34 @@
 	
 	CategoryService categoryService = new CategoryServiceImpl();
 	
-	String categoryId = request.getParameter("sel2");
-	String bookId = categoryService.insertBookId(categoryId) ;
-	String bookName = request.getParameter("bookName");
-	int bookPrice = Integer.parseInt(request.getParameter("bookPrice"));
-	String bookWriter = request.getParameter("bookWriter");
-	String bookPublisher = request.getParameter("bookPublisher");
-	String publicationDate = request.getParameter("publicationDate");
-	double bookGrade = Double.parseDouble(request.getParameter("bookGrade"));
-	String bookETC = request.getParameter("bookETC");
-	int bookSale = Integer.parseInt(request.getParameter("bookSale"));
-	int bookStock = Integer.parseInt(request.getParameter("bookStock"));
-	String bookImage = request.getParameter("bookImage");
+	String savePath = "img/bookUpload"; //저장경로
+	int uploadFileMaxSize = 100 * 1024 * 1024; 
+	String encType = "utf-8";
 	
-	String detailBook = request.getParameter("detailBook");
-	String detailReview = request.getParameter("detailReview");
-	String detailWriter = request.getParameter("detailWriter");
-	String detailChapter = request.getParameter("detailChapter");
+	ServletContext context = getServletContext();
+	String uploadFilePath = context.getRealPath(savePath);
+	
+	MultipartRequest multiRequest = new MultipartRequest(request,
+			uploadFilePath, uploadFileMaxSize, encType,
+			new DefaultFileRenamePolicy());
+	
+	String categoryId = multiRequest.getParameter("sel2");
+	String bookId = categoryService.insertBookId(categoryId) ;
+	String bookName = multiRequest.getParameter("bookName");
+	int bookPrice = Integer.parseInt(multiRequest.getParameter("bookPrice"));
+	String bookWriter = multiRequest.getParameter("bookWriter");
+	String bookPublisher = multiRequest.getParameter("bookPublisher");
+	String publicationDate = multiRequest.getParameter("publicationDate");
+	double bookGrade = Double.parseDouble(multiRequest.getParameter("bookGrade"));
+	String bookETC = multiRequest.getParameter("bookETC");
+	int bookSale = Integer.parseInt(multiRequest.getParameter("bookSale"));
+	int bookStock = Integer.parseInt(multiRequest.getParameter("bookStock"));
+	String bookImage = multiRequest.getParameter("bookImage");
+	
+	String detailBook = multiRequest.getParameter("detailBook");
+	String detailReview = multiRequest.getParameter("detailReview");
+	String detailWriter = multiRequest.getParameter("detailWriter");
+	String detailChapter = multiRequest.getParameter("detailChapter");
 	
 	if(detailBook == null || detailBook.equals(""))
 		detailBook = "입력한 내용이 없습니다.";
@@ -69,5 +82,6 @@
 	Detail detail = new Detail(bookId, detailBook, detailReview, detailWriter, detailChapter);
 	detailService.insertDetail(detail);
 
-	response.sendRedirect("bookManage.jsp");
+	
 %>
+<jsp:forward page=""/>

@@ -21,6 +21,10 @@ public class BookServiceImpl implements BookService{
 	public List<Book> largeCategoryBooks(String largeCategory) {
 		return bookDao.largeCategoryBooks(largeCategory);
 	}
+	
+	public List<Book> middleCategoryBooks(String categoryId) {
+		return bookDao.middleCategoryBooks(categoryId);
+	}
 	public List<Book> findBooks(Map map){
 		return bookDao.findBooks(map);
 	}

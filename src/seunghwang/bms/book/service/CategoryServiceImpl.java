@@ -12,6 +12,9 @@ public class CategoryServiceImpl implements CategoryService{
 		this.categoryDao = categoryDao;
 	}
 	
+	public Category findCategory(String categoryId) {
+		return categoryDao.findCategory(categoryId);
+	}
 	public String insertBookId(String categoryId){
 		String category = "";
 		switch(categoryId) {

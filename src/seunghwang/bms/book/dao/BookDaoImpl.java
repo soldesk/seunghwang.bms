@@ -21,6 +21,10 @@ public class BookDaoImpl implements BookDao{
 		return bookMapper.largeCategoryBooks(largeCategory);
 	}
 	
+	public List<Book> middleCategoryBooks(String categoryId) {
+		return bookMapper.middleCategoryBooks(categoryId);
+	}
+	
 	public List<Book> findBooks(Map map) {
 		return bookMapper.findBooks(map);
 	}

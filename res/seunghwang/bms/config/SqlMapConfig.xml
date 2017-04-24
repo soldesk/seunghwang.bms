@@ -38,6 +38,7 @@
 		<mapper resource="seunghwang/bms/customerService/notice/dao/mapper/NoticeMapper.xml" />
 		<mapper resource="seunghwang/bms/book/dao/mapper/BookMapper.xml"/>
 		<mapper resource="seunghwang/bms/book/dao/mapper/DetailMapper.xml"/>
+		<mapper resource="seunghwang/bms/book/dao/mapper/CategoryMapper.xml"/>
 		<mapper resource="seunghwang/bms/review/dao/mapper/ReviewMapper.xml"/>
 		<mapper resource="seunghwang/bms/order/dao/mapper/OrderMapper.xml"/>
 		<mapper resource="seunghwang/bms/cart/dao/mapper/CartMapper.xml"/> 

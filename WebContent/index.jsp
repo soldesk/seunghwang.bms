@@ -154,7 +154,6 @@
 .ease{
 	width: 130px;
 	height: 30px;
-	margin: 5px 10px;
 	padding: 5px;
 	color: hotpink;
 	background-color: #fff;
@@ -162,104 +161,35 @@
 	text-align:center;
 	font-weight: bold;
 	z-index: 99;
-	font-size: 17px;
+	font-size: 20px;
 	position: absolute;
 	transition: 0.1s ease;
 }
-.ease p{
+#allCategory{
 	filter: drop-shadow(0 1px 1px rgba(0, 0, 0, .3));
+	font-size: 15px;
+	font-weight: normal;
+	margin-top: 5px;
 }
-.ease1{
-	width: 140px;
-	height: 45px;
-	margin: 5px 10px;
-	padding: 5px;
-	color: hotpink;
-	border-radius: 5px;
-	text-align:center;
-	font-weight: bold;
-	z-index: 99;
-	font-size: 20px;
-	position: absolute;
-}
-.ease1 p {width: 120px; height: 40px; padding-top: 5px; background-color: white; margin-top: 10px;
-	border-top-left-radius: .5em; /*왼쪽 상단 코너를 부드럽게 */
-	border-bottom-left-radius: .5em; /*왼쪽 하단 코너를 부드럽게*/
-	border-top-right-radius: .5em; /*오른족 상단 코너를 부드럽게*/
-	border-bottom-right-radius: .5em; /*오른쪽 하단 코너를 부드럽게*/
-}
-.ease1 a{display: block; width: 150px;}
-#ease1_div{margin-left: 130px; margin-top: -50px; visibility: hidden;}
-#ease_div a{font-size: 14px;}
-.ease1:hover #ease1_div{visibility: visible;}
-.ease1:hover p{color: white; background-color: hotpink;}
-.ease2{
-	width: 140px;
-	height: 45px;
-	margin: 5px 10px;
-	padding: 5px;
-	color: hotpink;
-	border-radius: 5px;
-	text-align:center;
-	font-weight: bold;
-	z-index: 99;
-	font-size: 20px;
-	margin-top: 0px; 
-	margin-left: 10px;
-	position: absolute;
-}
-.ease2 p {width:120px; height: 40px; padding-top: 5px; background-color: white; margin-top: 10px;
-	border-top-left-radius: .5em; /*왼쪽 상단 코너를 부드럽게 */
-	border-bottom-left-radius: .5em; /*왼쪽 하단 코너를 부드럽게*/
-	border-top-right-radius: .5em; /*오른족 상단 코너를 부드럽게*/
-	border-bottom-right-radius: .5em; /*오른쪽 하단 코너를 부드럽게*/
-	}
-.ease2 a{display: block; width: 150px;}
-#ease2_div{visibility: hidden; margin-top: -100px; margin-left: 130px;}
-.ease2:hover #ease2_div{visibility: visible;}
-.ease2:hover p{color: white; background-color: hotpink;}
-.ease3{
-	width: 140px;
-	height: 45px;
-	margin: 5px 10px;
-	padding: 5px;
-	color: hotpink;
-	border-radius: 5px;
-	text-align:center;
-	font-weight: bold;
-	z-index: 99;
-	font-size: 20px;
-	float: left;
-	margin-top: 0px;
-	margin-left: 10px;
-	position: absolute;
-}
-.ease3 p {
-	width: 120px; height: 40px; padding-top: 5px; background-color: white; margin-top: 10px;
-	border-top-left-radius: .5em; /*왼쪽 상단 코너를 부드럽게 */
-	border-bottom-left-radius: .5em; /*왼쪽 하단 코너를 부드럽게*/
-	border-top-right-radius: .5em; /*오른족 상단 코너를 부드럽게*/
-	border-bottom-right-radius: .5em; /*오른쪽 하단 코너를 부드럽게*/
-}
-.ease3 a{display: block; width: 150px;}
-#ease3_div{background-color: white; margin-left: 130px; margin-top: -150px; width: 110px;
-	visibility: hidden;
-}
-.ease3:hover #ease3_div{visibility: visible;}
-.ease3:hover p{color: white; background-color: hotpink;}
-.ease4 {margin-left: 310px; margin-top: -85px;}
-.ease4 a{width: 150px;}
-.ease5 {margin-left: 470px; margin-top: -173px;}
-.ease5 a{width: 150px;}
-.ease6 {margin-left: 310px; margin-top: 15px;}
-.ease6 a{width: 150px;}
-.ease7 {margin-left: 470px; margin-top: -130px;}
-.ease7 a{width: 150px;}
+.ease1 {margin-left: 60px; margin-top: 30px; padding-top: 20px;}
+.ease1 a{width: 120px;}
+.ease2 {margin-left: 205px; margin-top: -260px;}
+.ease2 a{width: 120px;}
+.ease3 {margin-left: 350px; margin-top: -301px;}
+.ease3 a{width: 120px;}
+.ease4 {margin-left: 500px; margin-top: -217px;}
+.ease4 a{width: 120px;}
+.ease5 {margin-left: 650px; margin-top: -260px;}
+.ease5 a{width: 120px;}
+.ease6 {margin-left: 800px; margin-top: -260px;}
+.ease6 a{width: 120px;}
+.ease7 {margin-left: 945px; margin-top: -303px;}
+.ease7 a{width: 130px;}
 #ex:hover .ease{
-	height: 500px;
-	width: 650px;
+	height: 395px;
+	width: 1130px;
 	z-index: 99;
-	border: 2px solid hotpink;
+	border: 1px solid hotpink;
 	background: hotpink;
 	color: white;
 	position: absolute;
@@ -274,9 +204,9 @@
 #item-main {background-color: hotpink; color: white;}
 .item-hover{font-size: 16px;}
 #left-subcategory-margin-left{margin-left: 145px;}
-.all-ease{background-color: white; width: 0px; height: 0px; margin-left: -7px; transition: 0.1s ease;}
+.all-ease{background-color: white; width: 0px; height: 0px; margin-left: -7px; transition: 0.1s ease; margin-top: 80px;}
 .all-ease a{color: hotpink;}
-#ease:hover .all-ease{width:650px; height: 350px;}
+#ease:hover .all-ease{width:1110px; height: 347px; margin-top: -20px; margin-left: 3px;}
 #circle{margin-top: -55px; margin-left: -60px; position: absolute; z-index: -1; width: 2000px;}
 #circle div{
 	display: inline-block;
@@ -369,55 +299,64 @@
 		<li><div id="ex">
 		<div class="ease" id="ease"><p><span class="glyphicon glyphicon-align-justify"></span> 전체분야</p>
 		<div class="all-ease">
-			<div class="ease1"><p>소설 ></p>
-			<div id="ease1_div">
-	        	<a href="/seunghwang.bms/category/book_list.html" class="list-group-item item-hover" target="content">한국소설</a>
-	        	<a href="/seunghwang.bms/category/book_list.html" class="list-group-item item-hover" target="content">영미소설</a>
-	        	<a href="/seunghwang.bms/category/book_list.html" class="list-group-item item-hover" target="content">일본소설</a>
-	        	<a href="/seunghwang.bms/category/book_list.html" class="list-group-item item-hover" target="content">프랑스소설</a>
-	        	<a href="/seunghwang.bms/category/book_list.html" class="list-group-item item-hover" target="content">중국소설</a>
-			 </div>
+			<div class="ease1">
+			<a class="list-group-item item-hover disabled" id="item-main">소설</a>
+        	<a href="book/middleCategory.jsp?categoryId=NK" class="list-group-item item-hover" target="content">한국소설</a>
+        	<a href="book/middleCategory.jsp?categoryId=NA" class="list-group-item item-hover" target="content">영미소설</a>
+        	<a href="book/middleCategory.jsp?categoryId=NJ" class="list-group-item item-hover" target="content">일본소설</a>
+        	<a href="book/middleCategory.jsp?categoryId=NF" class="list-group-item item-hover" target="content">프랑스소설</a>
+        	<a href="book/middleCategory.jsp?categoryId=NC" class="list-group-item item-hover" target="content">중국소설</a>
 		</div>
-		<div class="ease2"><p>경제/경영 ></p>
-			<div id="ease2_div">
-				<a href="/seunghwang.bms/category/book_list.html" class="list-group-item item-hover" target="content">경영일반</a>
-	        	<a href="/seunghwang.bms/category/book_list.html" class="list-group-item item-hover" target="content">경영이론</a>
-	        	<a href="/seunghwang.bms/category/book_list.html" class="list-group-item item-hover" target="content">경영관리</a>
-	        	<a href="/seunghwang.bms/category/book_list.html" class="list-group-item item-hover" target="content">경제일반</a>
-	        	<a href="/seunghwang.bms/category/book_list.html" class="list-group-item item-hover" target="content">경제이론</a>
-	        	<a href="/seunghwang.bms/category/book_list.html" class="list-group-item item-hover" target="content">기업경제</a>
-			 </div>
+		<div class="ease2">
+			<a class="list-group-item item-hover disabled" id="item-main">경제/경영</a>
+        	<a href="book/middleCategory.jsp?categoryId=MG" class="list-group-item item-hover" target="content">경영일반</a>
+        	<a href="book/middleCategory.jsp?categoryId=MT" class="list-group-item item-hover" target="content">경영이론</a>
+        	<a href="book/middleCategory.jsp?categoryId=BM" class="list-group-item item-hover" target="content">경영관리</a>
+        	<a href="book/middleCategory.jsp?categoryId=EG" class="list-group-item item-hover" target="content">경제일반</a>
+        	<a href="book/middleCategory.jsp?categoryId=ET" class="list-group-item item-hover" target="content">경제이론</a>
+        	<a href="book/middleCategory.jsp?categoryId=CE" class="list-group-item item-hover" target="content">기업경제</a>
 		</div>
-		<div class="ease3"><p>인문 ></p>
-			<div id="ease3_div">
-				<a href="/seunghwang.bms/category/book_list.html" class="list-group-item item-hover" target="content">심리학</a>
-	        	<a href="/seunghwang.bms/category/book_list.html" class="list-group-item item-hover" target="content">인문학일반</a>
-	        	<a href="/seunghwang.bms/category/book_list.html" class="list-group-item item-hover" target="content">철학</a>
-	        	<a href="/seunghwang.bms/category/book_list.html" class="list-group-item item-hover" target="content">교육학</a>
-			</div>
+		<div class="ease3">
+			<a class="list-group-item item-hover disabled" id="item-main">인문</a>
+        	<a href="book/middleCategory.jsp?categoryId=HP" class="list-group-item item-hover" target="content">심리학</a>
+        	<a href="book/middleCategory.jsp?categoryId=HPD" class="list-group-item item-hover" target="content">교육학</a>
+        	<a href="book/middleCategory.jsp?categoryId=HPS" class="list-group-item item-hover" target="content">철학</a>
+        	<a href="book/middleCategory.jsp?categoryId=HG" class="list-group-item item-hover" target="content">인문학일반</a>
 		</div>
 		<div class="ease4">
-			<a href="/seunghwang.bms/category/book_list.html" class="list-group-item item-hover disabled" id="item-main">만화</a>
-        	<a href="/seunghwang.bms/category/book_list.html" class="list-group-item item-hover" target="content">국내</a>
-        	<a href="/seunghwang.bms/category/book_list.html" class="list-group-item item-hover" target="content">해외</a>
-        	<a href="/seunghwang.bms/category/book_list.html" class="list-group-item item-hover" target="content">성인</a>
+			<a class="list-group-item item-hover disabled" id="item-main">역사/문화</a>
+        	<a href="book/middleCategory.jsp?categoryId=HSG" class="list-group-item item-hover" target="content">역사일반</a>
+        	<a href="book/middleCategory.jsp?categoryId=HWH" class="list-group-item item-hover" target="content">세계사</a>
+        	<a href="book/middleCategory.jsp?categoryId=HOH" class="list-group-item item-hover" target="content">동양사</a>
+        	<a href="book/middleCategory.jsp?categoryId=HKH" class="list-group-item item-hover" target="content">한국사</a>
+        	<a href="book/middleCategory.jsp?categoryId=HM" class="list-group-item item-hover" target="content">신화</a>
 		</div>
 		<div class="ease5">
-			<a href="/seunghwang.bms/category/book_list.html" class="list-group-item item-hover disabled" id="item-main">경영일반</a>
-        	<a href="/seunghwang.bms/category/book_list.html" class="list-group-item item-hover" target="content">경제일반</a>
-        	<a href="/seunghwang.bms/category/book_list.html" class="list-group-item item-hover" target="content">마케팅/세일즈</a>
-        	<a href="/seunghwang.bms/category/book_list.html" class="list-group-item item-hover" target="content">재테크/금융</a>
+			<a class="list-group-item item-hover disabled" id="item-main">정치/사회</a>
+        	<a href="book/middleCategory.jsp?categoryId=PP" class="list-group-item item-hover" target="content">정치/외교</a>
+        	<a href="book/middleCategory.jsp?categoryId=PA" class="list-group-item item-hover" target="content">행정/정책</a>
+        	<a href="book/middleCategory.jsp?categoryId=PD" class="list-group-item item-hover" target="content">국방/군사</a>
+        	<a href="book/middleCategory.jsp?categoryId=PL" class="list-group-item item-hover" target="content">법학</a>
+        	<a href="book/middleCategory.jsp?categoryId=PS" class="list-group-item item-hover" target="content">사회학</a>
 		</div>
 		<div class="ease6">
-			<a href="/seunghwang.bms/category/book_list.html" class="list-group-item item-hover disabled" id="item-main">여행</a>
-        	<a href="/seunghwang.bms/category/book_list.html" class="list-group-item item-hover" target="content">국내여행</a>
-        	<a href="/seunghwang.bms/category/book_list.html" class="list-group-item item-hover" target="content">해외여행</a>
+			<a class="list-group-item item-hover disabled" id="item-main">과학</a>
+        	<a href="book/middleCategory.jsp?categoryId=ST" class="list-group-item item-hover" target="content">과학이론</a>
+        	<a href="book/middleCategory.jsp?categoryId=SR" class="list-group-item item-hover" target="content">교양과학</a>
+        	<a href="book/middleCategory.jsp?categoryId=SP" class="list-group-item item-hover" target="content">물리학</a>
+        	<a href="book/middleCategory.jsp?categoryId=SC" class="list-group-item item-hover" target="content">화학</a>
+        	<a href="book/middleCategory.jsp?categoryId=SB" class="list-group-item item-hover" target="content">생물학</a>
+        	<a href="book/middleCategory.jsp?categoryId=SE" class="list-group-item item-hover" target="content">지구과학</a>
 		</div>
 		<div class="ease7">
-			<a href="/seunghwang.bms/category/book_list.html" class="list-group-item item-hover disabled" id="item-main">아동도서</a>
-        	<a href="/seunghwang.bms/category/book_list.html" class="list-group-item item-hover" target="content">어린이</a>
-        	<a href="/seunghwang.bms/category/book_list.html" class="list-group-item item-hover" target="content">청소년</a>
-		</div>	
+			<a class="list-group-item item-hover disabled" id="item-main">컴퓨터/IT</a>
+        	<a href="book/middleCategory.jsp?categoryId=CC" class="list-group-item item-hover" target="content">컴퓨터공학</a>
+        	<a href="book/middleCategory.jsp?categoryId=CO" class="list-group-item item-hover" target="content">OS</a>
+        	<a href="book/middleCategory.jsp?categoryId=CN" class="list-group-item item-hover" target="content">네트워크</a>
+        	<a href="book/middleCategory.jsp?categoryId=CD" class="list-group-item item-hover" target="content">데이터베이스</a>
+        	<a href="book/middleCategory.jsp?categoryId=CS" class="list-group-item item-hover" target="content">보안</a>
+        	<a href="book/middleCategory.jsp?categoryId=CW" class="list-group-item item-hover" target="content">웹프로그래밍</a>
+		</div>
 			</div>
 		</div>
 	</div></li>

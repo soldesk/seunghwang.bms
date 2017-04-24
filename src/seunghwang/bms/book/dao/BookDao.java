@@ -8,7 +8,8 @@ import seunghwang.bms.book.domain.Book;
 
 public interface BookDao {
 	List<Book> getBooks(); //책 목록
-	List<Book> largeCategoryBooks(String largeCategory);
+	List<Book> largeCategoryBooks(String largeCategory); //대분류해서 나온 책들
+	List<Book> middleCategoryBooks(String categoryId); //중분류해서 나온 책들
 	List<Book> findBooks(Map map); //책 검색
 	Book searchBook(String bookId);//책 한권 정보 불러오기
 	void insertBook(Book book); //책 추가

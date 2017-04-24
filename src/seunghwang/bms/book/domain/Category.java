@@ -1,7 +1,9 @@
 package seunghwang.bms.book.domain;
 
 public class Category {
-	private String categotyId;
+	private String categoryId;
+	private String largeCategory;
+	private String middleCategory;
 	public static int nkCnt = 0;
 	public static int naCnt = 0;
 	public static int njCnt = 0;
@@ -45,10 +47,23 @@ public class Category {
 	public static int csCnt = 0;
 	public static int cwCnt = 0;
 	
-	public String getCategotyId() {
-		return categotyId;
+	public String getCategoryId() {
+		return categoryId;
 	}
-	public void setCategotyId(String categotyId) {
-		this.categotyId = categotyId;
+	public void setCategoryId(String categoryId) {
+		this.categoryId = categoryId;
 	}
+	public String getLargeCategory() {
+		return largeCategory;
+	}
+	public void setLargeCategory(String largeCategory) {
+		this.largeCategory = largeCategory;
+	}
+	public String getMiddleCategory() {
+		return middleCategory;
+	}
+	public void setMiddleCategory(String middleCategory) {
+		this.middleCategory = middleCategory;
+	}
+	
 }

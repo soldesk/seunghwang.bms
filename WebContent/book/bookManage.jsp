@@ -8,6 +8,8 @@
 <%@ page import="seunghwang.bms.book.dao.BookDaoImpl" %>
 <%@ page import="seunghwang.bms.book.service.BookService" %>
 <%@ page import="seunghwang.bms.book.service.BookServiceImpl" %>
+<%@ page import="java.util.Map" %>
+<%@ page import="java.util.HashMap" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%
 	request.setCharacterEncoding("utf-8");
@@ -15,6 +17,7 @@
 	BookDao bookDao = new BookDaoImpl(bookMapper);
 	BookService bookService = new BookServiceImpl(bookDao);
 	List<Book> books = bookService.getBooks();
+	List<Book> searchBooks = (List)request.getAttribute("searchBooks");
 %>
 <html lang="ko">
 <head>
@@ -100,6 +103,7 @@ table{font-size: 14px;}
   </style>
 </head>
 <body>
+
 <div id="bookInfoSection" class="container-fluid">
 	<h3 id="freeBoard_title">책 정보 관리</h3>
 	<div class="left_subCategory">
@@ -125,16 +129,18 @@ table{font-size: 14px;}
 	</div>
 		<div id="book_info_body">
 		<div>
+			<form action="searchBookProc.jsp" method="post">
 			검색정보: 
-			<select class="selectSearch">
-				<option>전체</option>
-				<option>책이름</option>
-				<option>출판사</option>
-				<option>작가</option>
-				<option>출판일 기준</option>
+			<select class="selectSearch" name="searchType">
+				<option value="total">전체</option>
+				<option value="bookName">책이름</option>
+				<option value="bookPublisher">출판사</option>
+				<option value="bookWriter">작가</option>
+				<option value="publicationDate">출판일 기준</option>
 			</select>
-			<input type="text"/>
-			<button type="button" class="btn btn-default">조회</button>
+			<input type="text" name="searchBook"/>
+			<input type="submit" class="btn btn-default" value="조회"/>
+			</form>
 		</div>
 			<table class="table table-hover">
 			<thead>
@@ -151,26 +157,50 @@ table{font-size: 14px;}
 				</tr>
 			</thead>
 <% 
-	if(books.size() != 0) 
-		for(Book book : books) { %>
-			<tbody>
-				<tr onclick="location.href='updateBook.jsp?bookId=<%=book.getBookId()%>'">
-					<td><%= book.getBookId() %></td>
-					<td><%= book.getBookName() %></td>
-					<td><%= book.getBookPrice() %></td>
-					<td><%= book.getBookWriter() %></td>
-					<td><%= book.getBookPublisher()%></td>
-					<td><%= book.getPublicationDate() %></td>
-					<td><%= book.getBookSale() %></td>
-					<td><%= book.getBookStock() %></td>
-					<td><%= book.getBookGrade() %></td>
-				</tr>
-<%}else{ %>
-				<tr>
-					<td>등록된 도서가 없습니다.</td>
-				</tr>
-			</tbody>
-<% } %>
+	if(searchBooks == null)
+		if(books.size() != 0) 
+			for(Book book : books) { %>
+				<tbody>
+					<tr onclick="location.href='updateBook.jsp?bookId=<%=book.getBookId()%>'">
+						<td><%= book.getBookId() %></td>
+						<td><%= book.getBookName() %></td>
+						<td><%= book.getBookPrice() %></td>
+						<td><%= book.getBookWriter() %></td>
+						<td><%= book.getBookPublisher()%></td>
+						<td><%= book.getPublicationDate() %></td>
+						<td><%= book.getBookSale() %></td>
+						<td><%= book.getBookStock() %></td>
+						<td><%= book.getBookGrade() %></td>
+					</tr>
+<%			}
+		else{ %>
+					<tr>
+						<td>등록된 도서가 없습니다.</td>
+					</tr>
+				</tbody>
+<% 		}
+	else if(searchBooks != null)
+		if(searchBooks.size() != 0)
+			for(Book book: searchBooks) { %>
+				<tbody>
+					<tr onclick="location.href='updateBook.jsp?bookId=<%=book.getBookId()%>'">
+						<td><%= book.getBookId() %></td>
+						<td><%= book.getBookName() %></td>
+						<td><%= book.getBookPrice() %></td>
+						<td><%= book.getBookWriter() %></td>
+						<td><%= book.getBookPublisher()%></td>
+						<td><%= book.getPublicationDate() %></td>
+						<td><%= book.getBookSale() %></td>
+						<td><%= book.getBookStock() %></td>
+						<td><%= book.getBookGrade() %></td>
+					</tr>
+<%			}
+		else { %>
+					<tr>
+						<td>등록된 도서가 없습니다.</td>
+					</tr>
+				</tbody>
+<% 		} %>
 		</table>
 		<form action="addBook.jsp" method="post">
 			<input type="submit" class="btn btn-default  btn-pos" value="책 추가"/>

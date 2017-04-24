@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="seunghwang.bms.book.dao.mapper.CategoryMapper">
-	<select id="insertBookId" parameterType="string">
-		select category_id||nk_seq.nextval
-		from categories
+	<resultMap type="category" id="categoryMap"> 
+		<id column="category_id" property="categoryId"/> 
+		<result column="large_category" property="largeCategory"/> 
+		<result column="middle_category" property="middleCategory"/> 
+	</resultMap>
+	
+	<select id="insertBookId" parameterType="string"> 
+		select category_id||nk_seq.nextval 
+		from categories 
 		where category_id=#{categoryId}
+	</select>
+	<select id="findCategory" parameterType="string" resultMap="categoryMap"> 
+		select middle_category 
+		from categories 
+		where category_id=#{categoryId} 
 	</select>
 </mapper>

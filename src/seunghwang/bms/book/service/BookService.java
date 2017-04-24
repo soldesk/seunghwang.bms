@@ -9,6 +9,7 @@ import seunghwang.bms.book.domain.Book;
 public interface BookService {
 	List<Book> getBooks(); //책 목록
 	List<Book> largeCategoryBooks(String largeCategory);
+	List<Book> middleCategoryBooks(String categoryId);
 	List<Book> findBooks(Map map); //책 검색
 	Book searchBook(String bookId);//책 한권 정보 불러오기
 	void insertBook(Book book); //책 추가

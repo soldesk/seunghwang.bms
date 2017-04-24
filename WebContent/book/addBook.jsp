@@ -8,11 +8,35 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <style>/*hotpink*/
-  	.container-fluid{width: 1580px;	max-width: none !important;	background-color: hotpink;}
-  	.table {max-width: none !important; max-height: none !important; margin-top: 20px; color: black;}
-	.table-responsive {min-height: none !important;	overflow-x: 0}
-    body {position: relative;}
-    #freeBoard_title{margin-left: 380px; filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, .3)); width: 150px; height: 30px; padding-top: 5px; text-align: center;
+.container-fluid {
+	width: 1580px;
+	max-width: none !important;
+	background-color: hotpink;
+}
+
+.table {
+	max-width: none !important;
+	max-height: none !important;
+	margin-top: 20px;
+	color: black;
+}
+
+.table-responsive {
+	min-height: none !important;
+	overflow-x: 0
+}
+
+body {
+	position: relative;
+}
+
+#freeBoard_title {
+	margin-left: 380px;
+	filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, .3));
+	width: 150px;
+	height: 30px;
+	padding-top: 5px;
+	text-align: center;
 	color: white;
 	background-color: hotpink;
 	border-top-left-radius: 1em; /*왼쪽 상단 코너를 부드럽게 */
@@ -21,13 +45,49 @@
 	border-bottom-right-radius: 1em; /*오른쪽 하단 코너를 부드럽게*/
 	font-size: 18px;
 	font-weight: bold;
-	}
-    #bookInfoSection {height: 600px; color: black; background-color: white;}
-	#book_info_body{border: 1px solid #eee; margin-left: 350px; margin-top: 20px; width: 1100px; padding: 50px; padding-top: 30px; padding-left: 50px; border-top: 2px solid #eee;}
-	#book_info_body_goods{height: border: 1px solid #eee; margin-left: 350px; margin-top: 20px; width: 900px; padding: 50px; padding-top: 30px; padding-left: 50px; border-top: 2px solid black; border-bottom: 2px solid black; height: 400px;}
-	.buy_button{margin-left: 650px; width: 150px; height: 60px;}
-	img{border: 1px solid #ddd;}
-	.form-group input[type=text]{
+}
+
+#bookInfoSection {
+	height: 600px;
+	color: black;
+	background-color: white;
+}
+
+#book_info_body {
+	border: 1px solid #eee;
+	margin-left: 350px;
+	margin-top: 20px;
+	width: 1100px;
+	padding: 50px;
+	padding-top: 30px;
+	padding-left: 50px;
+	border-top: 2px solid #eee;
+}
+
+#book_info_body_goods {
+	height: border: 1px solid #eee;
+	margin-left: 350px;
+	margin-top: 20px;
+	width: 900px;
+	padding: 50px;
+	padding-top: 30px;
+	padding-left: 50px;
+	border-top: 2px solid black;
+	border-bottom: 2px solid black;
+	height: 400px;
+}
+
+.buy_button {
+	margin-left: 650px;
+	width: 150px;
+	height: 60px;
+}
+
+img {
+	border: 1px solid #ddd;
+}
+
+.form-group input[type=text] {
 	border-top-left-radius: .5em; /*왼쪽 상단 코너를 부드럽게 */
 	border-bottom-left-radius: .5em; /*왼쪽 하단 코너를 부드럽게*/
 	border-top-right-radius: .5em; /*오른족 상단 코너를 부드럽게*/
@@ -36,50 +96,140 @@
 	padding-left: 15px;
 	height: 27px;
 }
-td{width: 300px; border: 1px solid #ddd;}
-.left_subCategory{float: left;}
-.left_subCategory_list{height: 790px; width: 250px; margin-top: 10px; margin-left: 20px;}
-.panel-default{border-color: #fff;}
+
+td {
+	width: 300px;
+	border: 1px solid #ddd;
+}
+
+.left_subCategory {
+	float: left;
+}
+
+.left_subCategory_list {
+	height: 790px;
+	width: 250px;
+	margin-top: 10px;
+	margin-left: 20px;
+}
+
+.panel-default {
+	border-color: #fff;
+}
+
 .panel-default>.panel-heading {
-    background-color: hotpink;
-    color: white;
-    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, .3));
-    border-top-left-radius: .5em; /*왼쪽 상단 코너를 부드럽게 */
+	background-color: hotpink;
+	color: white;
+	filter: drop-shadow(0 1px 1px rgba(0, 0, 0, .3));
+	border-top-left-radius: .5em; /*왼쪽 상단 코너를 부드럽게 */
 	border-bottom-left-radius: .5em; /*왼쪽 하단 코너를 부드럽게*/
 	border-top-right-radius: .5em; /*오른족 상단 코너를 부드럽게*/
 	border-bottom-right-radius: .5em; /*오른쪽 하단 코너를 부드럽게*/
 }
-.category_accordion_button{background-color: hotpink; border-color: hotpink; font-size: 16px; font-weight: bold;}
-a.list-group-item:focus, a.list-group-item:hover, button.list-group-item:focus, button.list-group-item:hover {
-    color: white;
-    text-decoration: none;
-    background-color: hotpink;
-    font-size: 16px;
-    font-weight: bold;
+
+.category_accordion_button {
+	background-color: hotpink;
+	border-color: hotpink;
+	font-size: 16px;
+	font-weight: bold;
 }
-a.item-green-hover:hover, a.item-green-hover:focus{ background-color: #EAEAEA;}
-.book_info{margin-left: 250px; margin-top: -200px;}
-.book_info p{filter: drop-shadow(0 1px 1px rgba(0, 0, 0, .3)); font-weight: bold; font-size: 18px;}
-.book_money{margin-left: 330px; margin-top: 80px; color: red;}
-.strong_position{margin-left: 10px; filter: drop-shadow(0 1px 1px rgba(0, 0, 0, .3)); font-size: 18px;}
-.td_bgcolor{background-color: #eee; font-weight: bold;}
-textarea{resize: none; width: 550px; height: 100px;}
-.table-pay{width: 600px; margin-left: 500px;}
-.alert-color{background: white;}
+
+a.list-group-item:focus, a.list-group-item:hover, button.list-group-item:focus,
+	button.list-group-item:hover {
+	color: white;
+	text-decoration: none;
+	background-color: hotpink;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+a.item-green-hover:hover, a.item-green-hover:focus {
+	background-color: #EAEAEA;
+}
+
+.book_info {
+	margin-left: 250px;
+	margin-top: -200px;
+}
+
+.book_info p {
+	filter: drop-shadow(0 1px 1px rgba(0, 0, 0, .3));
+	font-weight: bold;
+	font-size: 18px;
+}
+
+.book_money {
+	margin-left: 330px;
+	margin-top: 80px;
+	color: red;
+}
+
+.strong_position {
+	margin-left: 10px;
+	filter: drop-shadow(0 1px 1px rgba(0, 0, 0, .3));
+	font-size: 18px;
+}
+
+.td_bgcolor {
+	background-color: #eee;
+	font-weight: bold;
+}
+
+textarea {
+	resize: none;
+	width: 550px;
+	height: 100px;
+}
+
+.table-pay {
+	width: 600px;
+	margin-left: 500px;
+}
+
+.alert-color {
+	background: white;
+}
+
 .alert-warning {
-    color: black;
+	color: black;
 }
-.number_button{width: 50px;}
-table{font-size: 14px;}
-#pageBoard{margin-left: 350px;}
-.selectSearch{height: 25px;}
-select{height: 25px; width: 100px;}
-.p_bg{background-color: hotpink; color: white; height: 30px; padding-top: 5px;}
-.btn-pos{margin-left: 300px;}
-#category{
+
+.number_button {
+	width: 50px;
+}
+
+table {
+	font-size: 14px;
+}
+
+#pageBoard {
+	margin-left: 350px;
+}
+
+.selectSearch {
+	height: 25px;
+}
+
+select {
+	height: 25px;
+	width: 100px;
+}
+
+.p_bg {
+	background-color: hotpink;
+	color: white;
+	height: 30px;
+	padding-top: 5px;
+}
+
+.btn-pos {
+	margin-left: 300px;
+}
+
+#category {
 	width: 600px;
 }
-  </style>
+</style>
 <script>
 function chgsel1(){
 	tform = document.main_form;
@@ -200,7 +350,7 @@ function chgsel1(){
 	</div>
 	</div>
 		<div id="book_info_body">
-			<form action="bookAddProc.jsp" name="main_form" method="post">
+			<form action="bookAddProc.jsp" name="main_form" method="post" enctype="multipart/form-data">
 			<table class="table table-boardered">
 			<tbody>
 				<tr>
@@ -208,8 +358,9 @@ function chgsel1(){
 					<td colspan="3"><input type="text" name="bookName"/></td>
 				</tr>
 				<tr>
-					<td>이미지 URL</td>
-					<td colspan="3"><input type="text" name="bookImage"/></td>
+					<td>이미지</td>
+					<td colspan="3"><input type="text" name="bookImage"/>
+									<input type="file" name="uploadFile"/></td>
 					<td>작가이름</td>
 					<td><input type="text" name="bookWriter"/></td>
 				</tr>

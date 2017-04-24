@@ -7,6 +7,12 @@
 <%@ page import="seunghwang.bms.book.dao.BookDaoImpl" %>
 <%@ page import="seunghwang.bms.book.service.BookService" %>
 <%@ page import="seunghwang.bms.book.service.BookServiceImpl" %>
+<%@ page import="seunghwang.bms.book.dao.mapper.CategoryMapper" %>
+<%@ page import="seunghwang.bms.book.domain.Category" %>
+<%@ page import="seunghwang.bms.book.dao.CategoryDao" %>
+<%@ page import="seunghwang.bms.book.dao.CategoryDaoImpl" %>
+<%@ page import="seunghwang.bms.book.service.CategoryService" %>
+<%@ page import="seunghwang.bms.book.service.CategoryServiceImpl" %>
 <%@ page import="java.util.List" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="ko">
@@ -87,19 +93,23 @@ a.item-green-hover:hover, a.item-green-hover:focus{ background-color: #EAEAEA;}
   </style>
 </head>
 <body>
-<%
+<% 
 	request.setCharacterEncoding("utf-8");
-	String largeCategory=request.getParameter("largeCategory");
+	String categoryId = request.getParameter("categoryId");
 	
 	BookMapper bookMapper = Configuration.getMapper(BookMapper.class);
 	BookDao bookDao = new BookDaoImpl(bookMapper);
 	BookService bookService = new BookServiceImpl(bookDao);
 	
-	List<Book> books = bookService.largeCategoryBooks(largeCategory);
+	CategoryMapper categoryMapper = Configuration.getMapper(CategoryMapper.class);
+	CategoryDao categoryDao = new CategoryDaoImpl(categoryMapper);
+	CategoryService categoryService = new CategoryServiceImpl(categoryDao);
+	
+	Category middleCategory = categoryService.findCategory(categoryId);
+	List<Book> books = bookService.middleCategoryBooks(categoryId);
 %>
-
 <div id="literatureBooklist" class="container-fluid">
-	<h3 id="thumbnail_title"><%=largeCategory %> 추천책</h3>
+	<h3 id="thumbnail_title"><%=middleCategory.getMiddleCategory() %> 추천책</h3>
 	<div class="left_subCategory">
 		<div class="left_subCategory_list">
 			<div class="panel-group" id="accordion">
@@ -225,7 +235,7 @@ a.item-green-hover:hover, a.item-green-hover:focus{ background-color: #EAEAEA;}
 	if(books.size() != 0) 
 		for(Book book : books) { %>
 		<div class="col-sm-4" id="imgSize">
-			<a href="bookDetail.jsp?bookId=<%=book.getBookId() %>" class="thumbnail">
+			<a href="bookDetail.jsp?bookId=<%= book.getBookId() %>" class="thumbnail">
 				<img src="../img/book2.jpg" style="width:150px;height:180px">
 					<dl><dt><%=book.getBookName() %></dt><dd>가격: <%=book.getBookPrice() %></dd></dl>
 			</a>
