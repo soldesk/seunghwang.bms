@@ -7,7 +7,7 @@ import seunghwang.bms.review.domain.Review;
 
 public interface ReviewMapper {
 	List<Review> getReviews(); //리뷰 리스트
-	List<Review> getBookReviews(Book book); //특정 책의 리뷰들
+	List<Review> getBookReviews(String bookId); //특정 책의 리뷰들
 	Review searchReview(String bookId); //리뷰 하나 
 	void insertReview(Review review); //리뷰 추가
 	void updateReview(Review review); //리뷰 수정

@@ -19,8 +19,8 @@ public class ReviewServiceImpl implements ReviewService{
 		return reviewDao.getReviews();
 	}
 	
-	public List<Review> getBookReviews(Book book) {
-		return reviewDao.getBookReviews(book);
+	public List<Review> getBookReviews(String bookId) {
+		return reviewDao.getBookReviews(bookId);
 	}
 	
 	public Review searchReview(String bookId){

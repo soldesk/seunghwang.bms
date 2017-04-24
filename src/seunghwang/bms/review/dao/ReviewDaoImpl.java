@@ -19,8 +19,8 @@ private ReviewMapper reviewMapper;
 		return reviewMapper.getReviews();
 	}
 	
-	public List<Review> getBookReviews(Book book) {
-		return reviewMapper.getBookReviews(book);
+	public List<Review> getBookReviews(String bookId) {
+		return reviewMapper.getBookReviews(bookId);
 	}
 		
 	public Review searchReview(String bookId){
