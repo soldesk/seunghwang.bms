@@ -201,9 +201,15 @@
 	visibility: hidden;
 	position: relative;
 }
+.ease p{
+	font-size: 15px;
+	filter: drop-shadow(0 1px 1px rgba(0, 0, 0, .3));
+	font-weight: normal;
+	margin-top: 4px;
+}
 #item-main {background-color: hotpink; color: white;}
 .item-hover{font-size: 16px;}
-#left-subcategory-margin-left{margin-left: 145px;}
+#left-subcategory-margin-left{margin-left: 130px;}
 .all-ease{background-color: white; width: 0px; height: 0px; margin-left: -7px; transition: 0.1s ease; margin-top: 80px;}
 .all-ease a{color: hotpink;}
 #ease:hover .all-ease{width:1110px; height: 347px; margin-top: -20px; margin-left: 3px;}
@@ -216,7 +222,7 @@
 	border-radius: 50px;
 }
 #userWelcome{
-	margin-left: 240px;
+	margin-left: 200px;
 }
 #userWelcome a{
 	color: white;
@@ -229,6 +235,11 @@
 .navbar-brand{
 	color: #fff;
 	font-weight: bold;
+	font-size: 21px;
+}
+#readAdmin{
+	font-size: 17.5px;
+	margin-top: 2px;
 }
   </style>
 </head>
@@ -269,8 +280,8 @@
 	 	
 	 	<% } else if(sess.getAttribute("authUser").getClass().getSimpleName().equals("Admin")){ %>
 	 		<ul class="nav navbar-nav" id="userWelcome">
-	 		<li class="navbar-brand">관리자님</li> 
-	 			<li><a class="navbar-brand" id="mypage" href="admin/userManage.jsp" target="content">AdmPage</a></li>
+	 		<li class="navbar-brand" id="readAdmin">관리자님</li> 
+	 			<li><a class="navbar-brand" id="mypage" href="admin/userManage.jsp" target="content">관리페이지</a></li>
 	 			<li><a class="navbar-brand" onclick="reLoad()" href="/seunghwang.bms/signOut.login">로그아웃</a></li> 
 	 		</ul>
 	 	<%} else if(sess.getAttribute("authUser")!=null) { 	 		

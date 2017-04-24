@@ -6,6 +6,7 @@
 <%@ page import="seunghwang.bms.customerService.notice.dao.NoticeDaoImpl" %>
 <%@ page import="seunghwang.bms.customerService.notice.service.NoticeService" %>
 <%@ page import="seunghwang.bms.customerService.notice.service.NoticeServiceImpl" %>
+<%@ page import ="javax.servlet.http.*,seunghwang.bms.login.domain.User" %>
 <!DOCTYPE html>
 <%!
 	public Integer toInt(String x){
@@ -21,6 +22,7 @@
 	NoticeDao noticeDao = new NoticeDaoImpl();
 	NoticeService noticeService = new NoticeServiceImpl(noticeDao);
 	List<Notice> notices = noticeService.listNotices();
+	HttpSession sess = request.getSession(false);
 	
 	int pageno = toInt(request.getParameter("pageno"));
 	if(pageno<1){//현재 페이지
@@ -247,7 +249,15 @@ p{padding-left: 750px;}
 			</ul>
 		</div>
 	<div id="pageBoard">
+	<%
+		if(sess == null || sess.getAttribute("authUser") != null){ 
+		if(sess.getAttribute("authUser").getClass().getSimpleName().equals("Admin")){ 
+	%>
 		<button type="button" class="btn btn-danger" id="buttonBoardWrite" onclick="location.href='noticeWrite.jsp'">글쓰기</button>
+	<%
+		}
+	}
+	%>
 	</div>
 	<div id="selectBoard">
 		제목: <input type="text" placeholder=" 찾을 글 제목" />
