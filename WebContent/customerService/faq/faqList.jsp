@@ -249,6 +249,7 @@ p{padding-left: 700px;}
 		<%}else{ %>
 		<p>게시물이 없습니다.</p>
 		<%} %>
+		<%if(faqs.size() != 0){ %>
 		<div id="pageBoard">
 			<ul class="pagination pagination-sm">
 				<li><a href="faqList.jsp?pageno=1"><<</a></li>
@@ -266,6 +267,7 @@ p{padding-left: 700px;}
 				<li><a href="faqList.jsp?pageno=<%=total_page%>">>></a></li>
 			</ul>
 		</div>
+		<%} %>
 			</div>
 			<div id="menu1" class="tab-pane fade">
 				<% if(userFaqs.size() != 0){ %>

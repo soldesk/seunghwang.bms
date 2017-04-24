@@ -92,6 +92,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
   <style>/*hotpink*/
+  p{padding-left: 700px;}
   	.container-fluid{width: 1580px;	max-width: none !important;	background-color: hotpink;}
   	.table {max-width: none !important; max-height: none !important;}
 	.table-responsive {min-height: none !important;	overflow-x: 0}
@@ -237,7 +238,9 @@ a.item-green-hover:hover, a.item-green-hover:focus{ background-color: #EAEAEA;}
 		</table>
 		<%}else{ %>
 		<p>게시물이 없습니다</p>
-		<%} %>
+		<%}
+			if(inquiries.size() != 0){
+		%>
 	<div id="pageBoard">
 		<ul class="pagination pagination-sm">
 			<li><a href="inquiryList.jsp?pageno=1"><<</a></li>
@@ -255,7 +258,7 @@ a.item-green-hover:hover, a.item-green-hover:focus{ background-color: #EAEAEA;}
 			<li><a href="inquiryList.jsp?pageno=<%=total_page%>">>></a></li>
 		</ul>
 	</div>
-	<%
+	<%}
 		}else if(searchInquiries!=null){
 			if(searchInquiries.size() != 0){ 
 	%>

@@ -166,7 +166,7 @@ a.item-green-hover:hover, a.item-green-hover:focus{ background-color: #EAEAEA;}
     color: #fff;
     background-color: hotpink;
 }
-p{padding-left: 750px;}
+p{padding-left: 700px;}
   </style>
 </head>
 <body>
@@ -234,7 +234,9 @@ p{padding-left: 750px;}
 		</table>
 		<%}else{ %>
 		<p>게시물이 없습니다.</p>
-		<%} %>
+		<%} 
+			if(notices.size() != 0){ 
+		%> 
 	<div id="pageBoard">
 			<ul class="pagination pagination-sm">
 				<li><a href="noticeList.jsp?pageno=1"><<</a></li>
@@ -252,6 +254,7 @@ p{padding-left: 750px;}
 				<li><a href="noticeList.jsp?pageno=<%=total_page%>">>></a></li>
 			</ul>
 		</div>
+		<%} %>
 		<%}else if(searchNotices!=null){
 			if(searchNotices.size() != 0){ 
 		%>
