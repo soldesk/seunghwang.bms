@@ -26,6 +26,7 @@
 	List<Faq> orderFaqs = faqService.orderFaqs();
 	List<Faq> bookFaqs = faqService.bookFaqs();
 	List<Faq> systemFaqs = faqService.systemFaqs();
+	HttpSession sess = request.getSession(false);
 	
 	int pageno = toInt(request.getParameter("pageno"));
 	if(pageno<1){//현재 페이지
@@ -388,8 +389,16 @@ p{padding-left: 700px;}
 			</div>
 		</div>
 	<div id="pageBoard">
+	<%
+		if(sess == null || sess.getAttribute("authUser") != null){ 
+		if(sess.getAttribute("authUser").getClass().getSimpleName().equals("Admin")){ 
+	%>
 		<!-- 관리자만 글쓰기버튼 보임. -->
 		<button type="button" class="btn btn-danger" id="buttonBoardWrite" onclick="location.href='faqWrite.jsp'">글쓰기</button>
+	<%
+		}
+	}
+	%>
 	</div>
 	<div id="selectBoard">
 		제목: <input type="text" id="searchInput" placeholder="찾을 글 제목" />
