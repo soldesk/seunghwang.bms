@@ -13,7 +13,10 @@ public class AdminDaoImpl implements AdminDao {
 		this.adminMapper = Configuration.getMapper(AdminMapper.class);
 	}
 	
-		public Admin getAdmin(String adminId) {
-	        return adminMapper.getAdmin(adminId);
-		}
+	public Admin getAdmin(String adminId) {
+        return adminMapper.getAdmin(adminId);
+	}
+
+	
+	
 }

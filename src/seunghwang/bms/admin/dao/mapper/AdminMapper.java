@@ -4,6 +4,6 @@ import seunghwang.bms.admin.domain.Admin;
 
 public interface AdminMapper {	
 	Admin getAdmin(String adminId);
-		
+	
 	
 }

@@ -4,7 +4,7 @@ import seunghwang.bms.admin.domain.Admin;
 
 public interface AdminDao {
 	Admin getAdmin(String adminId);
-	
+
 	
 	
 }

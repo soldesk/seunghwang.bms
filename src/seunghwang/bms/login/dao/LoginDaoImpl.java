@@ -1,5 +1,8 @@
 package seunghwang.bms.login.dao;
 
+import java.util.List;
+
+import seunghwang.bms.admin.domain.Page;
 import seunghwang.bms.config.Configuration;
 import seunghwang.bms.login.dao.mapper.LoginMapper;
 import seunghwang.bms.login.domain.User;
@@ -40,6 +43,20 @@ public class LoginDaoImpl implements LoginDao {
 	    
 		public int userStateChange(User user) {
 			return loginMapper.userStateChange(user);
+		}
+
+		@Override
+		public List<User> getUsers(Page page) {
+			return loginMapper.getUsers(page);
+		}
+		
+		public int getTotRowCnt() {
+			return loginMapper.getTotRowCnt();
+		}
+
+		@Override
+		public int delUser(String userId) {
+			return loginMapper.delUser(userId);
 		}
 	    
 }

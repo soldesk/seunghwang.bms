@@ -207,7 +207,7 @@ a.item-green-hover:hover, a.item-green-hover:focus {
 					</tr>
 					<tr>
 						<td rowspan="2"><strong>주소</strong></td>
-						<td>수정</td>
+						
 					</tr>
 					<tr>
 						<td>${user.getUserAddress()}</td>
