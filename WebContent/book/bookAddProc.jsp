@@ -60,6 +60,7 @@
 	int bookSale = Integer.parseInt(multiRequest.getParameter("bookSale"));
 	int bookStock = Integer.parseInt(multiRequest.getParameter("bookStock"));
 	String bookImage = multiRequest.getFilesystemName("bookImage");
+	Date date = java.sql.Date.valueOf(publicationDate);
 	
 	String detailBook = multiRequest.getParameter("detailBook");
 	String detailReview = multiRequest.getParameter("detailReview");
@@ -76,7 +77,7 @@
 		detailChapter = "입력한 내용이 없습니다.";
 	
 	Book book = new Book(bookId, bookName, bookPrice, bookWriter, bookPublisher, 
-			 new Date(2017/04/06), bookGrade, bookETC, bookSale, bookStock, categoryId, bookImage );
+			 date, bookGrade, bookETC, bookSale, bookStock, categoryId, bookImage );
 	bookService.insertBook(book);
 
 	Detail detail = new Detail(bookId, detailBook, detailReview, detailWriter, detailChapter);

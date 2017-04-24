@@ -111,11 +111,11 @@ a.item-green-hover:hover, a.item-green-hover:focus{ background-color: #EAEAEA;}
       </div>
       <div id="c1" class="panel-collapse collapse">
         <div class="panel-body list-group">
-        	<a href="#" class="list-group-item item-green-hover">한국소설</a>
-        	<a href="#" class="list-group-item item-green-hover">영미소설</a>
-        	<a href="#" class="list-group-item item-green-hover">일본소설</a>
-        	<a href="#" class="list-group-item item-green-hover">프랑스소설</a>
-        	<a href="#" class="list-group-item item-green-hover">중국소설</a>
+        	<a href="middleCategory.jsp?categoryId=NK" class="list-group-item item-green-hover">한국소설</a>
+        	<a href="middleCategory.jsp?categoryId=NA" class="list-group-item item-green-hover">영미소설</a>
+        	<a href="middleCategory.jsp?categoryId=NJ" class="list-group-item item-green-hover">일본소설</a>
+        	<a href="middleCategory.jsp?categoryId=NF" class="list-group-item item-green-hover">프랑스소설</a>
+        	<a href="middleCategory.jsp?categoryId=NC" class="list-group-item item-green-hover">중국소설</a>
         </div>
       </div>
     </div>
@@ -127,12 +127,12 @@ a.item-green-hover:hover, a.item-green-hover:focus{ background-color: #EAEAEA;}
       </div>
       <div id="c2" class="panel-collapse collapse">
         <div class="panel-body list-group">
-        	<a href="#" class="list-group-item item-green-hover">경영일반</a>
-        	<a href="#" class="list-group-item item-green-hover">경영이론</a>
-        	<a href="#" class="list-group-item item-green-hover">경영관리</a>
-        	<a href="#" class="list-group-item item-green-hover">경제일반</a>
-        	<a href="#" class="list-group-item item-green-hover">경제이론</a>
-        	<a href="#" class="list-group-item item-green-hover">기업경제</a>
+        	<a href="middleCategory.jsp?categoryId=MG" class="list-group-item item-green-hover">경영일반</a>
+        	<a href="middleCategory.jsp?categoryId=MT" class="list-group-item item-green-hover">경영이론</a>
+        	<a href="middleCategory.jsp?categoryId=BM" class="list-group-item item-green-hover">경영관리</a>
+        	<a href="middleCategory.jsp?categoryId=EG" class="list-group-item item-green-hover">경제일반</a>
+        	<a href="middleCategory.jsp?categoryId=ET" class="list-group-item item-green-hover">경제이론</a>
+        	<a href="middleCategory.jsp?categoryId=CE" class="list-group-item item-green-hover">기업경제</a>
         </div>
       </div>
     </div>
@@ -144,10 +144,10 @@ a.item-green-hover:hover, a.item-green-hover:focus{ background-color: #EAEAEA;}
       </div>
       <div id="c3" class="panel-collapse collapse">
         <div class="panel-body list-group">
-        	<a href="#" class="list-group-item item-green-hover">심리학</a>
-        	<a href="#" class="list-group-item item-green-hover">인문학일반</a>
-        	<a href="#" class="list-group-item item-green-hover">철학</a>
-        	<a href="#" class="list-group-item item-green-hover">교육학</a>
+        	<a href="middleCategory.jsp?categoryId=HP" class="list-group-item item-green-hover">심리학</a>
+        	<a href="middleCategory.jsp?categoryId=HG" class="list-group-item item-green-hover">인문학일반</a>
+        	<a href="middleCategory.jsp?categoryId=HPS" class="list-group-item item-green-hover">철학</a>
+        	<a href="middleCategory.jsp?categoryId=HPD" class="list-group-item item-green-hover">교육학</a>
         </div>
       </div>
     </div>
@@ -159,11 +159,11 @@ a.item-green-hover:hover, a.item-green-hover:focus{ background-color: #EAEAEA;}
       </div>
       <div id="c4" class="panel-collapse collapse">
         <div class="panel-body list-group">
-        	<a href="#" class="list-group-item item-green-hover">역사일반</a>
-        	<a href="#" class="list-group-item item-green-hover">세계사</a>
-        	<a href="#" class="list-group-item item-green-hover">동양사</a>
-        	<a href="#" class="list-group-item item-green-hover">한국사</a>
-        	<a href="#" class="list-group-item item-green-hover">신화</a>
+        	<a href="middleCategory.jsp?categoryId=HSG" class="list-group-item item-green-hover">역사일반</a>
+        	<a href="middleCategory.jsp?categoryId=HWH" class="list-group-item item-green-hover">세계사</a>
+        	<a href="middleCategory.jsp?categoryId=HOH" class="list-group-item item-green-hover">동양사</a>
+        	<a href="middleCategory.jsp?categoryId=HKH" class="list-group-item item-green-hover">한국사</a>
+        	<a href="middleCategory.jsp?categoryId=HM" class="list-group-item item-green-hover">신화</a>
         </div>
       </div>
     </div>
@@ -175,11 +175,11 @@ a.item-green-hover:hover, a.item-green-hover:focus{ background-color: #EAEAEA;}
       </div>
       <div id="c5" class="panel-collapse collapse">
         <div class="panel-body list-group">
-        	<a href="#" class="list-group-item item-green-hover">정치/외교</a>
-        	<a href="#" class="list-group-item item-green-hover">행정/정책</a>
-        	<a href="#" class="list-group-item item-green-hover">국방/군사</a>
-        	<a href="#" class="list-group-item item-green-hover">법학</a>
-        	<a href="#" class="list-group-item item-green-hover">사회학</a>
+        	<a href="middleCategory.jsp?categoryId=PP" class="list-group-item item-green-hover">정치/외교</a>
+        	<a href="middleCategory.jsp?categoryId=PA" class="list-group-item item-green-hover">행정/정책</a>
+        	<a href="middleCategory.jsp?categoryId=PD" class="list-group-item item-green-hover">국방/군사</a>
+        	<a href="middleCategory.jsp?categoryId=PL" class="list-group-item item-green-hover">법학</a>
+        	<a href="middleCategory.jsp?categoryId=PS" class="list-group-item item-green-hover">사회학</a>
         </div>
       </div>
     </div>
@@ -191,12 +191,12 @@ a.item-green-hover:hover, a.item-green-hover:focus{ background-color: #EAEAEA;}
       </div>
       <div id="c6" class="panel-collapse collapse">
         <div class="panel-body list-group">
-        	<a href="#" class="list-group-item item-green-hover">과학이론</a>
-        	<a href="#" class="list-group-item item-green-hover">교양과학</a>
-        	<a href="#" class="list-group-item item-green-hover">물리학</a>
-        	<a href="#" class="list-group-item item-green-hover">화학</a>
-        	<a href="#" class="list-group-item item-green-hover">생물학</a>
-        	<a href="#" class="list-group-item item-green-hover">지구과학</a>
+        	<a href="middleCategory.jsp?categoryId=ST" class="list-group-item item-green-hover">과학이론</a>
+        	<a href="middleCategory.jsp?categoryId=SR" class="list-group-item item-green-hover">교양과학</a>
+        	<a href="middleCategory.jsp?categoryId=SP" class="list-group-item item-green-hover">물리학</a>
+        	<a href="middleCategory.jsp?categoryId=SC" class="list-group-item item-green-hover">화학</a>
+        	<a href="middleCategory.jsp?categoryId=SB" class="list-group-item item-green-hover">생물학</a>
+        	<a href="middleCategory.jsp?categoryId=SE" class="list-group-item item-green-hover">지구과학</a>
         </div>
       </div>
     </div>
@@ -208,12 +208,12 @@ a.item-green-hover:hover, a.item-green-hover:focus{ background-color: #EAEAEA;}
       </div>
       <div id="c7" class="panel-collapse collapse">
         <div class="panel-body list-group">
-        	<a href="#" class="list-group-item item-green-hover">웹프로그래밍</a>
-        	<a href="#" class="list-group-item item-green-hover">보안</a>
-        	<a href="#" class="list-group-item item-green-hover">데이터베이스</a>
-        	<a href="#" class="list-group-item item-green-hover">네트워크</a>
-        	<a href="#" class="list-group-item item-green-hover">OS</a>
-        	<a href="#" class="list-group-item item-green-hover">컴퓨터공학</a>
+        	<a href="middleCategory.jsp?categoryId=CW" class="list-group-item item-green-hover">웹프로그래밍</a>
+        	<a href="middleCategory.jsp?categoryId=CS" class="list-group-item item-green-hover">보안</a>
+        	<a href="middleCategory.jsp?categoryId=CD" class="list-group-item item-green-hover">데이터베이스</a>
+        	<a href="middleCategory.jsp?categoryId=CN" class="list-group-item item-green-hover">네트워크</a>
+        	<a href="middleCategory.jsp?categoryId=CO" class="list-group-item item-green-hover">OS</a>
+        	<a href="middleCategory.jsp?categoryId=CC" class="list-group-item item-green-hover">컴퓨터공학</a>
         </div>
       </div>
     </div>

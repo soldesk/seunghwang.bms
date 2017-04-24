@@ -102,7 +102,12 @@ a.list-group-item:focus, a.list-group-item:hover, button.list-group-item:focus, 
     font-weight: bold;
 }
 a.item-green-hover:hover, a.item-green-hover:focus{ background-color: #EAEAEA;}
-
+.bookList ul li {
+	list-style-type:none;
+}
+.img{
+	margin-left:-500px;
+}
   </style>
 </head>
 <body>
@@ -115,86 +120,114 @@ a.item-green-hover:hover, a.item-green-hover:focus{ background-color: #EAEAEA;}
     <div class="panel panel-default">
       <div class="panel-heading">
         <h4 class="panel-title">
-          <a class="list-group-item category_accordion_button" data-toggle="collapse" data-parent="#accordion" href="#c1">문학</a>
+          <a class="list-group-item category_accordion_button" data-toggle="collapse" data-parent="#accordion" href="#c1">소설</a>
         </h4>
       </div>
       <div id="c1" class="panel-collapse collapse">
         <div class="panel-body list-group">
-        	<a href="#" class="list-group-item item-green-hover">소설</a>
-        	<a href="#" class="list-group-item item-green-hover">일반소설</a>
-        	<a href="#" class="list-group-item item-green-hover">추리/스릴러</a>
-        	<a href="#" class="list-group-item item-green-hover">SF소설</a>
-        	<a href="#" class="list-group-item item-green-hover">판타지소설</a>
-        	<a href="#" class="list-group-item item-green-hover">역사소설</a>
+        	<a href="middleCategory.jsp?categoryId=NK" class="list-group-item item-green-hover">한국소설</a>
+        	<a href="middleCategory.jsp?categoryId=NA" class="list-group-item item-green-hover">영미소설</a>
+        	<a href="middleCategory.jsp?categoryId=NJ" class="list-group-item item-green-hover">일본소설</a>
+        	<a href="middleCategory.jsp?categoryId=NF" class="list-group-item item-green-hover">프랑스소설</a>
+        	<a href="middleCategory.jsp?categoryId=NC" class="list-group-item item-green-hover">중국소설</a>
         </div>
       </div>
     </div>
     <div class="panel panel-default">
       <div class="panel-heading">
         <h4 class="panel-title">
-          <a class="list-group-item category_accordion_button" data-toggle="collapse" data-parent="#accordion" href="#c2">사회</a>
+          <a class="list-group-item category_accordion_button" data-toggle="collapse" data-parent="#accordion" href="#c2">경제/경영</a>
         </h4>
       </div>
       <div id="c2" class="panel-collapse collapse">
         <div class="panel-body list-group">
-        	<a href="#" class="list-group-item item-green-hover">정치/사회</a>
-        	<a href="#" class="list-group-item item-green-hover">예술/문학</a>
-        	<a href="#" class="list-group-item item-green-hover">역사</a>
-        	<a href="#" class="list-group-item item-green-hover">인문학</a>
-        	<a href="#" class="list-group-item item-green-hover">인간관계</a>
-        	<a href="#" class="list-group-item item-green-hover">기획/창의/리더십</a>
-        	<a href="#" class="list-group-item item-green-hover">성공/삶의자세</a>
+        	<a href="middleCategory.jsp?categoryId=MG" class="list-group-item item-green-hover">경영일반</a>
+        	<a href="middleCategory.jsp?categoryId=MT" class="list-group-item item-green-hover">경영이론</a>
+        	<a href="middleCategory.jsp?categoryId=BM" class="list-group-item item-green-hover">경영관리</a>
+        	<a href="middleCategory.jsp?categoryId=EG" class="list-group-item item-green-hover">경제일반</a>
+        	<a href="middleCategory.jsp?categoryId=ET" class="list-group-item item-green-hover">경제이론</a>
+        	<a href="middleCategory.jsp?categoryId=CE" class="list-group-item item-green-hover">기업경제</a>
         </div>
       </div>
     </div>
     <div class="panel panel-default">
       <div class="panel-heading">
         <h4 class="panel-title">
-          <a class="list-group-item category_accordion_button" data-toggle="collapse" data-parent="#accordion" href="#c3">경제</a>
+          <a class="list-group-item category_accordion_button" data-toggle="collapse" data-parent="#accordion" href="#c3">인문</a>
         </h4>
       </div>
       <div id="c3" class="panel-collapse collapse">
         <div class="panel-body list-group">
-        	<a href="#" class="list-group-item item-green-hover">경영일반</a>
-        	<a href="#" class="list-group-item item-green-hover">경제일반</a>
-        	<a href="#" class="list-group-item item-green-hover">마케팅</a>
-        	<a href="#" class="list-group-item item-green-hover">세일즈</a>
-        	<a href="#" class="list-group-item item-green-hover">재테크/금융/부동산</a>
-        	<a href="#" class="list-group-item item-green-hover">CEO/리더십</a>
+        	<a href="middleCategory.jsp?categoryId=HP" class="list-group-item item-green-hover">심리학</a>
+        	<a href="middleCategory.jsp?categoryId=HG" class="list-group-item item-green-hover">인문학일반</a>
+        	<a href="middleCategory.jsp?categoryId=HPS" class="list-group-item item-green-hover">철학</a>
+        	<a href="middleCategory.jsp?categoryId=HPD" class="list-group-item item-green-hover">교육학</a>
         </div>
       </div>
     </div>
     <div class="panel panel-default">
       <div class="panel-heading">
         <h4 class="panel-title">
-          <a class="list-group-item category_accordion_button" data-toggle="collapse" data-parent="#accordion" href="#c4">교육</a>
+          <a class="list-group-item category_accordion_button" data-toggle="collapse" data-parent="#accordion" href="#c4">역사/문화</a>
         </h4>
       </div>
       <div id="c4" class="panel-collapse collapse">
         <div class="panel-body list-group">
-        	<a href="#" class="list-group-item item-green-hover">외국어</a>
-        	<a href="#" class="list-group-item item-green-hover">과학</a>
-        	<a href="#" class="list-group-item item-green-hover">수학</a>
-        	<a href="#" class="list-group-item item-green-hover">공부법</a>
-        	<a href="#" class="list-group-item item-green-hover">대입 수시/논술</a>
-        	<a href="#" class="list-group-item item-green-hover">합격후기</a>
-        	<a href="#" class="list-group-item item-green-hover">자격증</a>
+        	<a href="middleCategory.jsp?categoryId=HSG" class="list-group-item item-green-hover">역사일반</a>
+        	<a href="middleCategory.jsp?categoryId=HWH" class="list-group-item item-green-hover">세계사</a>
+        	<a href="middleCategory.jsp?categoryId=HOH" class="list-group-item item-green-hover">동양사</a>
+        	<a href="middleCategory.jsp?categoryId=HKH" class="list-group-item item-green-hover">한국사</a>
+        	<a href="middleCategory.jsp?categoryId=HM" class="list-group-item item-green-hover">신화</a>
         </div>
       </div>
     </div>
     <div class="panel panel-default">
       <div class="panel-heading">
         <h4 class="panel-title">
-          <a class="list-group-item category_accordion_button" data-toggle="collapse" data-parent="#accordion" href="#c5">IT</a>
+          <a class="list-group-item category_accordion_button" data-toggle="collapse" data-parent="#accordion" href="#c5">정치/사회</a>
         </h4>
       </div>
       <div id="c5" class="panel-collapse collapse">
         <div class="panel-body list-group">
-        	<a href="#" class="list-group-item item-green-hover">IT 비지니스</a>
-        	<a href="#" class="list-group-item item-green-hover">개발</a>
-        	<a href="#" class="list-group-item item-green-hover">프로그래밍</a>
-        	<a href="#" class="list-group-item item-green-hover">컴퓨터/앱 활용</a>
-        	<a href="#" class="list-group-item item-green-hover">수험서</a>
+        	<a href="middleCategory.jsp?categoryId=PP" class="list-group-item item-green-hover">정치/외교</a>
+        	<a href="middleCategory.jsp?categoryId=PA" class="list-group-item item-green-hover">행정/정책</a>
+        	<a href="middleCategory.jsp?categoryId=PD" class="list-group-item item-green-hover">국방/군사</a>
+        	<a href="middleCategory.jsp?categoryId=PL" class="list-group-item item-green-hover">법학</a>
+        	<a href="middleCategory.jsp?categoryId=PS" class="list-group-item item-green-hover">사회학</a>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a class="list-group-item category_accordion_button" data-toggle="collapse" data-parent="#accordion" href="#c6">과학</a>
+        </h4>
+      </div>
+      <div id="c6" class="panel-collapse collapse">
+        <div class="panel-body list-group">
+        	<a href="middleCategory.jsp?categoryId=ST" class="list-group-item item-green-hover">과학이론</a>
+        	<a href="middleCategory.jsp?categoryId=SR" class="list-group-item item-green-hover">교양과학</a>
+        	<a href="middleCategory.jsp?categoryId=SP" class="list-group-item item-green-hover">물리학</a>
+        	<a href="middleCategory.jsp?categoryId=SC" class="list-group-item item-green-hover">화학</a>
+        	<a href="middleCategory.jsp?categoryId=SB" class="list-group-item item-green-hover">생물학</a>
+        	<a href="middleCategory.jsp?categoryId=SE" class="list-group-item item-green-hover">지구과학</a>
+        </div>
+      </div>
+    </div>
+     <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a class="list-group-item category_accordion_button" data-toggle="collapse" data-parent="#accordion" href="#c7">컴퓨터/IT</a>
+        </h4>
+      </div>
+      <div id="c7" class="panel-collapse collapse">
+        <div class="panel-body list-group">
+        	<a href="middleCategory.jsp?categoryId=CW" class="list-group-item item-green-hover">웹프로그래밍</a>
+        	<a href="middleCategory.jsp?categoryId=CS" class="list-group-item item-green-hover">보안</a>
+        	<a href="middleCategory.jsp?categoryId=CD" class="list-group-item item-green-hover">데이터베이스</a>
+        	<a href="middleCategory.jsp?categoryId=CN" class="list-group-item item-green-hover">네트워크</a>
+        	<a href="middleCategory.jsp?categoryId=CO" class="list-group-item item-green-hover">OS</a>
+        	<a href="middleCategory.jsp?categoryId=CC" class="list-group-item item-green-hover">컴퓨터공학</a>
         </div>
       </div>
     </div>
@@ -205,11 +238,16 @@ a.item-green-hover:hover, a.item-green-hover:focus{ background-color: #EAEAEA;}
 <% 
 	if(books.size() != 0) 
 		for(Book book : books) { %>
-		<div class="col-sm-4" id="imgSize">
-			<a href="bookDetail.jsp?bookId=<%=book.getBookId() %>" class="thumbnail">
-				<img src="../img/bookUpload/<%=book.getBookImage() %>" style="width:150px;height:180px">
-					<dl><dt><%=book.getBookName() %></dt><dd>가격: <%=book.getBookPrice() %></dd></dl>
-			</a>
+		<div class="bookList">
+			<ul class="thumbnail">
+				<li class="img"><a href="bookDetail.jsp?bookId=<%= book.getBookId() %>">
+						<img src="../img/bookUpload/<%=book.getBookImage() %>" style="width:100px;height:130px"></a>
+				</li>
+				<li class="name"><%=book.getBookName() %></li>
+				<li class="etc"><%=book.getBookWriter() %> 지음 | <%=book.getBookPublisher() %> | <%= book.getPublicationDate() %></li>
+				<li class="grade">추천지수(230) | 리뷰(44) | 회원평점: <%=book.getBookGrade() %></li>
+				<li class="price"><%=book.getBookPrice() %>원 -> <%=(int)(0.9*book.getBookPrice()) %> (10% 할인)</li>
+			</ul>
 		</div>
 <%}else{ %>
 		<div>
@@ -217,36 +255,5 @@ a.item-green-hover:hover, a.item-green-hover:focus{ background-color: #EAEAEA;}
 		</div>
 <% } %>
 	</div>
-	<table class="table table-hover">
-		<thead>
-			<tr>
-				<th>책 제목</th>
-				<th>가격</th>
-				<th>작가</th>
-				<th>출판사</th>
-				<th>출간일</th>
-				<th>평점</th>
-			</tr>
-		</thead>
-<% 
-	if(books.size() != 0) 
-		for(Book book : books) { %>
-			<tbody>
-				<tr onclick="location.href='updateBook.jsp?bookId=<%=book.getBookId()%>'">
-					<td><%= book.getBookName() %></td>
-					<td><%= book.getBookPrice() %></td>
-					<td><%= book.getBookWriter() %></td>
-					<td><%= book.getBookPublisher()%></td>
-					<td><%= book.getPublicationDate() %></td>
-					<td><%= book.getBookGrade() %></td>
-				</tr>
-<%}else{ %>
-				<tr>
-					<td>등록된 도서가 없습니다.</td>
-				</tr>
-			</tbody>
-<% } %>
-		</table>
-	
 </body>
 </html>

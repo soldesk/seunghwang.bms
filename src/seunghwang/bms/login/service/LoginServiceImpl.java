@@ -142,7 +142,7 @@ public class LoginServiceImpl implements LoginService {
     	System.out.println(userEmail);
     	User user = loginDao.getUser(userId);
     	
-    	String pwURL =  "http://localhost:8081/seunghwang.bms/login/login_findchange_pw.jsp?yourId="+ userId;
+    	String pwURL =  "http://localhost/seunghwang.bms/login/login_findchange_pw.jsp?yourId="+ userId;
     	if(user==null || !user.getUserEmail().equals(userEmail)) {
     		System.out.println("입력 값을 확인 해주세요");
     		request.setAttribute("alertMessage","입력값을 확인해보세요");
