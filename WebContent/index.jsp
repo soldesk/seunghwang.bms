@@ -222,7 +222,7 @@
 	border-radius: 50px;
 }
 #userWelcome{
-	margin-left: 240px;
+	margin-left: 200px;
 }
 #userWelcome a{
 	color: white;
@@ -235,6 +235,11 @@
 .navbar-brand{
 	color: #fff;
 	font-weight: bold;
+	font-size: 21px;
+}
+#readAdmin{
+	font-size: 17.5px;
+	margin-top: 2px;
 }
   </style>
 </head>
@@ -275,8 +280,8 @@
 	 	
 	 	<% } else if(sess.getAttribute("authUser").getClass().getSimpleName().equals("Admin")){ %>
 	 		<ul class="nav navbar-nav" id="userWelcome">
-	 		<li class="navbar-brand">관리자님</li> 
-	 			<li><a class="navbar-brand" id="mypage" href="admin/userManage.jsp" target="content">AdmPage</a></li>
+	 		<li class="navbar-brand" id="readAdmin">관리자님</li> 
+	 			<li><a class="navbar-brand" id="mypage" href="admin/userManage.jsp" target="content">관리페이지</a></li>
 	 			<li><a class="navbar-brand" onclick="reLoad()" href="/seunghwang.bms/signOut.login">로그아웃</a></li> 
 	 		</ul>
 	 	<%} else if(sess.getAttribute("authUser")!=null) { 	 		

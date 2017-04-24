@@ -5,10 +5,12 @@
 <%@ page import="seunghwang.bms.customerService.inquiry.dao.InquiryDaoImpl" %>
 <%@ page import="seunghwang.bms.customerService.inquiry.service.InquiryService" %>
 <%@ page import="seunghwang.bms.customerService.inquiry.service.InquiryServiceImpl" %>
+<%@ page import ="javax.servlet.http.*,seunghwang.bms.login.domain.User" %>
 <%
 	request.setCharacterEncoding("utf-8");
 	InquiryDao inquiryDao = new InquiryDaoImpl();
 	InquiryService inquiryService = new InquiryServiceImpl(inquiryDao);
+	HttpSession sess = request.getSession(false);
 	
 	String inquiryTitleName = request.getParameter("inquiryTitle");
 	String userEmail1 = request.getParameter("userEmail");
@@ -18,6 +20,7 @@
 	
 	String inquiryCategoryName = request.getParameter("inquiryCategory");
 	String inquiryContentName = request.getParameter("inquiryContent");
+	
 	
 	if(userEmail2==null){
 		userEmailAddr=userEmail3;
@@ -31,7 +34,8 @@
 		inquiryCategoryName=null;
 		inquiryContentName=null;
 	}else{
-		Inquiry inquiry = new Inquiry("nomal", inquiryCategoryName, inquiryTitleName, inquiryContentName, userEmail, "");
+		User user = (User)sess.getAttribute("authUser");
+		Inquiry inquiry = new Inquiry(user.getUserId(), inquiryCategoryName, inquiryTitleName, inquiryContentName, userEmail, "");
 		inquiryService.addInquiry(inquiry);
 	}
 	response.sendRedirect("inquiryList.jsp");

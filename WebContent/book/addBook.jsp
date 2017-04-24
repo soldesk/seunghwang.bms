@@ -359,8 +359,7 @@ function chgsel1(){
 				</tr>
 				<tr>
 					<td>이미지</td>
-					<td colspan="3"><input type="text" name="bookImage"/>
-									<input type="file" name="uploadFile"/></td>
+					<td colspan="3"><input type="file" name="bookImage"/></td>
 					<td>작가이름</td>
 					<td><input type="text" name="bookWriter"/></td>
 				</tr>
