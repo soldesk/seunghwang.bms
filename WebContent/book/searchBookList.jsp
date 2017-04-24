@@ -106,7 +106,7 @@ a.item-green-hover:hover, a.item-green-hover:focus{ background-color: #EAEAEA;}
 	list-style-type:none;
 }
 .img{
-	margin-left:-500px;
+	margin-left:-100px;
 }
   </style>
 </head>
@@ -240,8 +240,8 @@ a.item-green-hover:hover, a.item-green-hover:focus{ background-color: #EAEAEA;}
 		for(Book book : books) { %>
 		<div class="bookList">
 			<ul class="thumbnail">
-				<li class="img"><a href="bookDetail.jsp?bookId=<%= book.getBookId() %>">
-						<img src="../img/bookUpload/<%=book.getBookImage() %>" style="width:100px;height:130px"></a>
+				<li><div class="img"><a href="bookDetail.jsp?bookId=<%= book.getBookId() %>">
+						<img src="../img/bookUpload/<%=book.getBookImage() %>" style="width:100px;height:130px"></a></div>
 				</li>
 				<li class="name"><%=book.getBookName() %></li>
 				<li class="etc"><%=book.getBookWriter() %> 지음 | <%=book.getBookPublisher() %> | <%= book.getPublicationDate() %></li>
@@ -255,5 +255,6 @@ a.item-green-hover:hover, a.item-green-hover:focus{ background-color: #EAEAEA;}
 		</div>
 <% } %>
 	</div>
+</div>
 </body>
 </html>
