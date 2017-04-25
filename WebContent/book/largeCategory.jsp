@@ -278,5 +278,6 @@ a.item-green-hover:hover, a.item-green-hover:focus{ background-color: #EAEAEA;}
 		</div>
 <% } %>
 	</div>
+	</div>
 </body>
 </html>

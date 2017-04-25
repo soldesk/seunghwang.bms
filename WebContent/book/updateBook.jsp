@@ -336,6 +336,13 @@ select {
 								<option value="HKH">한국사</option>
 								<option value="HM">신화</option>
 							</optgroup>
+							<optgroup label="정치/사회">
+								<option value="PP">정치/외교</option>
+								<option value="PA">행정/정책</option>
+								<option value="PD">국방/군사</option>
+								<option value="PL">법학</option>
+								<option value="HPS">사회학</option>
+							</optgroup>
 							<optgroup label="과학">
 								<option value="ST">과학이론</option>
 								<option value="SR">교양과학</option>

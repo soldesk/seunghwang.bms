@@ -661,7 +661,7 @@ iframe {
 								<option value="publicationDate">출판일 기준</option>
 						</select></li>
 						<li><input type="text" name="searchBook" id="search"
-							placeholder="검색" /></li>
+							placeholder="검색" required/></li>
 						<li><input type="submit" class="btn btn-default"
 							id="search_button" value="검색" />
 					</ul>

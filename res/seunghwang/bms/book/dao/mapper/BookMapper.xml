@@ -38,11 +38,11 @@
 		(
 			select a.*,rownum rnum 
 			from(
-				select a.book_id bookId,a.book_image bookImage,a.book_name bookName,b.book_writer bookWriter,b.book_grade bookGrade, count(*)book_amount,
-				b.publication_date publicationDate,b.book_publisher bookPublisher 
+				select b.book_id,a.book_image,a.book_name,b.book_writer,b.book_grade, count(*)book_amount,
+				b.publication_date ,b.book_publisher ,b.book_price 
 				from orders a,books b
 				where a.book_id=b.book_id and to_char(order_date,'yyyymm') like to_char(sysdate,'yyyymm')
-				group by a.book_id,a.book_image,a.book_name,b.book_writer,b.book_grade, b.publication_date,b.book_publisher
+				group by b.book_id,a.book_image,a.book_name,b.book_writer,b.book_grade, b.publication_date,b.book_publisher,b.book_price
 				order by BOOK_AMOUNT desc)a)
 	</select> 
 	
