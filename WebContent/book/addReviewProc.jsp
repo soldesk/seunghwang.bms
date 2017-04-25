@@ -66,7 +66,7 @@
 <%}else{
 		
 	
-	Review review = new Review(reviewId, bookName, reviewTitle, 
+	Review review = new Review(bookName, reviewTitle, 
 			reviewContent, reviewGrade, new Date(04/04/2017), bookId, userId);
 	
 	reviewService.insertReview(review);

@@ -243,6 +243,7 @@ textarea{width: 600px; height: 60px; resize:none;}
       <div id="<%= review.getReviewId()%>" class="panel-collapse collapse">
         <div class="panel-body"><%= review.getReviewContent() %></div>
         <button type="button" class="btn btn-default" onclick="location.href='delReviewProc.jsp?reviewId=<%= review.getReviewId()%>&bookId=<%=bookId%>'">삭제</button>
+      	
       </div>
     </div>
     </div>

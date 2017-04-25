@@ -31,6 +31,18 @@ public class Review {
 		this.bookId = bookId;
 		this.userId = userId;
 	}
+	
+	public Review(String bookName, String reviewTitle, String reviewContent,
+			double reviewGrade,  Date regDate, String bookId,String userId){
+		this.bookName = bookName;
+		this.reviewTitle = reviewTitle;
+		this.reviewContent = reviewContent;
+		this.reviewGrade = reviewGrade;
+		this.regDate = regDate;
+		this.bookId = bookId;
+		this.userId = userId;
+	}
+	
 
 	public String getReviewId() {
 		return reviewId;
