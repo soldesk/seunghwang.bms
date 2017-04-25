@@ -45,9 +45,9 @@
 	#bestSeller1{width: 1090px; height: 480px; float:left; margin-left: -85px;}
 	#bestSeller2{width: 1090px; height: 480px; float:left; margin-top: 20px; margin-left: -85px;}
 	#bestSeller3{width: 1090px; height: 480px; float:left; margin-top: 20px; margin-left: -85px;}
-	#bestSeller1 ul li a{font-size:14px; color: hotpink; }
-	#bestSeller2 ul li a{font-size:14px; color: hotpink;}
-	#bestSeller3 ul li a{font-size:14px; color: hotpink;}
+	#bestSeller1 ul li a{font-size:14px; color: #5D5D5D; }
+	#bestSeller2 ul li a{font-size:14px; color: #5D5D5D;}
+	#bestSeller3 ul li a{font-size:14px; color: #5D5D5D;}
 	.bestSeller_right{margin-top: -30px; margin-left: 970px;}
 	.bestSeller_right a{font-size: 14px; color: black;}
 	.modal-header{height: 60px;}
@@ -139,8 +139,12 @@
     String ss=sdf.format(new java.util.Date());
     Date date= java.sql.Date.valueOf(ss);
     
+    List<Book> steadyBooks = bookService.findSteadySellers();
+    List<Book> bestBooks = bookService.findBestSellers();
 	List<Book> newBooks = bookService.findNewBooks(date);
-	int topCnt = 1;
+	int steadyTopCnt = 1;
+	int bestTopCnt = 1;
+	int newTopCnt = 1;
 %>	 
 	
   <div class="modal-content" id="bestSeller1">
@@ -161,17 +165,20 @@
 	if(newBooks.size() != 0) 
 		for(Book book : newBooks) {
 %>
-						<li><p class="topBook">Top <%=topCnt %></p><img src="img/bookUpload/<%=book.getBookImage() %>" class="imgpo" width="120px" height="160px">
-							<p class="name"><%=book.getBookName() %></p>
+						<li><p class="topBook">Top <%=newTopCnt %></p><img src="img/bookUpload/<%=book.getBookImage() %>" class="imgpo" width="120px" height="160px">
+							<a href="book/bookDetail.jsp?bookId=<%=book.getBookId() %>"></a>
+							<p class="name"><a href="book/bookDetail.jsp?bookId=<%=book.getBookId() %>"><%=book.getBookName() %></a></p>
 							<p class="writer"><%=book.getBookWriter() %></p>
 							<p id="grade">★★★★☆</p>
 						</li>
 <%
-			++topCnt;
+			++newTopCnt;
+			if(newTopCnt == 5)
+				break;
 		} 
 	else {
 %>
-						<li><p class="topBook">Top <%= ++topCnt %></p><img src="img/bookUpload/ad.jpg" class="imgpo" width="120px" height="160px">
+						<li><p class="topBook">Top <%= ++newTopCnt %></p><img src="img/bookUpload/ad.jpg" class="imgpo" width="120px" height="160px">
 							<p class="name">없음</p>
 							<p class="writer">없음</p>
 							<p id="grade">☆☆☆☆☆</p>
@@ -193,8 +200,8 @@
      	<div class="modal-body">
         	<ul class="nav nav-tabs" >
 				<li class="active"><a href="#bestMon2" data-toggle="tab">월간</a></li>
-				<li><a href="#bestWeek2" data-toggle="tab">주간</a></li>
-				<li><a href="#bestDay2" data-toggle="tab">일간</a></li>
+				<!-- <li><a href="#bestWeek2" data-toggle="tab">주간</a></li>
+				<li><a href="#bestDay2" data-toggle="tab">일간</a></li>-->
 			</ul>
 			<div class="tab-content">
 			    <div class="tab-pane active" id="bestMon2">
@@ -202,16 +209,31 @@
 				<br>
 				<div id="bookPlusInfo"><br>
 					<ul class="nav navbar-nav" id="bestseller">
-						<li><p class="topBook">Top 1</p><img src="img/reco1.jpg" class="imgpo"><p class="name">언어의 온도</p><p class="writer">이기주</p>
-						<p id="grade">★★★★☆</p></li>
-						<li><p class="topBook">Top 2</p><img src="img/reco2.jpg" class="imgpo"><p class="name">자존감 수업</p><p class="writer">윤홍균</p>
-						<p id="grade">★★★★★</p></li>
-						<li><p class="topBook">Top 3</p><img src="img/reco3.jpg" class="imgpo"><p class="name">국가란 무엇인가</p><p class="writer">유시민</p>
-						<p id="grade">★★★★★</p></li>
-						<li><p class="topBook">Top 4</p><img src="img/reco4.jpg" class="imgpo"><p class="name">공터에서</p><p class="writer">김훈</p>
-						<p id="grade">★★★★☆</p></li>
-						<li><p class="topBook">Top 5</p><img src="img/reco5.jpg" class="imgpo"><p class="name">기린의 날개</p><p class="writer">히가시노 게이고</p>
-						<p id="grade">★★★★★</p></li>
+<% 
+	if(bestBooks.size() != 0) 
+		for(Book book : bestBooks) {
+%>
+						<li><p class="topBook">Top <%=bestTopCnt %></p><img src="img/bookUpload/<%=book.getBookImage() %>" class="imgpo" width="120px" height="160px">
+							<a href="book/bookDetail.jsp?bookId=<%=book.getBookId() %>"></a>
+							<p class="name"><a href="book/bookDetail.jsp?bookId=<%=book.getBookId() %>"><%=book.getBookName() %></a></p>
+							<p class="writer"><%=book.getBookWriter() %></p>
+							<p id="grade">★★★★☆</p>
+						</li>
+<%
+			++bestTopCnt;
+			if(bestTopCnt == 6)
+				break;
+		} 
+	else {
+%>
+						<li><p class="topBook">Top <%= ++bestTopCnt %></p><img src="img/bookUpload/ad.jpg" class="imgpo" width="120px" height="160px">
+							<p class="name">없음</p>
+							<p class="writer">없음</p>
+							<p id="grade">☆☆☆☆☆</p>
+						</li>
+<%		
+	} 
+%>
 					</ul>
 				</div>
 			    </div>
@@ -239,16 +261,31 @@
 				<br>
 				<div id="bookPlusInfo"><br>
 			<ul class="nav navbar-nav" id="bestseller">
-				<li><p class="topBook">Top 1</p><img src="img/reco1.jpg" class="imgpo"><p class="name">언어의 온도</p><p class="writer">이기주</p>
-				<p id="grade">★★★★☆</p></li>
-				<li><p class="topBook">Top 2</p><img src="img/reco2.jpg" class="imgpo"><p class="name">자존감 수업</p><p class="writer">윤홍균</p>
-				<p id="grade">★★★★★</p></li>
-				<li><p class="topBook">Top 3</p><img src="img/reco3.jpg" class="imgpo"><p class="name">국가란 무엇인가</p><p class="writer">유시민</p>
-				<p id="grade">★★★★★</p></li>
-				<li><p class="topBook">Top 4</p><img src="img/reco4.jpg" class="imgpo"><p class="name">공터에서</p><p class="writer">김훈</p>
-				<p id="grade">★★★★☆</p></li>
-				<li><p class="topBook">Top 5</p><img src="img/reco5.jpg" class="imgpo"><p class="name">기린의 날개</p><p class="writer">히가시노 게이고</p>
-				<p id="grade">★★★★★</p></li>
+				<% 
+	if(steadyBooks.size() != 0) 
+		for(Book book : steadyBooks) {
+%>
+						<li><p class="topBook">Top <%=steadyTopCnt %></p><img src="img/bookUpload/<%=book.getBookImage() %>" class="imgpo" width="120px" height="160px">
+							<a href="book/bookDetail.jsp?bookId=<%=book.getBookId() %>"></a>
+							<p class="name"><a href="book/bookDetail.jsp?bookId=<%=book.getBookId() %>"><%=book.getBookName() %></a></p>
+							<p class="writer"><%=book.getBookWriter() %></p>
+							<p id="grade">★★★★☆</p>
+						</li>
+<%
+			++steadyTopCnt;
+			if(steadyTopCnt == 6)
+				break;
+		} 
+	else {
+%>
+						<li><p class="topBook">Top <%= ++steadyTopCnt %></p><img src="img/bookUpload/ad.jpg" class="imgpo" width="120px" height="160px">
+							<p class="name">없음</p>
+							<p class="writer">없음</p>
+							<p id="grade">☆☆☆☆☆</p>
+						</li>
+<%		
+	} 
+%>
 			</ul>
 				</div>
 			    </div>

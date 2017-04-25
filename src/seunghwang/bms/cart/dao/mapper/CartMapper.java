@@ -12,4 +12,5 @@ public interface CartMapper {
 	List<Cart> listCart(Cart cart);
 	int cartCount(String userId);
 	int delCart(String cartId);
+	Book getBook(String bookId);
 }    

@@ -15,6 +15,11 @@
 <%@ page import="seunghwang.bms.book.service.DetailServiceImpl" %>
 <%@ page import="com.oreilly.servlet.MultipartRequest" %>
 <%@ page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy" %>
+<%@ page import="seunghwang.bms.book.dao.mapper.CategoryMapper" %>
+<%@ page import="seunghwang.bms.book.dao.CategoryDao" %>
+<%@ page import="seunghwang.bms.book.dao.CategoryDaoImpl" %>
+<%@ page import="seunghwang.bms.book.service.CategoryService" %>
+<%@ page import="seunghwang.bms.book.service.CategoryServiceImpl" %>
 <%@ page import="java.sql.Date" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%
@@ -27,6 +32,8 @@
 	DetailDao detailDao = new DetailDaoImpl(detailMapper);
 	DetailService detailService = new DetailServiceImpl(detailDao);
 	
+	CategoryService categoryService = new CategoryServiceImpl();
+	
 	String savePath = "img/bookUpload"; //저장경로
 	int uploadFileMaxSize = 100 * 1024 * 1024; 
 	String encType = "utf-8";
@@ -38,7 +45,7 @@
 			uploadFilePath, uploadFileMaxSize, encType,
 			new DefaultFileRenamePolicy());
 
-	String categoryId = multiRequest.getParameter("sel2");
+	String categoryId = multiRequest.getParameter("categoryId");
 	String bookId = multiRequest.getParameter("bookId");
 	String bookName = multiRequest.getParameter("bookName");
 	int bookPrice = Integer.parseInt(multiRequest.getParameter("bookPrice"));
@@ -51,8 +58,6 @@
 	int bookStock = Integer.parseInt(multiRequest.getParameter("bookStock"));
 	String bookImage = multiRequest.getParameter("bookImage");
 	String upBookImage = multiRequest.getFilesystemName("upBookImage");
-	
-	
 	Date date = java.sql.Date.valueOf(publicationDate);
 	
 	String detailBook = multiRequest.getParameter("detailBook");

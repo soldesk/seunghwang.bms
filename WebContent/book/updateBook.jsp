@@ -245,100 +245,6 @@ select {
 	width: 600px;
 }
 </style>
-<script>
-function chgsel1(){
-	tform = document.main_form;
-	if(tform.sel1.value == 'novel') {
-		tform.sel2.length = 5;
-		tform.sel2.options[0].text='한국소설';
-		tform.sel2.options[0].value='NK';
-		tform.sel2.options[1].text='영미소설';
-		tform.sel2.options[1].value='NA';
-		tform.sel2.options[2].text='일본소설';
-		tform.sel2.options[2].value='NJ';
-		tform.sel2.options[3].text='프랑스소설';
-		tform.sel2.options[3].value="NF";
-		tform.sel2.options[4].text="중국소설"
-		tfrom.sel2.options[4].value="NC";
-	}else if(tform.sel1.value== 'economic'){
-		tform.sel2.length=6;
-		tform.sel2.options[0].text='경영일반';
-		tform.sel2.options[0].value='MG';
-		tform.sel2.options[1].text='경영이론';
-		tform.sel2.options[1].value='MT';
-		tform.sel2.options[2].text='경영관리';
-		tform.sel2.options[2].value='BM';
-		tform.sel2.options[3].text='경제일반';
-		tform.sel2.options[3].value='EG';
-		tform.sel2.options[4].text='경제이론';
-		tform.sel2.options[4].value='ET';
-		tform.sel2.options[5].text='기업경제';
-		tform.sel2.options[5].value='CE';
-	}else if(tform.sel1.value== 'human'){
-		tform.sel2.length=4;
-		tform.sel2.options[0].text='심리학';
-		tform.sel2.options[0].value='HP';
-		tform.sel2.options[1].text='인문학일반';
-		tform.sel2.options[1].value='HG';
-		tform.sel2.options[2].text='철학';
-		tform.sel2.options[2].value='HPS';
-		tform.sel2.options[3].text='교육학';
-		tform.sel2.options[3].value='HPD';
-	}else if(tform.sel1.value == 'history') {
-		tform.sel2.length=5;
-		tform.sel2.options[0].text='역사일반';
-		tform.sel2.options[0].value='HSG';
-		tform.sel2.options[1].text='세계사';
-		tform.sel2.options[1].value='HWH';
-		tform.sel2.options[2].text='동양사';
-		tform.sel2.options[2].value='HOH';
-		tform.sel2.options[3].text='한국사';
-		tform.sel2.options[3].value='HKH';
-		tform.sel2.options[4].text='신화';
-		tform.sel2.options[4].value='HM';
-	}else if(tform.sel1.value == 'politic'){
-		tform.sel2.length=5;
-		tform.sel2.options[0].text='정치/외교';
-		tform.sel2.options[0].value='PP';
-		tform.sel2.options[1].text='행정/정책';
-		tform.sel2.options[1].value='PA';
-		tform.sel2.options[2].text='국방/군사';
-		tform.sel2.options[2].value='PD';
-		tform.sel2.options[3].text='법학';
-		tform.sel2.options[3].value='PL';
-		tform.sel2.options[4].text='사회학';
-		tform.sel2.options[4].value='PS';
-	} else if(tform.sel1.value == 'science') {
-		tform.sel2.length = 6;
-		tform.sel2.options[0].text='과학이론';
-		tform.sel2.options[0].value='ST';
-		tform.sel2.options[1].text='교양과학';
-		tform.sel2.options[1].value='SR';
-		tform.sel2.options[2].text='물리학';
-		tform.sel2.options[2].value='SP';
-		tform.sel2.options[3].text='화학';
-		tform.sel2.options[3].value='SC';
-		tform.sel2.options[4].text='생물학';
-		tform.sel2.options[4].value='SB';
-		tform.sel2.options[5].text='지구과학';
-		tform.sel2.options[5].value='SE';
-	} else {
-		tform.sel2.length = 6;
-		tform.sel2.options[0].text='웹프로그래밍';
-		tform.sel2.options[0].value='CW';
-		tform.sel2.options[1].text='보안';
-		tform.sel2.options[1].value='CS';
-		tform.sel2.options[2].text='데이터베이스';
-		tform.sel2.options[2].value='CD';
-		tform.sel2.options[3].text='네트워크';
-		tform.sel2.options[3].value='CN';
-		tform.sel2.options[4].text='OS';
-		tform.sel2.options[4].value='CO';
-		tform.sel2.options[5].text='컴퓨터공학';
-		tform.sel2.options[5].value='CC';
-	}
-}
-</script>
 </head>
 <body>
 <%
@@ -356,6 +262,7 @@ function chgsel1(){
 	Book book = bookService.searchBook(bookId); 
 	Detail detail = detailService.searchDetail(bookId);
 %>
+	
 <div id="bookInfoSection" class="container-fluid">
 	<h3 id="freeBoard_title">책 정보 관리 수정</h3>
 	<div class="left_subCategory">
@@ -400,7 +307,7 @@ function chgsel1(){
 				<tr>
 					<td>장르</td>
 					<td id="category">
-						<select name="sel1" onchange="chgsel1()">
+						<select name="categoryId">
 							<optgroup label="소설">
 								<option value="NK" <%if(book.getCategoryId().equals("NK")){ %>selected<%}%>>한국소설</option>
 								<option value="NA" <%if(book.getCategoryId().equals("NA")){ %>selected<%}%>>영미소설</option>
@@ -479,9 +386,15 @@ function chgsel1(){
 					<td colspan="4"><textarea name="bookETC"><%=book.getBookETC() %></textarea></td>
 					<td>기타정보에는 "책 크기: 00 x 00cm // 총 페이지 000쪽 // 양장본 or 양장아님" 형식으로 정보를 등록해주세요.</td>
 				</tr>
+<% 
+	String detailBook = detail.getDetailBook();
+	String detailWriter = detail.getDetailWriter();
+	String detailReview = detail.getDetailReview();
+	String detailChapter = detail.getDetailChapter();
+%>	
 				<tr>
 					<td>책 소개</td>
-					<td colspan="4"><textarea name="detailBook"><%=detail.getDetailBook() %></textarea></td>
+					<td colspan="4"><textarea name="detailBook"><%=detailBook %></textarea></td>
 					<td rowspan="4" align="center">
 						<p class="p_bg">비고</p><br>
 						1.책 상세 내용을 책소개, 출판사 서평, 저자 소개, 목차 순으로 작성해주세요.<br><br>
@@ -490,15 +403,15 @@ function chgsel1(){
 				</tr>
 				<tr>
 					<td>출판사 서평</td>
-					<td colspan="4"><textarea name="detailReview"><%=detail.getDetailReview() %></textarea></td>
+					<td colspan="4"><textarea name="detailReview"><%=detailWriter %></textarea></td>
 				</tr>
 				<tr>
 					<td>저자 소개</td>
-					<td colspan="4"><textarea name="detailWriter"><%=detail.getDetailWriter() %></textarea></td>
+					<td colspan="4"><textarea name="detailWriter"><%= detailReview %></textarea></td>
 				</tr>
 				<tr>
 					<td>목차</td>
-					<td colspan="4"><textarea name="detailChapter"><%=detail.getDetailChapter() %></textarea></td>
+					<td colspan="4"><textarea name="detailChapter"><%=detailChapter %></textarea></td>
 				</tr>
 			</tbody>
 		</table>

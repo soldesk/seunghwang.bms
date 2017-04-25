@@ -52,4 +52,8 @@
 		delete carts 
 		where cart_id=#{cartId}
 	</delete>
+	
+	<select id="getBook" parameterType="String" resultType="seunghwang.bms.book.domain.Book">
+			select book_stock bookStock from books where book_id=#{bookId}  
+	</select> 
 </mapper>

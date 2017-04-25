@@ -35,5 +35,8 @@ public class CartDaoImpl implements CartDao{
     	return cartMapper.delCart(cartId);   
     }
     
+    public Book getBook(String bookId){
+    	return cartMapper.getBook(bookId);
+    }
     
 }

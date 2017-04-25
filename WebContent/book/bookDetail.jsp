@@ -42,7 +42,6 @@
 	ReviewDao reviewDao = new ReviewDaoImpl(reviewMapper);
 	ReviewService reviewService = new ReviewServiceImpl(reviewDao);
 	List<Review> reviews = reviewService.getBookReviews(bookId);
-		
 %>
 <html lang="ko">
 <head>
@@ -149,9 +148,15 @@ textarea{width: 600px; height: 60px; resize:none;}
 				</tr>
 			</table>
 			<div id="buyButt">
-				<button type="button" id="buttSize1" class="btn btn-default"><span class="glyphicon glyphicon-thumbs-up"></span></button>
-				<button type="button" id="buttSize1" class="btn btn-default" onclick="location.href='../order/order_basket.html'"><span class="glyphicon glyphicon-shopping-cart"></span></button>
-				<button type="button" id="buttSize2" class="btn btn-danger" onclick="location.href='../order/order_book.html'">구매하기</button>
+				<form method="post">
+					<input type="hidden" name="bookId" value="<%=book.getBookId() %>">
+					<input type="hidden" name="bookPrice" value="<%=book.getBookPrice() %>">
+					<input type="hidden" name="bookAmount" value="1">
+					<input type="hidden" name="length0" value="0">
+					<button type="button" id="buttSize1" class="btn btn-default"><span class="glyphicon glyphicon-thumbs-up"></span></button>
+					<button type="submit" id="buttSize1" class="btn btn-default" formaction="../order/addCart.ct"><span class="glyphicon glyphicon-shopping-cart"></span></button>
+					<button type="submit" id="buttSize2" class="btn btn-danger" formaction="../order/getOrder.do">구매하기</button>					
+				</form>
 			</div>
 		</div>
 	</div>
@@ -167,19 +172,25 @@ textarea{width: 600px; height: 60px; resize:none;}
 	</div>
 	<div class="container-fluid" id="bookGuide4">
 		<h3>책 소개</h3>
-		<%= bookDetail.getDetailBook() %>
+<% 
+	String detailBook = bookDetail.getDetailBook().replaceAll("\r\n", "<br>");
+	String detailWriter = bookDetail.getDetailWriter().replaceAll("\r\n", "<br>");
+	String detailReview = bookDetail.getDetailReview().replaceAll("\r\n", "<br>");
+	String detailChapter = bookDetail.getDetailChapter().replaceAll("\r\n", "<br>");
+%>		
+		<%= detailBook %>
 	</div>
 	<div class="container-fluid" id="bookGuide3">
 		<h3>저자소개</h3>
-		<%= bookDetail.getDetailWriter() %>
+		<%= detailWriter %>
 	</div>
 	<div class="container-fluid" id="bookGuide4">
 		<h3>출판사 서평</h3>
-		<%= bookDetail.getDetailReview() %>
+		<%= detailReview %>
 	</div>
 	<div class="container-fluid" id="bookGuide4">
 		<h3>목차</h3>
-		<%= bookDetail.getDetailChapter() %>
+		<%= detailChapter %>
 	</div>
 	<div class="container-fluid" id="bookGuide5">
 		<h3>리뷰</h3>
@@ -188,10 +199,23 @@ textarea{width: 600px; height: 60px; resize:none;}
 		<h2>3.0</h2>
 	</div>
 	<div class="bookguide_right">
-		<textarea placeholder=" 리뷰 작성 시 광고 및 욕설, 비속어나 타인을 비방하는 문구를 사용하시면 비공개 될 수 있습니다."></textarea>
-		<button type="button" class="btn btn-default review_write">리뷰 남기기</button>
+		
+	<form action="addReviewProc.jsp" method="post">
+		<input type="hidden" name="bookId" value="<%=bookId%>">
+		<input type="hidden" name="bookName" value="<%=book.getBookName()%>">
+		<div class="form-group">
+			제목
+			<textarea class="form-control" rows="1" name="reviewTitle"></textarea>	
+			내용
+			<textarea class="form-control" rows="5" name="reviewContent"></textarea>
+			<input type="submit" class="btn btn-default review_write" value="리뷰 남기기"/>
+			
+		</div>
+	</form>
 	</div>
 </div>
+
+
 
 	<div class="container-fluid" id="bookGuide6">
 		<h3>리뷰 보기</h3>
@@ -216,6 +240,7 @@ textarea{width: 600px; height: 60px; resize:none;}
       </div>
       <div id="<%= review.getReviewId()%>" class="panel-collapse collapse">
         <div class="panel-body"><%= review.getReviewContent() %></div>
+        <button type="button" class="btn btn-default" onclick="location.href='delReviewProc.jsp?reviewId=<%= review.getReviewId()%>&bookId=<%=bookId%>'">삭제</button>
       </div>
     </div>
     </div>

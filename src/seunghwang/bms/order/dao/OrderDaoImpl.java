@@ -38,4 +38,12 @@ public class OrderDaoImpl implements OrderDao{
     public int orderCount(String userId){
     	return orderMapper.orderCount(userId);
     }
+    
+    public int updateBook(String bookId){
+        return orderMapper.updateBook(bookId);
+    }
+    
+    public Book getBook(String bookId){
+        return orderMapper.getBook(bookId);
+    }
 }
