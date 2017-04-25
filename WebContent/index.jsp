@@ -17,6 +17,7 @@
 </script> -->
 
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script src="../../lib/jquery.js"></script>
 <script>
     function sample6_execDaumPostcode() {
         new daum.Postcode({
@@ -425,17 +426,26 @@
           <button type="button" class="close" data-dismiss="modal">×</button>
           <h4 class="modal-title">로그인</h4>
         </div>
-  
+  			<%
+				String userId="";
+				Cookie[] cookies = request.getCookies();
+				if(cookies != null)
+					for(Cookie cookie:cookies){
+						if(cookie.getName().equals("userId"))
+							userId = cookie.getValue();
+					}
+			%>
         <div class="modal-body">
          <form action="/seunghwang.bms/signin.login" method="post">
     		<div class="form-group">
-      			<input type="text" class="form-control" name="id" required  placeholder="아이디" tabindex=1>
+      			<input type="text" class="form-control" name="id" required value="<%=userId %>" placeholder="아이디" tabindex=1>
     		</div>
     		<div class="form-group">
-      			<input type="password" class="form-control" name="pw"  placeholder="비밀번호" tabindex=2 required>
+      			<input type="password" class="form-control" name="pw" placeholder="비밀번호" tabindex=2 required>
     		</div>
+    		
     		<div class="form-group">
-      			 <label id="logon"><input type="checkbox" name="logon" value="로그인상태유지">로그인 상태유지</label>
+      			 <label id="logon"><input type="checkbox" name="logon" value="아이디저장"> 아이디저장</label>
       			 <a href="/seunghwang.bms/login/id_find.html" id="idFind">아이디찾기</a>
       			 <a href="/seunghwang.bms/login/pw_find.jsp" id="pwFind">비밀번호찾기</a>
     		</div>

@@ -127,6 +127,12 @@ a.item-green-hover:hover, a.item-green-hover:focus{ background-color: #EAEAEA;}
 .discount{
 	color:red;
 }
+#searchEmpty {
+	margin-top: 160px;
+	margin-left: 350px;
+	font-size: 35px;
+	color: gray;
+}
   </style>
 </head>
 <body>
@@ -283,8 +289,8 @@ a.item-green-hover:hover, a.item-green-hover:focus{ background-color: #EAEAEA;}
 			</ul>
 		</div>
 <%}else{ %>
-		<div>
-			검색 결과가 없습니다.
+		<div id="searchEmpty">
+			'검색 결과가 없습니다.'
 		</div>
 <% } %>
 	</div>

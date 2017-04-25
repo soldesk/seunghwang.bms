@@ -401,22 +401,51 @@ function chgsel1(){
 					<td>장르</td>
 					<td id="category">
 						<select name="sel1" onchange="chgsel1()">
-							<option value="novel">소설</option>
-							<option value="economic">경제/경영</option>
-							<option value="human">인문</option>
-							<option value="history">역사/문화</option>
-							<option value="politic">정치/사회</option>
-							<option value="science">과학</option>
-							<option value="computer">컴퓨터/IT</option>
+							<optgroup label="소설">
+								<option value="NK" <%if(book.getCategoryId().equals("NK")){ %>selected<%}%>>한국소설</option>
+								<option value="NA" <%if(book.getCategoryId().equals("NA")){ %>selected<%}%>>영미소설</option>
+								<option value="NJ" <%if(book.getCategoryId().equals("NJ")){ %>selected<%}%>>일본소설</option>
+								<option value="NF" <%if(book.getCategoryId().equals("NF")){ %>selected<%}%>>프랑스소설</option>
+								<option value="NC" <%if(book.getCategoryId().equals("NC")){ %>selected<%}%>>중국소설</option>
+							</optgroup>
+							<optgroup label="경제/경영">
+								<option value="MG" <%if(book.getCategoryId().equals("MG")){ %>selected<%}%>>경영일반</option>
+								<option value="MT" <%if(book.getCategoryId().equals("MT")){ %>selected<%}%>>경영이론</option>
+								<option value="BM" <%if(book.getCategoryId().equals("BM")){ %>selected<%}%>>경영관리</option>
+								<option value="EG" <%if(book.getCategoryId().equals("EG")){ %>selected<%}%>>경제일반</option>
+								<option value="ET" <%if(book.getCategoryId().equals("ET")){ %>selected<%}%>>경제이론</option>
+								<option value="CE" <%if(book.getCategoryId().equals("CE")){ %>selected<%}%>>기업경제</option>
+							</optgroup>
+							<optgroup label="인문">
+								<option value="HP" <%if(book.getCategoryId().equals("HP")){ %>selected<%}%>>심리학</option>
+								<option value="HG" <%if(book.getCategoryId().equals("HG")){ %>selected<%}%>>인문학일반</option>
+								<option value="HPS" <%if(book.getCategoryId().equals("HPS")){ %>selected<%}%>>철학</option>
+								<option value="HPD" <%if(book.getCategoryId().equals("HPD")){ %>selected<%}%>>교육학</option>
+							</optgroup>
+							<optgroup label="역사/문화">
+								<option value="HSG" <%if(book.getCategoryId().equals("HSG")){ %>selected<%}%>>역사일반</option>
+								<option value="HWH" <%if(book.getCategoryId().equals("HWH")){ %>selected<%}%>>세계사</option>
+								<option value="HOH" <%if(book.getCategoryId().equals("HOH")){ %>selected<%}%>>동양사</option>
+								<option value="HKH" <%if(book.getCategoryId().equals("HKH")){ %>selected<%}%>>한국사</option>
+								<option value="HM" <%if(book.getCategoryId().equals("HM")){ %>selected<%}%>>신화</option>
+							</optgroup>
+							<optgroup label="과학">
+								<option value="ST" <%if(book.getCategoryId().equals("ST")){ %>selected<%}%>>과학이론</option>
+								<option value="SR" <%if(book.getCategoryId().equals("SR")){ %>selected<%}%>>교양과학</option>
+								<option value="SP" <%if(book.getCategoryId().equals("SP")){ %>selected<%}%>>물리학</option>
+								<option value="SC" <%if(book.getCategoryId().equals("SC")){ %>selected<%}%>>화학</option>
+								<option value="SB" <%if(book.getCategoryId().equals("SB")){ %>selected<%}%>>생물학</option>
+								<option value="SE" <%if(book.getCategoryId().equals("SE")){ %>selected<%}%>>지구과학</option>
+							</optgroup>
+							<optgroup label="컴퓨터/IT">
+								<option value="CW" <%if(book.getCategoryId().equals("CW")){ %>selected<%}%>>웹프로그래밍</option>
+								<option value="CS" <%if(book.getCategoryId().equals("CS")){ %>selected<%}%>>보안</option>
+								<option value="CD" <%if(book.getCategoryId().equals("CD")){ %>selected<%}%>>데이터베이스</option>
+								<option value="CN" <%if(book.getCategoryId().equals("CN")){ %>selected<%}%>>네트워크</option>
+								<option value="CO" <%if(book.getCategoryId().equals("CO")){ %>selected<%}%>>OS</option>
+								<option value="CC" <%if(book.getCategoryId().equals("CC")){ %>selected<%}%>>컴퓨터공학</option>
+							</optgroup>
 						</select> 
-						 > 
-						<select name="sel2">
-							<option value="NK">한국소설</option>
-							<option value="NA">영미소설</option>
-							<option value="NJ">일본소설</option>
-							<option value="NF">프랑스소설</option>
-							<option value="NC">중국소설</option>
-						</select>
 					</td>
 					<td>출판사</td>
 					<td><input type="text" name="bookPublisher" value="<%=book.getBookPublisher()%>"/></td>

@@ -91,6 +91,7 @@
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
   <style>/*hotpink*/
   p{padding-left: 700px;}
   	.container-fluid{width: 1580px;	max-width: none !important;	background-color: hotpink;}
@@ -197,7 +198,7 @@ a.item-green-hover:hover, a.item-green-hover:focus{ background-color: #EAEAEA;}
 		if (sess == null || sess.getAttribute("authUser") == null){ //로그인 안됐을 시
 	%>
 		<script>
-			alert("로그인해주세요");
+			alert("로그인 후 이용바랍니다..");
 			location.href="/seunghwang.bms/main.jsp";
 		</script>
 	<%}	else if(sess.getAttribute("authUser").getClass().getSimpleName().equals("Admin")){	

@@ -68,7 +68,7 @@
 #noticeDetailSection textarea{width: 600px; height: 60px; resize:none;}
 hr{margin-top: -35px; border-top: 2px solid #D5D5D5; width: 700px; margin-left: 0px;}
 #freeboard_read p{font-weight: bold; font-size: 20px; color: #747474;}
-#inbox{margin-top: 50px; height: 100px;}
+#inbox{margin-top: 50px; width: 717px;}
 #write_button {margin-left: 840px; margin-top: 30px;}
 .form-group input[type=text]{
 	border-top-left-radius: .5em; /*왼쪽 상단 코너를 부드럽게 */
