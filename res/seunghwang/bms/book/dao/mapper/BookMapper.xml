@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="seunghwang.bms.book.dao.mapper.BookMapper">
+	<resultMap id="bookMap" type="book">
+		<id 	property="bookId"			column="book_id"/>
+		<result property="bookName"			column="book_name"/>
+		<result property="bookPrice"	 	column="book_price"/>
+		<result property="bookWriter"  	 	column="book_writer"/>
+		<result property="bookPublisher" 	column="book_publisher"/>
+		<result property="publicationDate"	column="publication_date"/>
+		<result property="bookGrade"	 	column="book_grade"/>
+		<result property="bookETC"		 	column="book_etc"/>
+		<result property="bookSale"		 	column="book_sale"/>
+		<result property="bookStock"	 	column="book_stock"/>
+		<result property="bookImage"		column="book_image"/>
+		<result property="categoryId"		column="category_id"/>
+		<association property="detailId"	column="bookId" select="getDetails"/>
+	</resultMap>
+	
+	<select id="getDetails" parameterType="string" resultType="detail">
+		select detail_book,detail_review,detail_writer,detail_chapter
+		from details
+		where book_id=#{bookId}
+	</select>
+	
+	<select id="getBooks" parameterType="book" resultMap="bookMap">
+		select book_id, book_name, category_id, book_publisher, book_writer, book_price, publication_date, book_sale, book_stock, book_grade, book_image
+		from books
+		order by book_id
+	</select>
+	
+	<select id="findNewBooks" parameterType="date" resultMap="bookMap"> 
+		select book_id, book_name, book_publisher, book_writer, book_price, publication_date, book_sale, book_stock, book_grade, book_image 
+		from books where publication_date >= #{date} - 7 
+		order by publication_date desc 
+	</select>
+	<select id="findBestSellers" parameterType="book" resultMap="bookMap">
+	select * from
+		(
+			select a.*,rownum rnum 
+			from(
+				select b.book_id,a.book_image,a.book_name,b.book_writer,b.book_grade, count(*)book_amount,
+				b.publication_date ,b.book_publisher ,b.book_price 
+				from orders a,books b
+				where a.book_id=b.book_id and to_char(order_date,'yyyymm') like to_char(sysdate,'yyyymm')
+				group by b.book_id,a.book_image,a.book_name,b.book_writer,b.book_grade, b.publication_date,b.book_publisher,b.book_price
+				order by BOOK_AMOUNT desc)a)
+	</select> 
+	
+	<select id="findSteadySellers" parameterType="book" resultMap="bookMap"> 
+		select book_id, book_name, book_publisher, book_writer, book_price, publication_date, book_sale, book_stock, book_grade, book_image 
+		from books 
+		where book_sale / (sysdate-publication_date) >= 1 
+		order by book_sale desc
+	</select>
+	
+	<select id="largeCategoryBooks" parameterType="string" resultMap="bookMap">
+		select bk.book_id,bk.book_name, bk.book_publisher, bk.book_writer, bk.book_price, bk.book_grade, bk.book_image, publication_date
+		from books bk join categories cg
+		using (category_id)
+		where cg.large_category=#{largeCategory}
+	</select>
+	
+	<select id="middleCategoryBooks" parameterType="string" resultMap="bookMap"> 
+		select book_id,book_name, book_publisher, book_writer, book_price, book_grade, book_image, publication_date 
+		from books natural join categories 
+		where category_id=#{categoryId} 
+	</select>
+	
+	<select id="findBooks" parameterType="map" resultMap="bookMap">
+		select book_id, book_name, book_publisher, book_writer, book_price, publication_date, book_sale, book_stock, book_grade, book_image
+		from books
+		<if test="searchBook != null and searchType.equals('total')">
+			where book_name like '%'||#{searchBook}||'%'
+			or book_writer like '%'||#{searchBook}||'%'
+			or book_publisher like '%'||#{searchBook}||'%'
+			or publication_date like '%'||#{searchBook}||'%'	
+		</if>
+		<if test="searchBook != null and searchType.equals('bookName')">
+        	where  book_name like '%'||#{searchBook}||'%'
+        </if>
+        <if test="searchBook != null and searchType.equals('bookWriter')">
+        	where  book_writer like '%'||#{searchBook}||'%'
+        </if>
+        <if test="searchBook != null and searchType.equals('bookPublisher')">
+        	where  book_publisher like '%'||#{searchBook}||'%'
+        </if>
+        <if test="searchBook != null and searchType.equals('publicationDate')">
+        	where  publication_date like '%'||#{searchBook}||'%'
+        </if>	
+	</select>
+	<select id="searchBook" parameterType="string" resultMap="bookMap">
+		select book_id, book_name, book_publisher, book_writer, book_price, publication_date, book_sale, book_stock, book_grade,category_id, book_etc, book_image
+		from books 
+		where book_id=#{bookId}
+	</select>
+	
+	<insert id="insertBook" parameterType="book">
+		insert into books 
+		values(#{bookId},#{categoryId},#{bookName},#{bookPrice},#{bookImage},
+		#{bookWriter},#{bookPublisher},#{publicationDate},#{bookGrade},#{bookETC},#{bookSale},#{bookStock})
+	</insert>
+	
+	<update id="updateBook" parameterType="book">
+		update books
+		set category_id=#{categoryId}, book_name=#{bookName}, book_price=#{bookPrice}, book_image=#{bookImage},
+			book_writer=#{bookWriter}, book_publisher=#{bookPublisher}, publication_date=#{publicationDate}, 
+			book_grade=#{bookGrade}, book_etc=#{bookETC}, book_sale=#{bookSale}, book_stock=#{bookStock}
+		where book_id=#{bookId}
+	</update>
+	
+	<delete id="deleteBook" parameterType="string">
+		delete books
+		where book_id=#{bookId}
+	</delete>
+</mapper> 
