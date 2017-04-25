@@ -37,7 +37,8 @@
 	
 	<update id="modify" parameterType="user">
 		update users 
-		set user_email = #{userEmail}, user_address= #{userAddress}, user_post = #{userPost}
+		set user_name = #{userName}, user_email = #{userEmail}, user_address= #{userAddress}, user_post = #{userPost},
+			user_phone = #{userPhone}, user_pw = #{userPw}, user_state = #{userState}
 		where user_id = #{userId}
 	</update>
 	
@@ -47,12 +48,73 @@
 		where user_id = #{userId}
 	</update>
 	
+	<delete id="delUser" parameterType="string">
+		delete users
+		where user_id = #{userId}
+	</delete>
+	
 	<update id="userStateChange" parameterType="user">
 		update users 
 		set user_state = #{userState}
 		where user_id = #{userId}
 	</update>
+<!-- 	
+	 <select id="getUsers" parameterType="page" resultMap="userMap">
+        <![CDATA[
+        select * from (
+            select rownum as rnum, x.* from(
+                  select * from users
+                  order by reg_date desc
+            )x where rownum <= #{rowCnt}*#{currentPage}
+        ) where rnum > 10*(#{currentPage}-1)
+        ]]>
+    </select>
+     -->
+    <select id="getUsers" parameterType="page" resultMap="userMap">
+        select * from (
+             select rownum as rnum, x.* from(
+                  select * from users
+                   <choose>
+            	  	<when test= "serchType !=null and serchType.equals('id')" >	
+      					where user_id like '%' || #{serchValue} || '%'
+      				</when>
+      				<when test= "serchType !=null and serchType.equals('phone')" >	
+      					where user_phone like '%' || #{serchValue} || '%'
+      				</when>
+      				<when test= "serchType !=null and serchType.equals('post')" >	
+      					where user_post like '%' || #{serchValue} || '%'
+      				</when>
+      				<when test= "serchType !=null and serchType.equals('name')" >	
+      					where user_name like '%' || #{serchValue} || '%'
+      				</when>
+      				</choose>
+      				         order by reg_date desc
+      				
+            )x  where rownum &lt;= #{rowCnt}*#{currentPage}
+        ) where rnum &gt; 10*(#{currentPage}-1)
+      
+    </select>
+
 	
+	<select id="getTotRowCnt" resultType="int">
+        select count(user_id) from users
+    	           <choose>
+            	  	<when test= "serchType !=null and serchType.equals('id')" >	
+      					where user_id like '%' || #{serchValue} || '%'
+      				</when>
+      				<when test= "serchType !=null and serchType.equals('phone')" >	
+      					where user_phone like '%' || #{serchValue} || '%'
+      				</when>
+      				<when test= "serchType !=null and serchType.equals('post')" >	
+      					where user_post like '%' || #{serchValue} || '%'
+      				</when>
+      				<when test= "serchType !=null and serchType.equals('name')" >	
+      					where user_name like '%' || #{serchValue} || '%'
+      				</when>
+      				</choose>
+    </select>        
+    
+    
 </mapper>
  
  

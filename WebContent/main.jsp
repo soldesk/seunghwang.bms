@@ -1,5 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="seunghwang.bms.config.Configuration" %>
+<%@ page import="seunghwang.bms.book.domain.Book" %>
+<%@ page import="seunghwang.bms.book.dao.mapper.BookMapper" %>
+<%@ page import="seunghwang.bms.book.dao.BookDao" %>
+<%@ page import="seunghwang.bms.book.dao.BookDaoImpl" %>
+<%@ page import="seunghwang.bms.book.service.BookService" %>
+<%@ page import="seunghwang.bms.book.service.BookServiceImpl" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.sql.Date" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="ko">
 <head>
@@ -119,12 +129,24 @@
 </div>
 <div id="mainSection" class="container-fluid">
   <br>
-	 
+<%
+	request.setCharacterEncoding("utf-8");
+	BookMapper bookMapper = Configuration.getMapper(BookMapper.class);
+	BookDao bookDao = new BookDaoImpl(bookMapper);
+	BookService bookService = new BookServiceImpl(bookDao);
+	
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    String ss=sdf.format(new java.util.Date());
+    Date date= java.sql.Date.valueOf(ss);
+    
+	List<Book> newBooks = bookService.findNewBooks(date);
+	int topCnt = 1;
+%>	 
 	
   <div class="modal-content" id="bestSeller1">
     	<div class="modal-header">
     		<h4 class="modal-title">신간 도서</h4>
-    		<button class="btn btn-default bestSeller_right"><a href="category/newbook_list.html" target="content">전체보기</a></button>
+    		<button class="btn btn-default bestSeller_right"><a href="book/newBookList.jsp" target="content">전체보기</a></button>
         </div>
      	<div class="modal-body">
         	<ul class="nav nav-tabs">
@@ -135,17 +157,29 @@
 			      <br><br>
 				<div id="bookPlusInfo"><br>
 					<ul class="nav navbar-nav" id="bestseller">
-						<li><p class="topBook">Top 1</p><img src="img/reco1.jpg" class="imgpo" width="120px" height="160px"><p class="name">언어의 온도</p><p class="writer">이기주</p>
-						<p id="grade">★★★★☆</p></li>
-						<li><p class="topBook">Top 2</p><img src="img/reco2.jpg" class="imgpo" width="120px" height="160px"><p class="name">자존감 수업</p><p class="writer">윤홍균</p>
-						<p id="grade">★★★★★</p></li>
-						<li><p class="topBook">Top 3</p><img src="img/reco3.jpg" class="imgpo" width="120px" height="160px"><p class="name">국가란 무엇인가</p><p class="writer">유시민</p>
-						<p id="grade">★★★★★</p></li>
-						<li><p class="topBook">Top 4</p><img src="img/reco4.jpg" class="imgpo" width="120px" height="160px"><p class="name">공터에서</p><p class="writer">김훈</p>
-						<p id="grade">★★★★☆</p></li>
-						<li><p class="topBook">Top 5</p><img src="img/reco5.jpg" class="imgpo" width="120px" height="160px"><p class="name">기린의 날개</p><p class="writer">히가시노 게이고</p>
-						<p id="grade">★★★★★</p></li>
-					</ul>
+<% 
+	if(newBooks.size() != 0) 
+		for(Book book : newBooks) {
+%>
+						<li><p class="topBook">Top <%=topCnt %></p><img src="img/bookUpload/<%=book.getBookImage() %>" class="imgpo" width="120px" height="160px">
+							<p class="name"><%=book.getBookName() %></p>
+							<p class="writer"><%=book.getBookWriter() %></p>
+							<p id="grade">★★★★☆</p>
+						</li>
+<%
+			++topCnt;
+		} 
+	else {
+%>
+						<li><p class="topBook">Top <%= ++topCnt %></p><img src="img/bookUpload/ad.jpg" class="imgpo" width="120px" height="160px">
+							<p class="name">없음</p>
+							<p class="writer">없음</p>
+							<p id="grade">☆☆☆☆☆</p>
+						</li>
+<%		
+	} 
+%>
+				</ul>
 				</div>
 			    </div>
 			  </div>
@@ -154,7 +188,7 @@
 	<div class="modal-content" id="bestSeller2">
     	<div class="modal-header">
     		<h4 class="modal-title">베스트셀러</h4>
-    		<button class="btn btn-default bestSeller_right"><a href="category/bestseller_list.html" target="content">전체보기</a></button>
+    		<button class="btn btn-default bestSeller_right"><a href="book/bestSellerList.jsp" target="content">전체보기</a></button>
         </div>
      	<div class="modal-body">
         	<ul class="nav nav-tabs" >
@@ -193,7 +227,7 @@
 	<div class="modal-content" id="bestSeller3">
     	<div class="modal-header">
     		<h4 class="modal-title">스테디셀러</h4>
-    		<button class="btn btn-default bestSeller_right"><a href="category/steadyseller_list.html" target="content">전체보기</a></button>
+    		<button class="btn btn-default bestSeller_right"><a href="book/steadySellerList.jsp" target="content">전체보기</a></button>
         </div>
      	<div class="modal-body">
         	<ul class="nav nav-tabs" >

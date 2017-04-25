@@ -13,6 +13,8 @@
 <%@ page import="seunghwang.bms.book.dao.DetailDaoImpl" %>
 <%@ page import="seunghwang.bms.book.service.DetailService" %>
 <%@ page import="seunghwang.bms.book.service.DetailServiceImpl" %>
+<%@ page import="com.oreilly.servlet.MultipartRequest" %>
+<%@ page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy" %>
 <%@ page import="java.sql.Date" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%
@@ -24,33 +26,55 @@
 	DetailMapper detailMapper = Configuration.getMapper(DetailMapper.class);
 	DetailDao detailDao = new DetailDaoImpl(detailMapper);
 	DetailService detailService = new DetailServiceImpl(detailDao);
+	
+	String savePath = "img/bookUpload"; //저장경로
+	int uploadFileMaxSize = 100 * 1024 * 1024; 
+	String encType = "utf-8";
+	
+	ServletContext context = getServletContext();
+	String uploadFilePath = context.getRealPath(savePath);
+	
+	MultipartRequest multiRequest = new MultipartRequest(request,
+			uploadFilePath, uploadFileMaxSize, encType,
+			new DefaultFileRenamePolicy());
 
-	String categoryId = request.getParameter("sel2");
-	String bookId = request.getParameter("bookId");
-	String bookName = request.getParameter("bookName");
-	int bookPrice = Integer.parseInt(request.getParameter("bookPrice"));
-	String bookWriter = request.getParameter("bookWriter");
-	String bookPublisher = request.getParameter("bookPublisher");
-	String publicationDate = request.getParameter("publicationDate");
-	double bookGrade = Double.parseDouble(request.getParameter("bookGrade"));
-	String bookETC = request.getParameter("bookETC");
-	int bookSale = Integer.parseInt(request.getParameter("bookSale"));
-	int bookStock = Integer.parseInt(request.getParameter("bookStock"));
-	String bookImage = request.getParameter("bookImage");
+	String categoryId = multiRequest.getParameter("sel2");
+	String bookId = multiRequest.getParameter("bookId");
+	String bookName = multiRequest.getParameter("bookName");
+	int bookPrice = Integer.parseInt(multiRequest.getParameter("bookPrice"));
+	String bookWriter = multiRequest.getParameter("bookWriter");
+	String bookPublisher = multiRequest.getParameter("bookPublisher");
+	String publicationDate = multiRequest.getParameter("publicationDate");
+	double bookGrade = Double.parseDouble(multiRequest.getParameter("bookGrade"));
+	String bookETC = multiRequest.getParameter("bookETC");
+	int bookSale = Integer.parseInt(multiRequest.getParameter("bookSale"));
+	int bookStock = Integer.parseInt(multiRequest.getParameter("bookStock"));
+	String bookImage = multiRequest.getParameter("bookImage");
+	String upBookImage = multiRequest.getFilesystemName("upBookImage");
 	
 	
-	String detailBook = request.getParameter("detailBook");
-	String detailReview = request.getParameter("detailReview");
-	String detailWriter = request.getParameter("detailWriter");
-	String detailChapter = request.getParameter("detailChapter");
+	Date date = java.sql.Date.valueOf(publicationDate);
 	
-	Book book = new Book(bookId, bookName, bookPrice, bookWriter, bookPublisher, 
-						 new Date(2017/04/06), bookGrade, bookETC, bookSale, bookStock, categoryId, bookImage );
-	bookService.updateBook(book);
+	String detailBook = multiRequest.getParameter("detailBook");
+	String detailReview = multiRequest.getParameter("detailReview");
+	String detailWriter = multiRequest.getParameter("detailWriter");
+	String detailChapter = multiRequest.getParameter("detailChapter");
+	
+	if(upBookImage == null || upBookImage.equals("")) {
+		Book book = new Book(bookId, bookName, bookPrice, bookWriter, bookPublisher, 
+				 date, bookGrade, bookETC, bookSale, bookStock, categoryId, bookImage);
+		bookService.updateBook(book);
+	} else {
+		Book book = new Book(bookId, bookName, bookPrice, bookWriter, bookPublisher, 
+				 date, bookGrade, bookETC, bookSale, bookStock, categoryId, upBookImage);
+		bookService.updateBook(book);
+	}
+		
+	
+	
 	
 	Detail detail = new Detail(bookId, detailBook, detailReview, detailWriter, detailChapter);
 	detailService.updateDetail(detail);
 	
 	response.sendRedirect("bookManage.jsp");
 %>
-

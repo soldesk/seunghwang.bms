@@ -1,5 +1,6 @@
 package seunghwang.bms.book.dao;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -43,5 +44,17 @@ public class BookDaoImpl implements BookDao{
 	
 	public void deleteBook(String bookId) {
 		bookMapper.deleteBook(bookId);
+	}
+	
+	public List<Book> findNewBooks(Date date) {
+		return bookMapper.findNewBooks(date);
+	}
+	
+	public List<Book> findBestSellers(Date date) {
+		return bookMapper.findBestSellers(date);
+	}
+	
+	public List<Book> findSteadySellers(Date date) {
+		return bookMapper.findSteadySellers(date);
 	}
 }

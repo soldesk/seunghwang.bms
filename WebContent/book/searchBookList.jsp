@@ -26,6 +26,7 @@
 	map.put("searchBook",searchBook);
 	
 	List<Book> books = bookService.findBooks(map);
+	
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="ko">
@@ -105,10 +106,42 @@ a.item-green-hover:hover, a.item-green-hover:focus{ background-color: #EAEAEA;}
 .bookList ul li {
 	list-style-type:none;
 }
-.img{
-	margin-left:-100px;
+.thumbnail{
+	margin-left: 20px;
+	width: 800px;
 }
-  </style>
+.img{
+	float:left;
+	margin-left: 5px;
+	margin-right: 10px;
+	padding-bottom: 5px;
+	padding-top: 3px;
+}
+
+.etc, .grade, .price {
+	font-weight: normal;
+	font-size: 13px;
+}
+.grade{
+	padding-top:10px;
+}
+.price{
+	padding-top:5px;
+}
+.font{
+	font-size:13px;
+	color: #BDBDBD;
+}
+.numberFont{
+	color:#8BBDFF;
+}
+.gradeFont{
+	font-weight:bold;
+}
+.discount{
+	color:red;
+}
+</style>
 </head>
 <body>
 
@@ -240,13 +273,13 @@ a.item-green-hover:hover, a.item-green-hover:focus{ background-color: #EAEAEA;}
 		for(Book book : books) { %>
 		<div class="bookList">
 			<ul class="thumbnail">
-				<li><div class="img"><a href="bookDetail.jsp?bookId=<%= book.getBookId() %>">
-						<img src="../img/bookUpload/<%=book.getBookImage() %>" style="width:100px;height:130px"></a></div>
+				<li class="img"><a href="bookDetail.jsp?bookId=<%= book.getBookId() %>">
+						<img src="../img/bookUpload/<%=book.getBookImage() %>" style="width:100px;height:114px"></a>
 				</li>
-				<li class="name"><%=book.getBookName() %></li>
-				<li class="etc"><%=book.getBookWriter() %> 지음 | <%=book.getBookPublisher() %> | <%= book.getPublicationDate() %></li>
-				<li class="grade">추천지수(230) | 리뷰(44) | 회원평점: <%=book.getBookGrade() %></li>
-				<li class="price"><%=book.getBookPrice() %>원 -> <%=(int)(0.9*book.getBookPrice()) %> (10% 할인)</li>
+				<li class="name"><a href="bookDetail.jsp?bookId=<%=book.getBookId() %>"><%=book.getBookName() %></a></li>
+				<li class="etc"><%=book.getBookWriter() %> <span class="font">지음 | 출판사</span> <%=book.getBookPublisher() %> <span class="font">| 출판일 </span><%= book.getPublicationDate() %></li><br>
+				<li class="grade">추천지수(<span class="numberFont">230</span>) <span class="font">|</span>  리뷰(<span class="numberFont">230</span>) <span class="font">| 회원평점:</span>  <span class="gradeFont"><%=book.getBookGrade() %></span></li>
+				<li class="price"><%=book.getBookPrice() %>원 -> <span class="discount"><%=(int)(0.9*book.getBookPrice()) %></span>원 (10% 할인)</li><br>
 			</ul>
 		</div>
 <%}else{ %>

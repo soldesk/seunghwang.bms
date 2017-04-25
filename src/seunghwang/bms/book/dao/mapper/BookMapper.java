@@ -1,5 +1,6 @@
 package seunghwang.bms.book.dao.mapper;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -15,4 +16,7 @@ public interface BookMapper {
 	void updateBook(Book book); //책 수정
 	void deleteBook(String bookId); //책 삭제
 	List<Book> getDetails();
+	List<Book> findNewBooks(Date date);
+	List<Book> findBestSellers(Date date);
+	List<Book> findSteadySellers(Date date);
 }

@@ -16,6 +16,8 @@
         where admin_id=#{adminID}
     </select>
 	
+
 	
 </mapper>
-	
+
+

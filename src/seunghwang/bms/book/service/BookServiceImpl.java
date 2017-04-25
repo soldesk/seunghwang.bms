@@ -1,5 +1,6 @@
 package seunghwang.bms.book.service;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -43,5 +44,17 @@ public class BookServiceImpl implements BookService{
 	
 	public void deleteBook(String bookId) {
 		bookDao.deleteBook(bookId);
+	}
+	
+	public List<Book> findNewBooks(Date date) {
+		return bookDao.findNewBooks(date);
+	}
+	
+	public List<Book> findBestSellers(Date date) {
+		return bookDao.findBestSellers(date);
+	}
+	
+	public List<Book> findSteadySellers(Date date) {
+		return bookDao.findSteadySellers(date);
 	}
 }

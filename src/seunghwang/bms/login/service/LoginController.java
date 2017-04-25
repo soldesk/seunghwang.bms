@@ -84,7 +84,15 @@ public class LoginController extends HttpServlet {
 			 }catch(Exception e) {
 				 e.printStackTrace();
 			 }
+		 }else if(command.equals("/findSameIdAction.login")) {
+			 try {
+				 forward=loginService.findSameIdAction(request, response);
+			 }catch(Exception e) {
+				 e.printStackTrace();
+			 }
 		 }
+		 
+		 
 		 
 		 if(forward != null){
 			 if(forward.isRedirect()){
@@ -94,6 +102,8 @@ public class LoginController extends HttpServlet {
 				 request.getRequestDispatcher(forward.getPath());
 			 dispatcher.forward(request, response);
 		 }	 
+			 
+			 
 		 }
 	}
 }

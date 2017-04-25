@@ -23,9 +23,28 @@
 	</select>
 	
 	<select id="getBooks" parameterType="book" resultMap="bookMap">
-		select book_id, book_name, book_publisher, book_writer, book_price, publication_date, book_sale, book_stock, book_grade
+		select book_id, book_name, book_publisher, book_writer, book_price, publication_date, book_sale, book_stock, book_grade, book_image
 		from books
 		order by book_id
+	</select>
+	
+	<select id="findNewBooks" parameterType="date" resultMap="bookMap"> 
+		select book_id, book_name, book_publisher, book_writer, book_price, publication_date, book_sale, book_stock, book_grade, book_image 
+		from books where publication_date >= #{date} - 7 
+		order by publication_date desc 
+	</select>
+	<select id="findBestSellers" parameterType="date" resultMap="bookMap"> 
+		select book_id, book_name, book_publisher, book_writer, book_price, publication_date, book_sale, book_stock, book_grade, book_image 
+		from books 
+		where publication_date >= #{date} -31 
+		order by book_sale 
+	</select> 
+	
+	<select id="findSteadySellers" parameterType="date" resultMap="bookMap"> 
+		select book_id, book_name, book_publisher, book_writer, book_price, publication_date, book_sale, book_stock, book_grade, book_image 
+		from books 
+		where book_sale / #{date}-3650 
+		order by book_sale 
 	</select>
 	
 	<select id="largeCategoryBooks" parameterType="string" resultMap="bookMap">

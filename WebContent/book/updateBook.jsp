@@ -380,7 +380,7 @@ function chgsel1(){
 	</div>
 	</div>
 		<div id="book_info_body">
-			<form action="bookUpdateProc.jsp" method="post">
+			<form action="bookUpdateProc.jsp" method="post" enctype="multipart/form-data">
 			<table class="table table-boardered">
 			<tbody>
 				<tr>
@@ -390,9 +390,9 @@ function chgsel1(){
 					<td><input type="text" name="bookId" value="<%=book.getBookId()%>" readonly/><br></td>
 				</tr>
 				<tr>
-					<td>이미지 URL</td>
-					<td colspan="3"><input type="text" value="<%=book.getBookImage()%>" readonly/>
-									<input type="file" name="bookImage" />
+					<td>이미지</td>
+					<td colspan="3"><input type="text" name="bookImage" value="<%=book.getBookImage()%>" readonly/>
+									<input type="file" name="upBookImage"/>
 									<img src="../img/bookUpload/<%=book.getBookImage()%>"/></td>
 					<td>작가이름</td>
 					<td><input type="text" name="bookWriter" value="<%=book.getBookWriter()%>"/></td>
