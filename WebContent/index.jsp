@@ -68,7 +68,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <style>/*hotpink*/
-  	/*부트스트랩 유동성 비활성화*/
+  	  	/*부트스트랩 유동성 비활성화*/
 	.container-fluid{width: 1580px; max-width: none !important; max-height: none !important; background-color: hotpink;}
     body {position: relative; height: 100%;}
     /*고정바*/
@@ -104,7 +104,7 @@
 	.modal-dialog{color: hotpink;}
 	#faq{margin-left: 165px;}
 	/*로그인*/
-	#idSize{width: 300px;}
+	#idSize{width: 300px; height:30px;}
 	#usr{width: 550px; height:40px;}
 	#pwd{width: 550px; height:40px; margin-top: -12px;}
 	#logon{font-weight:normal;}
@@ -138,7 +138,7 @@
 	border-bottom-right-radius: .5em; /*오른쪽 하단 코너를 부드럽게*/
 	border: 1px solid #ccc;
 	padding-left: 15px;
-	height: 27px;
+	height: 34px;
 	color: black;
 }
 	.form-group {color: black;}
@@ -241,6 +241,11 @@
 	font-size: 17.5px;
 	margin-top: 2px;
 }
+#userEmail{width: 150px; float:left; margin-top: 10px;}
+#userEmail2{width: 150px; margin-top: -34px; margin-left: 180px;}
+#userAt{margin-top: 15px; margin-left: 155px;}
+#selectHeight{margin-left: 350px; height:30px; margin-top: -30px;}
+#birthYear{margin-top: 10px;}
   </style>
 </head>
 <body data-spy="scroll" data-target=".navbar">	
@@ -736,20 +741,23 @@ ID, 비밀번호는 본인이 직접 사용하여야 하며 제 3자에게 이�
           				<h4 class="modal-title">회원가입</h4>
         			</div>
         			<div class="modal-body">
-        			<form action="/seunghwang.bms/loginSignUpAction.login" method="post">
+        			<form name="submitAction" action="/seunghwang.bms/loginSignUpAction.login" method="post">
 		    		<div class="form-group">
 		      			<input type="text" id="idSize" name="userId" placeholder="아이디" tabindex=1 required>
-		      			<input type="submit" formaction="FindSameIdServlet" value="중복확인" required />
+		      			<input type="button"  id="idCheckButton" value="중복확인" required />
 		    		</div>
 		    		<div class="form-group">
-		      			<input type="password" class="form-control" name="userPw" required placeholder="비밀번호" tabindex=2>
-		      			<input type="password" class="form-control" name="userPw2" required placeholder="비밀번호 확인" tabindex=3>
-		    		</div>
-		    		<div class="form-group">
-		    		<input type="text" id="sample6_postcode" name="userPost" placeholder="우편번호">
+		      			<input type="password" class="form-control"  id="user_pswd" name="userPw" required placeholder="비밀번호" tabindex=2>
+		      			<span id="pwdMsg"></span>
+		      			
+		      			<input type="password" class="form-control"   id="user_pswd2"name="userPw2" required placeholder="비밀번호 확인" tabindex=3/>
+		    			<span id="pwdMsg2"></span>
+		    		</div>	
+		    		<div class="form-group">	
+		    		<input type="text" id="sample6_postcode" id="userPost" name="userPost" placeholder="우편번호">
 						<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" required><br>
-						<input type="text" id="sample6_address" name="userAddress1" placeholder="주소" required>
-						<input type="text" id="sample6_address2" name="userAddress2"  placeholder="상세주소" required>
+						<input type="text" id="sample6_address" id="userAddress1" name="userAddress1" placeholder="주소" required>
+						<input type="text" id="sample6_address2" id="userAddress2" name="userAddress2"  placeholder="상세주소" required>
 		    		
 		    		
 		      		<!-- 	<input type="text" class="form-control" name="userEmail" placeholder="이메일주소" tabindex=4><br>
@@ -759,10 +767,19 @@ ID, 비밀번호는 본인이 직접 사용하여야 하며 제 3자에게 이�
 						<input type="text" id="sample2_addressEnglish" placeholder="영문주소"> -->
 		    		</div>
 		    		<div class="form-group">
-		      			<input type="text" class="form-control" name="userName" placeholder="이름" tabindex=5 required>
-		      			<input type="text" class="form-control" name="userEmail" placeholder="이메일주소" tabindex=6 required>
-		      			<input type="text" class="form-control" placeholder="출생년도" tabindex=7 required>
-		      			<input type="text" class="form-control" name="userPhone" placeholder="핸드폰번호" tabindex=8 required>
+		      			<input type="text" class="form-control" id="userName" name="userName" placeholder="이름" tabindex=5 required>
+		      			<input type="text" class="form-control" id="userEmail" name="userEmail" placeholder="이메일주소"    tabindex=6 required><p id="userAt">@</p>
+		      			<input type="text" class="form-control" id="userEmail2" name="userEmail2" placeholder="이메일주소" tabindex=6 required>
+		      					<select class="emailSelect" name="userEmail3" id="selectHeight">
+										<option value="naver.com">naver.com</option>
+										<option value="daum.net">daum.net</option>
+										<option value="gmail.com">gmail.com</option>
+										<option value="nate.com">nate.com</option>
+										<option value="korea.com">korea.com</option>
+										<option value="1">직접입력</option>
+									</select>
+		      			<input type="text" class="form-control" placeholder="출생년도" tabindex=7 id="birthYear"required/>
+		      			<input type="text" class="form-control" id="userPhone" name="userPhone" placeholder="핸드폰번호" tabindex=8 required>
 		      			
 		    		</div>
 		    		<div class="form-group">
