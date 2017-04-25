@@ -64,16 +64,7 @@
 		</script>	
 	
 <%}else{
-	
-	System.out.println("bookName :" + bookName);
-	System.out.println("userId : " + userId);
-	System.out.println("reviewTitle :" + reviewTitle);
-	System.out.println("reviewContent :" + reviewContent );
-	System.out.println("reviewId :" + reviewId);
-	System.out.println("reviewGrade :" + reviewGrade);
-	System.out.println("bookId :" + bookId);
-	
-	
+		
 	
 	Review review = new Review(reviewId, bookName, reviewTitle, 
 			reviewContent, reviewGrade, new Date(04/04/2017), bookId, userId);

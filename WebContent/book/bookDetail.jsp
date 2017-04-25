@@ -198,6 +198,7 @@ textarea{width: 600px; height: 60px; resize:none;}
 			내용
 			<textarea class="form-control" rows="5" name="reviewContent"></textarea>
 			<input type="submit" class="btn btn-default review_write" value="리뷰 남기기"/>
+			
 		</div>
 	</form>
 	</div>
@@ -228,6 +229,7 @@ textarea{width: 600px; height: 60px; resize:none;}
       </div>
       <div id="<%= review.getReviewId()%>" class="panel-collapse collapse">
         <div class="panel-body"><%= review.getReviewContent() %></div>
+        <button type="button" class="btn btn-default" onclick="location.href='delReviewProc.jsp?reviewId=<%= review.getReviewId()%>&bookId=<%=bookId%>'">삭제</button>
       </div>
     </div>
     </div>
