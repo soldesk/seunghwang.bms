@@ -130,9 +130,9 @@
 							</tbody>
 								</tbody>
 						</table>
-			<%inquiryContent = inquiryContent.replaceAll("<br>","\r\n");%>
+		<%inquiryContent = inquiryContent.replaceAll("<br>","\r\n");%>
 		<textarea name="inquiryContent" required><%=inquiryContent %></textarea>
-			<%inquiryContent = inquiryContent.replaceAll("\r\n","<br>");%>
+		<%inquiryContent = inquiryContent.replaceAll("\r\n","<br>");%>
 		<div id="write_button"><button type="submit" class="btn btn-default">완료</button>  
 		<button type="button" class="btn btn-default" onclick="location.href='inquiryList.jsp'">목록</button></div>
 		</form>

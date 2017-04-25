@@ -34,7 +34,7 @@
 	
 	<insert id="insertReview" parameterType="review">
 		insert into reviews
-		values(#{reviewId},#{bookName},#{reviewTitle},#{reviewContent}, #{reviewGrade}, #{regDate}, #{bookId},#{userId})
+		values(#{reviewId},#{bookName},#{reviewTitle},#{reviewContent}, #{reviewGrade}, sysdate, #{bookId},#{userId})
 	</insert>
 	
 	<update id="updateReview" parameterType="review">

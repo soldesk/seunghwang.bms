@@ -55,5 +55,12 @@
 		<servlet-name>AdminController</servlet-name>
 		<url-pattern>*.admin</url-pattern>
 	</servlet-mapping>
-
+	<error-page>
+    <error-code>404</error-code>
+    <location>/error/noPageUrl.html</location>
+  </error-page>
+  <error-page>
+    <error-code>500</error-code>
+    <location>/error/errorProc.jsp</location>
+  </error-page>
 </web-app>

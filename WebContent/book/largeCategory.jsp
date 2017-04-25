@@ -17,23 +17,70 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
   <style>/*hotpink*/
-  	.thumbnail{color: black; font-weight: bold;}
-  	.container-fluid{width: 1580px;	max-width: none !important;	background-color: hotpink;}
-      body {position: relative;}
-      #literatureBooklist {height:1000px;color: hotpink; background-color: white;}
- 	.carousel-inner>.item>a>img, .carousel-inner>.item>img, .img-responsive,
+.thumbnail {
+	color: black;
+	font-weight: bold;
+}
+
+.container-fluid {
+	width: 1580px;
+	max-width: none !important;
+	background-color: hotpink;
+}
+
+body {
+	position: relative;
+}
+
+#literatureBooklist {
+	height: 1000px;
+	color: hotpink;
+	background-color: white;
+}
+
+.carousel-inner>.item>a>img, .carousel-inner>.item>img, .img-responsive,
 	.thumbnail a>img, .thumbnail>img {
 	display: block;
 	max-width: none !important;
 	height: 240px;
 }
-	.modal-dialog{color: hotpink;}
-	dl {filter: drop-shadow(0 1px 1px rgba(0, 0, 0, .3)); color: black;}
-	dt{text-align: center;}
-	dd {color: #747474; text-align: center;}
-	#imgSize{width: 270px;}
-	#thumbnailPos{margin-left: 280px; margin-top: 20px; width: 1100px; max-width: none !important;}
-	#thumbnail_title{margin-left: 300px; filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, .3)); text-align:center; width: 200px; height: 30px; padding-top: 5px;
+
+.modal-dialog {
+	color: hotpink;
+}
+
+dl {
+	filter: drop-shadow(0 1px 1px rgba(0, 0, 0, .3));
+	color: black;
+}
+
+dt {
+	text-align: center;
+}
+
+dd {
+	color: #747474;
+	text-align: center;
+}
+
+#imgSize {
+	width: 270px;
+}
+
+#thumbnailPos {
+	margin-left: 280px;
+	margin-top: 20px;
+	width: 1100px;
+	max-width: none !important;
+}
+
+#thumbnail_title {
+	margin-left: 300px;
+	filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, .3));
+	text-align: center;
+	width: 200px;
+	height: 30px;
+	padding-top: 5px;
 	color: white;
 	background-color: hotpink;
 	border-top-left-radius: 1em; /*왼쪽 상단 코너를 부드럽게 */
@@ -42,18 +89,21 @@
 	border-bottom-right-radius: 1em; /*오른쪽 하단 코너를 부드럽게*/
 	font-size: 18px;
 	font-weight: bold;
-	}
-	.btn-danger {
-    color: #fff;
-    background-color: hotpink;
-    border-color: hotpink;
 }
-	.btn-danger:hover {
-    color: #FFB2F5;
-    background-color: hotpink;
-    border-color: hotpink;
+
+.btn-danger {
+	color: #fff;
+	background-color: hotpink;
+	border-color: hotpink;
 }
-.form-group input[type=text]{
+
+.btn-danger:hover {
+	color: #FFB2F5;
+	background-color: hotpink;
+	border-color: hotpink;
+}
+
+.form-group input[type=text] {
 	border-top-left-radius: .5em; /*왼쪽 상단 코너를 부드럽게 */
 	border-bottom-left-radius: .5em; /*왼쪽 하단 코너를 부드럽게*/
 	border-top-right-radius: .5em; /*오른족 상단 코너를 부드럽게*/
@@ -62,36 +112,63 @@
 	padding-left: 15px;
 	height: 27px;
 }
-.left_subCategory{float: left;}
-.left_subCategory_list{height: 790px; width: 250px; margin-top: 10px; margin-left: 20px;}
-.panel-default{border-color: #fff;}
+
+.left_subCategory {
+	float: left;
+}
+
+.left_subCategory_list {
+	height: 790px;
+	width: 250px;
+	margin-top: 10px;
+	margin-left: 20px;
+}
+
+.panel-default {
+	border-color: #fff;
+}
+
 .panel-default>.panel-heading {
-    background-color: hotpink;
-    color: white;
-    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, .3));
-    border-top-left-radius: .5em; /*왼쪽 상단 코너를 부드럽게 */
+	background-color: hotpink;
+	color: white;
+	filter: drop-shadow(0 1px 1px rgba(0, 0, 0, .3));
+	border-top-left-radius: .5em; /*왼쪽 상단 코너를 부드럽게 */
 	border-bottom-left-radius: .5em; /*왼쪽 하단 코너를 부드럽게*/
 	border-top-right-radius: .5em; /*오른족 상단 코너를 부드럽게*/
 	border-bottom-right-radius: .5em; /*오른쪽 하단 코너를 부드럽게*/
 }
-.category_accordion_button{background-color: hotpink; border-color: hotpink; font-size: 16px; font-weight: bold;}
-a.list-group-item:focus, a.list-group-item:hover, button.list-group-item:focus, button.list-group-item:hover {
-    color: white;
-    text-decoration: none;
-    background-color: hotpink;
-    font-size: 16px;
-    font-weight: bold;
+
+.category_accordion_button {
+	background-color: hotpink;
+	border-color: hotpink;
+	font-size: 16px;
+	font-weight: bold;
 }
-a.item-green-hover:hover, a.item-green-hover:focus{ background-color: #EAEAEA;}
+
+a.list-group-item:focus, a.list-group-item:hover, button.list-group-item:focus,
+	button.list-group-item:hover {
+	color: white;
+	text-decoration: none;
+	background-color: hotpink;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+a.item-green-hover:hover, a.item-green-hover:focus {
+	background-color: #EAEAEA;
+}
+
 .bookList ul li {
-	list-style-type:none;
+	list-style-type: none;
 }
-.thumbnail{
+
+.thumbnail {
 	margin-left: 20px;
 	width: 800px;
 }
-.img{
-	float:left;
+
+.img {
+	float: left;
 	margin-left: 5px;
 	margin-right: 10px;
 	padding-bottom: 5px;
@@ -102,26 +179,39 @@ a.item-green-hover:hover, a.item-green-hover:focus{ background-color: #EAEAEA;}
 	font-weight: normal;
 	font-size: 13px;
 }
-.grade{
-	padding-top:10px;
+
+.grade {
+	padding-top: 10px;
 }
-.price{
-	padding-top:5px;
+
+.price {
+	padding-top: 5px;
 }
-.font{
-	font-size:13px;
+
+.font {
+	font-size: 13px;
 	color: #BDBDBD;
 }
-.numberFont{
-	color:#8BBDFF;
+
+.numberFont {
+	color: #8BBDFF;
 }
-.gradeFont{
-	font-weight:bold;
+
+.gradeFont {
+	font-weight: bold;
 }
-.discount{
-	color:red;
+
+.discount {
+	color: red;
 }
-  </style>
+
+#searchEmpty {
+	margin-top: 160px;
+	margin-left: 350px;
+	font-size: 35px;
+	color: gray;
+}
+</style>
 </head>
 <body>
 <%
@@ -273,8 +363,8 @@ a.item-green-hover:hover, a.item-green-hover:focus{ background-color: #EAEAEA;}
 			</ul>
 		</div>
 <%}else{ %>
-		<div>
-			검색 결과가 없습니다.
+		<div id="searchEmpty">
+			'검색 결과가 없습니다.'
 		</div>
 <% } %>
 	</div>
