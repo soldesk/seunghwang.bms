@@ -6,6 +6,7 @@ import seunghwang.bms.customerService.notice.domain.Notice;
 
 public interface NoticeService {
 	List<Notice> listNotices();
+	List<Notice> searchNotices(String noticeTitle);
 	boolean addNotice(Notice notice);
 	boolean delNotice(int noticeId);
 	boolean modNotice(Notice notice);

@@ -26,6 +26,7 @@
 	List<Faq> orderFaqs = faqService.orderFaqs();
 	List<Faq> bookFaqs = faqService.bookFaqs();
 	List<Faq> systemFaqs = faqService.systemFaqs();
+	List<Faq> searchFaqs =(List)request.getAttribute("searchFaqs");
 	HttpSession sess = request.getSession(false);
 	
 	int pageno = toInt(request.getParameter("pageno"));
@@ -96,17 +97,12 @@
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-  <script>
-  $(".myFrame").css({
-		height: "300px",
-	});
-  </script>
   <style>/*상징색 hotpink #ED4C00*/
   	.container-fluid{width: 1580px;	max-width: none !important;}
   	.table {max-width: none !important; max-height: none !important;}
 	.table-responsive {min-height: none !important;	overflow-x: 0}
       body {position: relative;}
-    #boardSection {height: 600px;color: black; background-color: white;}
+    #boardSection {height: 200px;color: black; background-color: white;}
 	#board_table{width: 900px; margin-left: 350px;}
 	#freeBoard_title{margin-left: 350px; filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, .3)); width: 150px; height: 30px; padding-top: 5px; text-align: center;
 		color: white;
@@ -210,6 +206,7 @@ p{padding-left: 700px;}
   </div>
 		</div>
 	</div><br>
+	<%if(searchFaqs == null){ %>
 	<ul class="nav nav-pills">
 			<li class="active"><a data-toggle="pill" href="#home">전체</a></li>
 			<li><a data-toggle="pill" href="#menu1">회원</a></li>
@@ -252,6 +249,7 @@ p{padding-left: 700px;}
 		<%}else{ %>
 		<p>게시물이 없습니다.</p>
 		<%} %>
+		<%if(faqs.size() != 0){ %>
 		<div id="pageBoard">
 			<ul class="pagination pagination-sm">
 				<li><a href="faqList.jsp?pageno=1"><<</a></li>
@@ -269,6 +267,7 @@ p{padding-left: 700px;}
 				<li><a href="faqList.jsp?pageno=<%=total_page%>">>></a></li>
 			</ul>
 		</div>
+		<%} %>
 			</div>
 			<div id="menu1" class="tab-pane fade">
 				<% if(userFaqs.size() != 0){ %>
@@ -385,7 +384,41 @@ p{padding-left: 700px;}
 			</table>
 		<%}else{ %>
 		<p>게시물이 없습니다.</p>
+		<%
+			}
+		}else if(searchFaqs !=null){%>
+			<div class="tab">
+				<% if(searchFaqs.size() != 0){ %>
+				<table class="table table-hover" id="board_table">
+				<thead>
+					<tr>
+						<th>번호</th>
+						<th>내용</th>
+						<th>카테고리</th>
+						<th>조회수</th>
+					</tr>
+				</thead>
+				<tbody>
+				<%
+					for(Faq faq:searchFaqs){ 
+						String faqContent = faq.getFaqContent().replaceAll("\r\n", "<br>");
+				%>
+						<tr onclick="location.href='faqDetail.jsp?faqId=<%=faq.getFaqId()%>&faqTitle=<%=faq.getFaqTitle()%>&faqCategory=<%=faq.getFaqCategory() %>&faqContent=<%=faqContent%>&readCnt=<%=faq.getReadCnt()%>'">
+							<td><%=faq.getFaqId() %></td>
+							<td class="tdTitle"><%=faq.getFaqTitle() %></td>
+							<td><%=faq.getFaqCategory() %></td>
+							<td><%=faq.getReadCnt() %></td>
+						</tr>
+					<%} %>
+				</tbody>
+			</table>
+		<%}else{ %>
+		<p>게시물이 없습니다.</p>
 		<%} %>
+			</div>
+		<%
+			}
+		%>
 			</div>
 		</div>
 	<div id="pageBoard">
@@ -400,10 +433,12 @@ p{padding-left: 700px;}
 	}
 	%>
 	</div>
-	<div id="selectBoard">
-		제목: <input type="text" id="searchInput" placeholder="찾을 글 제목" />
-		<button type="button" class="btn btn-default">검색</button>
-	</div>
+	<form action="faqSearchProc.jsp" method="post">
+		<div id="selectBoard">
+			제목: <input type="text" id="searchInput" name="searchFaqTitle" placeholder="찾을 글 제목" required/>
+			<button type="submit" class="btn btn-default">검색</button>
+		</div>
+	</form>
 </div>
 </body>
 </html>

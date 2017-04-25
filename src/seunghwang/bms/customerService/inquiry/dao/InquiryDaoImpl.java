@@ -41,4 +41,14 @@ public class InquiryDaoImpl implements InquiryDao{
 	public int answerInquiry(Inquiry inquiry) {
 		return inquiryMapper.answerInquiry(inquiry);
 	}
+
+	@Override
+	public List<Inquiry> searchInquiries(String inquiryTitle) {
+		return inquiryMapper.searchInquiries(inquiryTitle);
+	}
+
+	@Override
+	public List<Inquiry> userInquiries(String userId) {
+		return inquiryMapper.userInquiries(userId);
+	}
 }

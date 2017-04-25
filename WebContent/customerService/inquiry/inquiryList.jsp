@@ -6,6 +6,7 @@
 <%@ page import="seunghwang.bms.customerService.inquiry.service.InquiryService" %>
 <%@ page import="seunghwang.bms.customerService.inquiry.service.InquiryServiceImpl" %>
 <%@ page import="java.util.List" %>
+<%@ page import ="javax.servlet.http.*,seunghwang.bms.login.domain.User" %>
 <!DOCTYPE html>
 <%!
 	public Integer toInt(String x){
@@ -21,8 +22,8 @@
 	InquiryDao inquiryDao = new InquiryDaoImpl();
 	InquiryService inquiryService = new InquiryServiceImpl(inquiryDao);
 	List<Inquiry> inquiries = inquiryService.listInquiries();
-	
-	String adminId = (String)session.getAttribute("adminId");
+	List<Inquiry> searchInquiries =(List)request.getAttribute("searchInquiries");
+	HttpSession sess = request.getSession(false);
 	
 	int pageno = toInt(request.getParameter("pageno"));
 	if(pageno<1){//현재 페이지
@@ -30,7 +31,7 @@
 	}
 	int total_record = inquiries.size(); //총 레코드 수
 	int page_per_record_cnt = 5;  //페이지 당 레코드 수
-	int group_per_page_cnt =5;     //페이지 당 보여줄 번호 수[1],[2],[3],[4],[5]
+	int group_per_page_cnt = 5;     //페이지 당 보여줄 번호 수[1],[2],[3],[4],[5]
 //					  									  [6],[7],[8],[9],[10]											
 
 	int record_end_no = pageno*page_per_record_cnt;				
@@ -91,6 +92,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
   <style>/*hotpink*/
+  p{padding-left: 700px;}
   	.container-fluid{width: 1580px;	max-width: none !important;	background-color: hotpink;}
   	.table {max-width: none !important; max-height: none !important;}
 	.table-responsive {min-height: none !important;	overflow-x: 0}
@@ -192,11 +194,14 @@ a.item-green-hover:hover, a.item-green-hover:focus{ background-color: #EAEAEA;}
 		</div>
 	</div><br>
 	<%
-		if(adminId==null || adminId.equals("")){
-			adminId="admin";
-		}
-		
-		if(adminId.equals("admin")){	
+		if (sess == null || sess.getAttribute("authUser") == null){ //로그인 안됐을 시
+	%>
+		<script>
+			alert("로그인해주세요");
+			location.href="/seunghwang.bms/main.jsp";
+		</script>
+	<%}	else if(sess.getAttribute("authUser").getClass().getSimpleName().equals("Admin")){	
+		if(searchInquiries==null){
 			if(inquiries.size() != 0){ 
 	%>
 		<table class="table table-hover" id="board_table">
@@ -233,7 +238,9 @@ a.item-green-hover:hover, a.item-green-hover:focus{ background-color: #EAEAEA;}
 		</table>
 		<%}else{ %>
 		<p>게시물이 없습니다</p>
-		<%} %>
+		<%}
+			if(inquiries.size() != 0){
+		%>
 	<div id="pageBoard">
 		<ul class="pagination pagination-sm">
 			<li><a href="inquiryList.jsp?pageno=1"><<</a></li>
@@ -251,9 +258,9 @@ a.item-green-hover:hover, a.item-green-hover:focus{ background-color: #EAEAEA;}
 			<li><a href="inquiryList.jsp?pageno=<%=total_page%>">>></a></li>
 		</ul>
 	</div>
-	<%
-		}else{
-			if(inquiries.size() != 0){
+	<%}
+		}else if(searchInquiries!=null){
+			if(searchInquiries.size() != 0){ 
 	%>
 		<table class="table table-hover" id="board_table">
 			<thead>
@@ -267,15 +274,58 @@ a.item-green-hover:hover, a.item-green-hover:focus{ background-color: #EAEAEA;}
 			</thead>
 			<tbody>
 			<%
-				for(int i=0; i<inquiries.size(); i++){
-						String inquiryContent = inquiries.get(i).getInquiryContent().replaceAll("\r\n", "<br>"); 
+				for(Inquiry inquiry:searchInquiries){ 
+					String inquiryContent = inquiry.getInquiryContent().replaceAll("\r\n", "<br>"); 
 			%>
-				<tr onclick="location.href='inquiryDetail.jsp?inquiryId=<%=inquiries.get(i).getInquiryId()%>&inquiryTitle=<%=inquiries.get(i).getInquiryTitle()%>&inquiryContent=<%=inquiryContent%>&userId=<%=inquiries.get(i).getUserId()%>&inquiryCategory=<%=inquiries.get(i).getInquiryCategory()%>&userEmail=<%=inquiries.get(i).getUserEmail()%>'">
-					<td><%=inquiries.get(i).getInquiryId() %></td>
-					<td><%=inquiries.get(i).getInquiryTitle() %></td>
-					<td><%=inquiries.get(i).getUserId() %></td>
-					<td><%=inquiries.get(i).getRegDate() %></td>
-					<td><%=inquiries.get(i).getInquiryCategory() %></td>
+				<tr onclick="location.href='inquiryDetail.jsp?inquiryId=<%=inquiry.getInquiryId()%>&inquiryTitle=<%=inquiry.getInquiryTitle()%>&inquiryContent=<%=inquiryContent%>&userId=<%=inquiry.getUserId()%>&inquiryCategory=<%=inquiry.getInquiryCategory()%>&userEmail=<%=inquiry.getUserEmail()%>'">
+					<td><%=inquiry.getInquiryId() %></td>
+					<td class="tdTitle"><%=inquiry.getInquiryTitle() %></td>
+					<td><%=inquiry.getUserId() %></td>
+					<td><%=inquiry.getRegDate() %></td>
+					<td><%=inquiry.getInquiryCategory() %></td>
+				</tr>
+			<%
+				}
+			%>
+			</tbody>
+		</table>
+		<%}else{ %>
+		<p>게시물이 없습니다</p>
+		<%} %>
+		
+	<%}%>
+	<form action="inquirySearchProc.jsp" method="post">
+		<div id="selectBoard">
+			제목: <input type="text" name="searchInquiryTitle" placeholder=" 찾을 글 제목" required/>
+			<button type="submit" class="btn btn-default">검색</button>
+		</div>
+	</form>
+	<%	}else if(sess.getAttribute("authUser")!=null){
+			 User user = (User)sess.getAttribute("authUser"); 
+			List<Inquiry> userInquiries = inquiryService.userInquiries(user.getUserId());
+			if(userInquiries.size() != 0){
+	%>
+		<table class="table table-hover" id="board_table">
+			<thead>
+				<tr>
+					<th>번호</th>
+					<th>제목</th>
+					<th>글쓴이</th>
+					<th>일시</th>
+					<th>종류</th>
+				</tr>
+			</thead>
+			<tbody>
+			<%
+				for(Inquiry inquiry:userInquiries){
+						String inquiryContent = inquiry.getInquiryContent().replaceAll("\r\n", "<br>"); 
+			%>
+				<tr onclick="location.href='inquiryDetail.jsp?inquiryId=<%=inquiry.getInquiryId()%>&inquiryTitle=<%=inquiry.getInquiryTitle()%>&inquiryContent=<%=inquiryContent%>&userId=<%=inquiry.getUserId()%>&inquiryCategory=<%=inquiry.getInquiryCategory()%>&userEmail=<%=inquiry.getUserEmail()%>'">
+					<td><%=inquiry.getInquiryId() %></td>
+					<td><%=inquiry.getInquiryTitle() %></td>
+					<td><%=inquiry.getUserId() %></td>
+					<td><%=inquiry.getRegDate() %></td>
+					<td><%=inquiry.getInquiryCategory() %></td>
 				</tr>
 			<%
 				}
@@ -284,15 +334,11 @@ a.item-green-hover:hover, a.item-green-hover:focus{ background-color: #EAEAEA;}
 		</table>
 		<%}else{ %>
 		<p>본인이 작성한 게시물이 없습니다</p>
-		<%} 
-	} %>
+		<%}%>
 	<div id="pageBoard">
 		<button type="button" class="btn btn-danger" id="buttonBoardWrite" onclick="location.href='inquiryWrite.jsp'">글쓰기</button>
-	</div>
-	<div id="selectBoard">
-		제목: <input type="text" placeholder=" 찾을 글 제목" />
-		<button type="button" class="btn btn-default">검색</button>
-	</div>
+	</div>	
+	<%} %>
 </div>
 </body>
 </html>

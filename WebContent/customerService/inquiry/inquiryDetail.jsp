@@ -5,11 +5,13 @@
 <%@ page import="seunghwang.bms.customerService.inquiry.dao.InquiryDaoImpl" %>
 <%@ page import="seunghwang.bms.customerService.inquiry.service.InquiryService" %>
 <%@ page import="seunghwang.bms.customerService.inquiry.service.InquiryServiceImpl" %>
+<%@ page import ="javax.servlet.http.*,seunghwang.bms.login.domain.User" %>
 <!DOCTYPE html>
 <%
 	request.setCharacterEncoding("utf-8");
 	InquiryDao inquiryDao = new InquiryDaoImpl();
 	InquiryService inquiryService = new InquiryServiceImpl(inquiryDao);
+	HttpSession sess = request.getSession(false);
 	
 	String inquiryId = request.getParameter("inquiryId");
 	String inquiryTitle = request.getParameter("inquiryTitle");
@@ -69,6 +71,7 @@ hr{margin-top: -35px; border-top: 2px solid #D5D5D5; width: 700px; margin-left: 
 	padding-left: 15px;
 	height: 27px;
 }
+#btnPos{margin-left: 1040px; margin-top: -55px;}
   </style>
 </head>
  
@@ -81,12 +84,21 @@ hr{margin-top: -35px; border-top: 2px solid #D5D5D5; width: 700px; margin-left: 
 		<hr>
 		<div id="inbox"><%=inquiryContent %></div><br><br>
 	</div>
+	<br>
 	<div id="write_button">
+	<%
+		if(sess == null || sess.getAttribute("authUser") != null){ 
+		if(sess.getAttribute("authUser").getClass().getSimpleName().equals("Admin")){ 
+	%>
 		<button type="button" class="btn btn-default" onclick="location.href='inquiryAnswer.jsp?inquiryId=<%=inquiryId%>&userEmail=<%=userEmail%>'">답변하기</button>
 		<button type="button" class="btn btn-default" onclick="location.href='inquiryUpdate.jsp?inquiryId=<%=inquiryId%>&inquiryTitle=<%=inquiryTitle%>&userEmail=<%=userEmail%>&inquiryCategory=<%=inquiryCategory%>&inquiryContent=<%=inquiryContent%>'">수정</button>
-		<button type="button" class="btn btn-default" onclick="location.href='inquiryDelProc.jsp?inquiryId=<%=inquiryId%>'">삭제</button> 
-		<button type="button" class="btn btn-default" onclick="location.href='inquiryList.jsp'">목록</button>
+		<button type="button" class="btn btn-default" onclick="location.href='inquiryDelProc.jsp?inquiryId=<%=inquiryId%>'">삭제</button>
+	<%
+		}
+	}
+	%>
 	</div>
+		<button type="button" class="btn btn-default" id="btnPos" onclick="location.href='inquiryList.jsp'">목록</button>
 </div>
 </body>
 </html>

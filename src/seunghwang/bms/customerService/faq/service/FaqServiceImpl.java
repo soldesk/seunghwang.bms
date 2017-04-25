@@ -63,4 +63,9 @@ public class FaqServiceImpl implements FaqService{
 	public boolean modFaq(Faq faq) {
 		return faqDao.modFaq(faq)>0;
 	}
+
+	@Override
+	public List<Faq> searchFaqs(String faqTitle) {
+		return faqDao.searchFaqs(faqTitle);
+	}
 }

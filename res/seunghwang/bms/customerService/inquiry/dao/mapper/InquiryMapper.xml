@@ -7,6 +7,20 @@
         order by inquiry_id desc
     </select>
     
+    <select id="searchInquiries" parameterType="string" resultType="inquiry">
+        select inquiry_id inquiryId, user_id userId, inquiry_category inquiryCategory, inquiry_title inquiryTitle, inquiry_content inquiryContent, user_email userEmail, inquiry_answer inquiryAnswer, reg_date regDate
+        from inquiries
+       	where inquiry_title like '%'||#{inquiryTitle}||'%'
+        order by inquiry_id desc
+    </select>
+    
+    <select id="userInquiries" parameterType="string" resultType="inquiry">
+        select inquiry_id inquiryId, user_id userId, inquiry_category inquiryCategory, inquiry_title inquiryTitle, inquiry_content inquiryContent, user_email userEmail, inquiry_answer inquiryAnswer, reg_date regDate
+        from inquiries
+       	where user_id=#{userId}
+        order by inquiry_id desc
+    </select>
+    
     <insert id="addInquiry" parameterType="inquiry">
         insert into inquiries
         values(inquiry_id_seq.nextVal, #{userId}, #{inquiryCategory}, #{inquiryTitle}, #{inquiryContent}, #{userEmail}, #{inquiryAnswer}, sysdate)

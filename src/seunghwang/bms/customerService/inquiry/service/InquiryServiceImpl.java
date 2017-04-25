@@ -38,4 +38,14 @@ public class InquiryServiceImpl implements InquiryService{
 	public boolean answerInquiry(Inquiry inquiry) {
 		return inquiryDao.answerInquiry(inquiry)>0;
 	}
+
+	@Override
+	public List<Inquiry> searchInquiries(String inquiryTitle) {
+		return inquiryDao.searchInquiries(inquiryTitle);
+	}
+
+	@Override
+	public List<Inquiry> userInquiries(String userId) {
+		return inquiryDao.userInquiries(userId);
+	}
 }

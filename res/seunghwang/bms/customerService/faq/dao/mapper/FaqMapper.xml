@@ -7,6 +7,13 @@
         order by read_cnt desc
     </select>
     
+    <select id="searchFaqs" parameterType="string" resultType="faq">
+        select faq_id faqId, faq_category faqCategory, faq_title faqTitle, faq_content faqContent, read_cnt readCnt, user_id userId
+        from faqs
+        where faq_title like '%'||#{faqTitle}||'%'
+        order by read_cnt desc
+    </select>
+    
     <select id="userFaqs" resultType="faq">
         select faq_id faqId, faq_category faqCategory, faq_title faqTitle, faq_content faqContent, read_cnt readCnt, user_id userId
         from faqs
