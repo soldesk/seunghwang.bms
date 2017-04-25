@@ -401,22 +401,51 @@ function chgsel1(){
 					<td>장르</td>
 					<td id="category">
 						<select name="sel1" onchange="chgsel1()">
-							<option value="novel">소설</option>
-							<option value="economic">경제/경영</option>
-							<option value="human">인문</option>
-							<option value="history">역사/문화</option>
-							<option value="politic">정치/사회</option>
-							<option value="science">과학</option>
-							<option value="computer">컴퓨터/IT</option>
+							<optgroup label="소설">
+								<option value="NK">한국소설</option>
+								<option value="NA">영미소설</option>
+								<option value="NJ">일본소설</option>
+								<option value="NF">프랑스소설</option>
+								<option value="NC">중국소설</option>
+							</optgroup>
+							<optgroup label="경제/경영">
+								<option value="MG">경영일반</option>
+								<option value="MT">경영이론</option>
+								<option value="BM">경영관리</option>
+								<option value="EG">경제일반</option>
+								<option value="ET">경제이론</option>
+								<option value="CE">기업경제</option>
+							</optgroup>
+							<optgroup label="인문">
+								<option value="HP">심리학</option>
+								<option value="HG">인문학일반</option>
+								<option value="HPS">철학</option>
+								<option value="HPD">교육학</option>
+							</optgroup>
+							<optgroup label="역사/문화">
+								<option value="HSG">역사일반</option>
+								<option value="HWH">세계사</option>
+								<option value="HOH">동양사</option>
+								<option value="HKH">한국사</option>
+								<option value="HM">신화</option>
+							</optgroup>
+							<optgroup label="과학">
+								<option value="ST">과학이론</option>
+								<option value="SR">교양과학</option>
+								<option value="SP">물리학</option>
+								<option value="SC">화학</option>
+								<option value="SB">생물학</option>
+								<option value="SE">지구과학</option>
+							</optgroup>
+							<optgroup label="컴퓨터/IT">
+								<option value="CW">웹프로그래밍</option>
+								<option value="CS">보안</option>
+								<option value="CD">데이터베이스</option>
+								<option value="CN">네트워크</option>
+								<option value="CO">OS</option>
+								<option value="CC">컴퓨터공학</option>
+							</optgroup>
 						</select> 
-						 > 
-						<select name="sel2">
-							<option value="NK">한국소설</option>
-							<option value="NA">영미소설</option>
-							<option value="NJ">일본소설</option>
-							<option value="NF">프랑스소설</option>
-							<option value="NC">중국소설</option>
-						</select>
 					</td>
 					<td>출판사</td>
 					<td><input type="text" name="bookPublisher" value="<%=book.getBookPublisher()%>"/></td>
