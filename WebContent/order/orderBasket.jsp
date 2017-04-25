@@ -80,6 +80,8 @@ textarea{resize: none; width: 500px; height: 60px;}
 }
 .number_button{width: 50px;}
 .table-pos{margin-top: -20px; filter: drop-shadow(0 1px 1px rgba(0, 0, 0, .3)); font-weight: bold; font-size: 18px; margin-left: 18px; color:#747474;}
+#pSize{width: 100px;}
+#pSize2{width: 80px;}
   </style>
 <script>
   function listCart(){
@@ -101,16 +103,30 @@ textarea{resize: none; width: 500px; height: 60px;}
   function getOrder(){
 	  cbox = frm.bookId;
 	  var boolvar = false;
-      for(var i = 0; i<cbox.length;i++) {
-          if(cbox[i].checked){
+	  if(cbox.length==null){
+          if(frm.bookId.checked){ 	
         	  boolvar = true;
-          }          
-      }
+		      document.frm.length0.value=0;		
+          }  
+	  }else{
+	      for(var i = 0; i<cbox.length;i++) { 			
+	          if(cbox[i].checked){ 	
+	  			if(i==0){
+		    	    document.frm.length0.value=i;
+				}else if(i==1){
+					document.frm.length1.value=i;	
+				}else if(i==2){
+					document.frm.length2.value=i;
+				}
+	        	  boolvar = true;
+	          }          
+	      }
+	  }
         if(boolvar){
 		   document.frm.action="./getOrder.do";
 		   document.frm.submit();
         }else{
-        	alert("체크를 안하셨습니다");
+        	alert("체크를 안하셨습니다!!");
         	return false;
         }
   }
@@ -126,11 +142,29 @@ textarea{resize: none; width: 500px; height: 60px;}
 	  }  
   }
 
+  function plus(){
+	  var amount= document.frm.bookAmount;
+	  var price = document.frm.price;
+	  var bookPrice = document.frm.bookPrice;
+	  
+	  if(amount.length==null){
+	      	var sum = Number(amount.value)*Number(price.value);
+	     	bookPrice.value=sum;  
+	  }else{
+	      for(var i = 0; i<amount.length;i++) {
+		      var sum = Number(amount[i].value)*Number(price[i].value);
+		      bookPrice[i].value=sum;        	         
+	      }
+	  }
+  }
 </script>  
 </head>
 <body>
 <form name="frm" method="post">
 <input type="hidden" name="num" value="<%=pageNum%>">
+<input type="hidden" name="length0">
+<input type="hidden" name="length1">
+<input type="hidden" name="length2">
 <div id="bookInfoSection" class="container-fluid">
 	<h3 id="freeBoard_title">장바구니</h3>
 	<div class="left_subCategory">
@@ -144,9 +178,9 @@ textarea{resize: none; width: 500px; height: 60px;}
       </div>
       <div id="c1" class="panel-collapse collapse">
         <div class="panel-body list-group">
-        	<a href="/seunghwang.bms/login/login_info.jsp" class="list-group-item item-green-hover">내 정보</a>
-        	<a href="/seunghwang.bms/login/login_password.jsp" class="list-group-item item-green-hover">비밀번호 변경</a>
-        	<a href="/seunghwang.bms/login/login_drop.jsp" class="list-group-item item-green-hover">회원탈퇴</a>
+        	<a href="../user/user_info.html" class="list-group-item item-green-hover">내 정보</a>
+        	<a href="../user/user_password.html" class="list-group-item item-green-hover">비밀번호 변경</a>
+        	<a href="../user/user_drop.html" class="list-group-item item-green-hover">회원탈퇴</a>
         </div>
       </div>
     </div>
@@ -158,8 +192,8 @@ textarea{resize: none; width: 500px; height: 60px;}
       </div>
       <div id="c2" class="panel-collapse collapse">
         <div class="panel-body list-group">
-        	<a href="/seunghwang.bms/order/orderHistory.do" class="list-group-item item-green-hover">구매내역</a>
-        	<a href="/seunghwang.bms/order/listCart.ct" class="list-group-item item-green-hover" target="content">장바구니</a>
+        	<a href="orderHistory.jsp" class="list-group-item item-green-hover">구매내역</a>
+        	<a href="orderBasket.jsp" class="list-group-item item-green-hover" target="content">장바구니</a>
         </div>
       </div>
     </div>
@@ -182,7 +216,7 @@ textarea{resize: none; width: 500px; height: 60px;}
 			<thead>
 				<tr>
 					<th><p>상품 정보</p></th>
-					<th><p>책이름</p></th>
+					<th><p id="pSize">책이름</p></th>
 					<th><p>수량</p></th>
 					<th><p>할인</p></th>
 					<th><p>판매가</p></th>
@@ -192,13 +226,13 @@ textarea{resize: none; width: 500px; height: 60px;}
 				<tr><strong class="strong_position"><input type="checkbox" name="bookId" value="${cart.bookId}"/> 상품 정보</strong>
 					<td rowspan="3"><img src="${cart.bookImage}" width="120px" height="150px"></td>
 			        <td>${cart.bookName}</td>
-					<td>${cart.bookAmount}</td>
+					<td><input type="text" name="bookAmount" id="pSize2" value="${cart.bookAmount}" onkeypress="plus();" maxlength="3"></td>
 					<td>0원</td>
-					<td>${cart.bookPrice}원</td>
+					<td><input type="text" name="price" value="${cart.bookPrice}" maxlength="6" readonly>원</td>
 				</tr>
 				<tr>
 					<td colspan="3">총 합계</td>
-					<td>${cart.bookPrice}원</td>
+					<td><input type="text" name="bookPrice" value="${cart.bookPrice}" maxlength="6" readonly>원</td>
 				</tr>
 			</tbody>
 		</table>
@@ -219,7 +253,7 @@ textarea{resize: none; width: 500px; height: 60px;}
 				</tr>
 			</thead>
 			<tbody>
-				<tr><strong class="strong_position"><input type="checkbox" name="bookId" value="${cart.bookId}"/> 상품 정보</strong>
+				<tr><strong class="strong_position"><input type="checkbox"/> 상품 정보</strong>
 					<td colspan="5" align="center">내용이 없습니다.</td>
 				</tr>
 			</tbody>

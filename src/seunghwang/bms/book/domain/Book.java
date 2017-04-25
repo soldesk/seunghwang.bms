@@ -19,6 +19,10 @@ public class Book {
 	private String categoryId; //책 카테고리
 	private String bookImage; //책 이미지
 	private String detailId;
+	private int startRow;
+	private int endRow;
+	private int bookDate;
+	private int bookAmount;
 	
 	public Book(){}
 	
@@ -117,6 +121,40 @@ public class Book {
 	public void setBookImage(String bookImage) {
 		this.bookImage = bookImage;
 	}
+
+	public int getStartRow() {
+		return startRow;
+	}
+
+	public void setStartRow(int startRow) {
+		this.startRow = startRow;
+	}
+
+	public int getEndRow() {
+		return endRow;
+	}
+
+	public void setEndRow(int endRow) {
+		this.endRow = endRow;
+	}
+
+	public int getBookDate() {
+		return bookDate;
+	}
+
+	public void setBookDate(int bookDate) {
+		this.bookDate = bookDate;
+	}
+
+	public int getBookAmount() {
+		return bookAmount;
+	}
+
+	public void setBookAmount(int bookAmount) {
+		this.bookAmount = bookAmount;
+	}
+	
+	
 	/*public String toString() {
 		SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
 		return String.format("%3d %-6s %s", userNo, name, sf.format(regDate));

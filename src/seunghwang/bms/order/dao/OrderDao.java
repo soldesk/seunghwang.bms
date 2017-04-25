@@ -13,5 +13,7 @@ public interface OrderDao {
     int addOrder2(Order order);
     List<Order> orderList(Order order);
     int orderCount(String userId);
+    int updateBook(String bookId);
+    Book getBook(String bookId);
 }
     

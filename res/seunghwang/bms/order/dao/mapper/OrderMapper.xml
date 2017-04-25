@@ -71,4 +71,14 @@
 			select count(*) from orders where user_id=#{userId}  
 	</select> 
 
+	<insert id="updateBook" parameterType="String">
+		update books
+		 set book_sale= book_sale+1,
+           book_stock = book_stock-1
+   		where book_id=#{bookId}  
+	</insert>
+	
+	<select id="getBook" parameterType="String" resultType="seunghwang.bms.book.domain.Book">
+			select book_stock bookStock from books where book_id=#{bookId}  
+	</select> 
 </mapper>

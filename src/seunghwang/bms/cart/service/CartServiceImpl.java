@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import seunghwang.bms.admin.domain.Admin;
 import seunghwang.bms.book.domain.Book;
 import seunghwang.bms.cart.dao.CartDao;
 import seunghwang.bms.cart.dao.CartDaoImpl;
@@ -23,21 +24,52 @@ public class CartServiceImpl  implements CartService{
     HttpSession session;
 	User user;
 	
-    private String UserId(HttpServletRequest request){
+    private String UserId(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		session= request.getSession();
-		user = (User)session.getAttribute("authUser"); 
-		return user.getUserId();
+        String bookId = request.getParameter("bookId");
+        if(bookId != null){
+	        Book book = cartDao.getBook(bookId);
+	        if(book.getBookStock() == 0){
+				response.setContentType("text/html; charset=UTF-8");
+				PrintWriter out = response.getWriter();
+				out.println("<script>");
+				out.println("alert('책이 품절되었습니다.');");
+				out.println("history.back(-1);");
+				out.println("</script>");			
+				out.close();        	
+	        }
+        }
+		if(session ==null || session.getAttribute("authUser")==null){
+			
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("alert('로그인을 먼저 해주세요.');");
+			out.println("location.href='../main.jsp'");
+			out.println("</script>");			
+			out.close();
+		}else if(session.getAttribute("authUser").getClass().getSimpleName().equals("Admin")){ 
+    		Admin admin = (Admin)session.getAttribute("authUser");
+		    return admin.getAdminId();
+		}else if(session.getAttribute("authUser")!=null) {
+			User user = (User)session.getAttribute("authUser");
+			return user.getUserId();
+		}
+System.out.println("user.getUserId()=="+user.getUserId());		
+		return null;
 	}
     
 	public ActionForward addCartAction
 	(HttpServletRequest request, HttpServletResponse response)	
 	 throws Exception{
-		request.setCharacterEncoding("euc-kr");		
+		request.setCharacterEncoding("UTF-8");		
 		ActionForward forward = null;
         Cart cart = new Cart();
-        String userId = UserId(request);
+        String userId = UserId(request,response);
         String[] bookId= request.getParameterValues("bookId");
-        
+
+ System.out.println("userId=="+userId);  
+
 		for(int i=0; i<bookId.length; i++ ){
 			Book book= cartDao.getOrderBook(bookId[i]);
 			
@@ -67,7 +99,7 @@ public class CartServiceImpl  implements CartService{
 	 throws Exception{
 		ActionForward forward = new ActionForward();
 		
-		String userId = UserId(request);
+		String userId = UserId(request,response);
 		Cart cart = new Cart();
 		
 	       String pageNum = request.getParameter("num");
@@ -110,7 +142,7 @@ public class CartServiceImpl  implements CartService{
 		    String cartId = request.getParameter("cartId");
 		    cartDao.delCart(cartId);
 		     
-			response.setContentType("text/html; charset=utf-8");
+			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
 			out.println("alert('장바구니에서 삭제하셨습니다.');");
@@ -127,7 +159,7 @@ public class CartServiceImpl  implements CartService{
 		     
 	        String pageNum = request.getParameter("num");
 	        int num=0;
-	        if (pageNum == null || pageNum.equals("")) {
+	        if (pageNum == null || pageNum.equals("1")) {
 	        	pageNum = "1";
 	        	num = Integer.parseInt(pageNum);
 	        }else{

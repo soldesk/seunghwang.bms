@@ -50,11 +50,11 @@ public class BookDaoImpl implements BookDao{
 		return bookMapper.findNewBooks(date);
 	}
 	
-	public List<Book> findBestSellers(Date date) {
-		return bookMapper.findBestSellers(date);
+	public List<Book> findBestSellers() {
+		return bookMapper.findBestSellers();
 	}
 	
-	public List<Book> findSteadySellers(Date date) {
-		return bookMapper.findSteadySellers(date);
+	public List<Book> findSteadySellers() {
+		return bookMapper.findSteadySellers();
 	}
 }

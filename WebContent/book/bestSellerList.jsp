@@ -1,5 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="seunghwang.bms.config.Configuration" %>
+<%@ page import="seunghwang.bms.book.domain.Book" %>
+<%@ page import="seunghwang.bms.book.dao.mapper.BookMapper" %>
+<%@ page import="seunghwang.bms.book.dao.BookDao" %>
+<%@ page import="seunghwang.bms.book.dao.BookDaoImpl" %>
+<%@ page import="seunghwang.bms.book.service.BookService" %>
+<%@ page import="seunghwang.bms.book.service.BookServiceImpl" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.sql.Date" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%
+	request.setCharacterEncoding("utf-8");
+	BookMapper bookMapper = Configuration.getMapper(BookMapper.class);
+	BookDao bookDao = new BookDaoImpl(bookMapper);
+	BookService bookService = new BookServiceImpl(bookDao);
+	   
+	List<Book> bestBooks = bookService.findBestSellers();
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="ko">
 <head>
@@ -75,7 +93,44 @@ a.list-group-item:focus, a.list-group-item:hover, button.list-group-item:focus, 
     font-weight: bold;
 }
 a.item-green-hover:hover, a.item-green-hover:focus{ background-color: #EAEAEA;}
+.bookList ul li {
+	list-style-type:none;
+}
+.thumbnail{
+	margin-left: 20px;
+	width: 800px;
+}
+.img{
+	float:left;
+	margin-left: 5px;
+	margin-right: 10px;
+	padding-bottom: 5px;
+	padding-top: 3px;
+}
 
+.etc, .grade, .price {
+	font-weight: normal;
+	font-size: 13px;
+}
+.grade{
+	padding-top:10px;
+}
+.price{
+	padding-top:5px;
+}
+.font{
+	font-size:13px;
+	color: #BDBDBD;
+}
+.numberFont{
+	color:#8BBDFF;
+}
+.gradeFont{
+	font-weight:bold;
+}
+.discount{
+	color:red;
+}
   </style>
 </head>
 <body>
@@ -175,79 +230,26 @@ a.item-green-hover:hover, a.item-green-hover:focus{ background-color: #EAEAEA;}
 		</div>
 	</div>
 	<div class="row" id="thumbnailPos">
-			<div class="col-sm-4" id="imgSize">
-				<a href="../book/book_detail.html" class="thumbnail">
-					<img src="../img/book2.jpg" style="width:150px;height:180px">
-						<dl><dt>열한 계단</dt><dd>가격: 20,000</dd></dl>
-				</a>
-			</div>
-			<div class="col-sm-4" id="imgSize">
-				<a href="img/bluff.jpg" class="thumbnail">
-					<img src="../img/book3.jpg" style="width:150px;height:180px">
-					<dl><dt>열한 계단</dt><dd>가격: 20,000</dd></dl>
-				</a>
-			</div>
-			<div class="col-sm-4" id="imgSize"	>
-				<a href="img/bluff.jpg" class="thumbnail">
-					<img src="../img/book32.JPG" style="width:150px;height:180px">
-					<dl><dt>열한 계단</dt><dd>가격: 20,000</dd></dl>
-				</a>
-			</div>
-			<div class="col-sm-4" id="imgSize"	>
-				<a href="img/bluff.jpg" class="thumbnail">
-					<img src="../img/book22.JPG" style="width:150px;height:180px">
-					<dl><dt>열한 계단</dt><dd>가격: 20,000</dd></dl>
-				</a>
-			</div>
-			<div class="col-sm-4" id="imgSize"	>
-				<a href="img/bluff.jpg" class="thumbnail">
-					<img src="../img/book32.JPG" style="width:150px;height:180px">
-					<dl><dt>열한 계단</dt><dd>가격: 20,000</dd></dl>
-				</a>
-			</div>
-			<div class="col-sm-4" id="imgSize"	>
-				<a href="img/bluff.jpg" class="thumbnail">
-					<img src="../img/book8.jpg" style="width:150px;height:180px">
-					<dl><dt>열한 계단</dt><dd>가격: 20,000</dd></dl>
-				</a>
-			</div>
-			<div class="col-sm-4" id="imgSize"	>
-				<a href="img/bluff.jpg" class="thumbnail">
-					<img src="../img/book9.jpg" style="width:150px;height:180px">
-					<dl><dt>열한 계단</dt><dd>가격: 20,000</dd></dl>
-				</a>
-			</div>
-			<div class="col-sm-4" id="imgSize"	>
-				<a href="img/bluff.jpg" class="thumbnail">
-					<img src="../img/book6.png" style="width:150px;height:180px">
-					<dl><dt>열한 계단</dt><dd>가격: 20,000</dd></dl>
-				</a>
-			</div>
-			<div class="col-sm-4" id="imgSize"	>
-				<a href="img/bluff.jpg" class="thumbnail">
-					<img src="../img/book5.png" style="width:150px;height:180px">
-					<dl><dt>열한 계단</dt><dd>가격: 20,000</dd></dl>
-				</a>
-			</div>
-			<div class="col-sm-4" id="imgSize"	>
-				<a href="img/bluff.jpg" class="thumbnail">
-					<img src="../img/book32.JPG" style="width:150px;height:180px">
-					<dl><dt>열한 계단</dt><dd>가격: 20,000</dd></dl>
-				</a>
-			</div>
-			<div class="col-sm-4" id="imgSize">
-				<a href="img/bluff.jpg" class="thumbnail">
-					<img src="../img/book2.jpg" style="width:150px;height:180px">
-					<dl><dt>열한 계단</dt><dd>가격: 20,000</dd></dl>
-				</a>
-			</div>
-			<div class="col-sm-4" id="imgSize"	>
-				<a href="img/bluff.jpg" class="thumbnail">
-					<img src="../img/book32.JPG" style="width:150px;height:180px">
-					<dl><dt>열한 계단</dt><dd>가격: 20,000</dd></dl>
-				</a>
-			</div>
+<% 
+	if(bestBooks.size() != 0) 
+		for(Book book : bestBooks) { %>
+		<div class="bookList">
+			<ul class="thumbnail">
+				<li class="img"><a href="bookDetail.jsp?bookId=<%= book.getBookId() %>">
+						<img src="../img/bookUpload/<%=book.getBookImage() %>" style="width:100px;height:114px"></a>
+				</li>
+				<li class="name"><a href="bookDetail.jsp?bookId=<%=book.getBookId() %>"><%=book.getBookName() %></a></li>
+				<li class="etc"><%=book.getBookWriter() %> <span class="font">지음 | 출판사</span> <%=book.getBookPublisher() %> <span class="font">| 출판일 </span><%= book.getPublicationDate() %></li><br>
+				<li class="grade">추천지수(<span class="numberFont">230</span>) <span class="font">|</span>  리뷰(<span class="numberFont">230</span>) <span class="font">| 회원평점:</span>  <span class="gradeFont"><%=book.getBookGrade() %></span></li>
+				<li class="price"><%=book.getBookPrice() %>원 -> <span class="discount"><%=(int)(0.9*book.getBookPrice()) %></span>원 (10% 할인)</li><br>
+			</ul>
 		</div>
+<%}else{ %>
+		<div>
+			검색 결과가 없습니다.
+		</div>
+<% } %>
+	</div>
 	</div>
 </body>
 </html>
