@@ -17,6 +17,7 @@
 </script> -->
 
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script src="../../lib/jquery.js"></script>
 <script>
     function sample6_execDaumPostcode() {
         new daum.Postcode({
