@@ -13,6 +13,7 @@
 		<result property="bookSale"		 	column="book_sale"/>
 		<result property="bookStock"	 	column="book_stock"/>
 		<result property="bookImage"		column="book_image"/>
+		<result property="categoryId"		column="category_id"/>
 		<association property="detailId"	column="bookId" select="getDetails"/>
 	</resultMap>
 	
@@ -23,7 +24,7 @@
 	</select>
 	
 	<select id="getBooks" parameterType="book" resultMap="bookMap">
-		select book_id, book_name, book_publisher, book_writer, book_price, publication_date, book_sale, book_stock, book_grade, book_image
+		select book_id, book_name, category_id, book_publisher, book_writer, book_price, publication_date, book_sale, book_stock, book_grade, book_image
 		from books
 		order by book_id
 	</select>

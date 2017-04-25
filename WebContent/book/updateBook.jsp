@@ -402,48 +402,48 @@ function chgsel1(){
 					<td id="category">
 						<select name="sel1" onchange="chgsel1()">
 							<optgroup label="소설">
-								<option value="NK">한국소설</option>
-								<option value="NA">영미소설</option>
-								<option value="NJ">일본소설</option>
-								<option value="NF">프랑스소설</option>
-								<option value="NC">중국소설</option>
+								<option value="NK" <%if(book.getCategoryId().equals("NK")){ %>selected<%}%>>한국소설</option>
+								<option value="NA" <%if(book.getCategoryId().equals("NA")){ %>selected<%}%>>영미소설</option>
+								<option value="NJ" <%if(book.getCategoryId().equals("NJ")){ %>selected<%}%>>일본소설</option>
+								<option value="NF" <%if(book.getCategoryId().equals("NF")){ %>selected<%}%>>프랑스소설</option>
+								<option value="NC" <%if(book.getCategoryId().equals("NC")){ %>selected<%}%>>중국소설</option>
 							</optgroup>
 							<optgroup label="경제/경영">
-								<option value="MG">경영일반</option>
-								<option value="MT">경영이론</option>
-								<option value="BM">경영관리</option>
-								<option value="EG">경제일반</option>
-								<option value="ET">경제이론</option>
-								<option value="CE">기업경제</option>
+								<option value="MG" <%if(book.getCategoryId().equals("MG")){ %>selected<%}%>>경영일반</option>
+								<option value="MT" <%if(book.getCategoryId().equals("MT")){ %>selected<%}%>>경영이론</option>
+								<option value="BM" <%if(book.getCategoryId().equals("BM")){ %>selected<%}%>>경영관리</option>
+								<option value="EG" <%if(book.getCategoryId().equals("EG")){ %>selected<%}%>>경제일반</option>
+								<option value="ET" <%if(book.getCategoryId().equals("ET")){ %>selected<%}%>>경제이론</option>
+								<option value="CE" <%if(book.getCategoryId().equals("CE")){ %>selected<%}%>>기업경제</option>
 							</optgroup>
 							<optgroup label="인문">
-								<option value="HP">심리학</option>
-								<option value="HG">인문학일반</option>
-								<option value="HPS">철학</option>
-								<option value="HPD">교육학</option>
+								<option value="HP" <%if(book.getCategoryId().equals("HP")){ %>selected<%}%>>심리학</option>
+								<option value="HG" <%if(book.getCategoryId().equals("HG")){ %>selected<%}%>>인문학일반</option>
+								<option value="HPS" <%if(book.getCategoryId().equals("HPS")){ %>selected<%}%>>철학</option>
+								<option value="HPD" <%if(book.getCategoryId().equals("HPD")){ %>selected<%}%>>교육학</option>
 							</optgroup>
 							<optgroup label="역사/문화">
-								<option value="HSG">역사일반</option>
-								<option value="HWH">세계사</option>
-								<option value="HOH">동양사</option>
-								<option value="HKH">한국사</option>
-								<option value="HM">신화</option>
+								<option value="HSG" <%if(book.getCategoryId().equals("HSG")){ %>selected<%}%>>역사일반</option>
+								<option value="HWH" <%if(book.getCategoryId().equals("HWH")){ %>selected<%}%>>세계사</option>
+								<option value="HOH" <%if(book.getCategoryId().equals("HOH")){ %>selected<%}%>>동양사</option>
+								<option value="HKH" <%if(book.getCategoryId().equals("HKH")){ %>selected<%}%>>한국사</option>
+								<option value="HM" <%if(book.getCategoryId().equals("HM")){ %>selected<%}%>>신화</option>
 							</optgroup>
 							<optgroup label="과학">
-								<option value="ST">과학이론</option>
-								<option value="SR">교양과학</option>
-								<option value="SP">물리학</option>
-								<option value="SC">화학</option>
-								<option value="SB">생물학</option>
-								<option value="SE">지구과학</option>
+								<option value="ST" <%if(book.getCategoryId().equals("ST")){ %>selected<%}%>>과학이론</option>
+								<option value="SR" <%if(book.getCategoryId().equals("SR")){ %>selected<%}%>>교양과학</option>
+								<option value="SP" <%if(book.getCategoryId().equals("SP")){ %>selected<%}%>>물리학</option>
+								<option value="SC" <%if(book.getCategoryId().equals("SC")){ %>selected<%}%>>화학</option>
+								<option value="SB" <%if(book.getCategoryId().equals("SB")){ %>selected<%}%>>생물학</option>
+								<option value="SE" <%if(book.getCategoryId().equals("SE")){ %>selected<%}%>>지구과학</option>
 							</optgroup>
 							<optgroup label="컴퓨터/IT">
-								<option value="CW">웹프로그래밍</option>
-								<option value="CS">보안</option>
-								<option value="CD">데이터베이스</option>
-								<option value="CN">네트워크</option>
-								<option value="CO">OS</option>
-								<option value="CC">컴퓨터공학</option>
+								<option value="CW" <%if(book.getCategoryId().equals("CW")){ %>selected<%}%>>웹프로그래밍</option>
+								<option value="CS" <%if(book.getCategoryId().equals("CS")){ %>selected<%}%>>보안</option>
+								<option value="CD" <%if(book.getCategoryId().equals("CD")){ %>selected<%}%>>데이터베이스</option>
+								<option value="CN" <%if(book.getCategoryId().equals("CN")){ %>selected<%}%>>네트워크</option>
+								<option value="CO" <%if(book.getCategoryId().equals("CO")){ %>selected<%}%>>OS</option>
+								<option value="CC" <%if(book.getCategoryId().equals("CC")){ %>selected<%}%>>컴퓨터공학</option>
 							</optgroup>
 						</select> 
 					</td>
