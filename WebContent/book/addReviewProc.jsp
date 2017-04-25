@@ -53,7 +53,7 @@
 	String reviewTitle = request.getParameter("reviewTitle");
 	String reviewContent = request.getParameter("reviewContent");
 	String reviewId = "RN7";
-	double reviewGrade = 4;
+	double reviewGrade = Integer.parseInt(request.getParameter("reviewGrade"));
 	
 	if(reviewTitle == null || reviewTitle.equals("") && 
 			reviewContent == null || reviewContent.equals("")){

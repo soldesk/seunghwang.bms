@@ -75,7 +75,7 @@
 	#bookGuide4 h3{border-bottom: 2px solid #ddd; height: 40px;}
 	#bookGuide5{width: 900px; margin-top: 50px;}
 	#bookGuide5 h3{border-bottom: 2px solid #ddd; height: 40px;}
-	#bookGuide6{width: 900px; margin-top: 50px;}
+	#bookGuide6{width: 900px; margin-top: -40px;}
 	#bookGuide6 h3{border-bottom: 2px solid #ddd; height: 40px;}
 	.btn-danger {
     color: #fff;
@@ -87,6 +87,7 @@
     background-color: hotpink;
     border-color: hotpink;
 }
+.form-control{width: 100px;}
 .form-group input[type=text]{
 	border-top-left-radius: .5em; /*왼쪽 상단 코너를 부드럽게 */
 	border-bottom-left-radius: .5em; /*왼쪽 하단 코너를 부드럽게*/
@@ -98,9 +99,9 @@
 }
 .bookguide_left{float: left;}
 .bookguide_left h2{margin-top: 0px; margin-left: 15px;}
-.bookguide_right{margin-left: 100px;}
+.bookguide_right{margin-left: 130px;}
 textarea{width: 600px; height: 60px; resize:none;}
-.review_write{margin-left: 20px; margin-top: -50px; height: 60px;}
+.review_write{margin-left: 600px; margin-top: 10px; height: 30px;}
 .panel-right{margin-top: -16px; margin-left: 480px; filter: drop-shadow(0 1px 1px rgba(0, 0, 0, .3)); font-size: 20px;}
 .panel-right p{float: right; margin-right: 10px; font-size: 15px; margin-top: 3px; filter: drop-shadow(0 0px 0px rgba(0, 0, 0, 0));}
 .panel-default>.panel-heading {
@@ -109,6 +110,8 @@ textarea{width: 600px; height: 60px; resize:none;}
 .panel-group{
 	margin-bottom: 0px;
 }
+#reviewTitle{width: 700px;}
+#reviewContent{width: 700px;}
   </style>
 </head>
 <body>
@@ -183,26 +186,36 @@ textarea{width: 600px; height: 60px; resize:none;}
 	</div>
 	<div class="container-fluid" id="bookGuide5">
 		<h3>리뷰</h3>
+	<form action="addReviewProc.jsp" method="post">
 	<div class="bookguide_left">
 		구매자 평점
-		<h2>3.0</h2>
-	</div>
+		<div class="form-group">
+			<label for="sell">평점을 매겨주세요</label>
+				<select class="form-control" id="sell" name="reviewGrade">
+				<option>1</option>
+				<option>2</option>
+				<option>3</option>
+				<option>4</option>
+				<option>5</option>				
+			</select>
+		</div>
+		</div>
 	<div class="bookguide_right">
-		
-	<form action="addReviewProc.jsp" method="post">
+	
 		<input type="hidden" name="bookId" value="<%=bookId%>">
 		<input type="hidden" name="bookName" value="<%=book.getBookName()%>">
 		<div class="form-group">
 			제목
-			<textarea class="form-control" rows="1" name="reviewTitle"></textarea>	
+			<textarea class="form-control" rows="1" name="reviewTitle"id="reviewTitle" placeholder="리뷰 제목을 입력해주세요."></textarea>	
 			내용
-			<textarea class="form-control" rows="5" name="reviewContent"></textarea>
+			<textarea class="form-control" rows="5" name="reviewContent" id="reviewContent" placeholder="리뷰 내용을 입력해주세요. 제목과 내용을 입력하지 않으면 리뷰가 등록되지 않습니다."></textarea>
 			<input type="submit" class="btn btn-default review_write" value="리뷰 남기기"/>
 			
 		</div>
+		</div>
 	</form>
-	</div>
 </div>
+
 
 
 
@@ -240,7 +253,6 @@ textarea{width: 600px; height: 60px; resize:none;}
 <%
 	}else{
 %>
-
 	<h2>리뷰가 없습니다.</h2>
 <% 
 	}
