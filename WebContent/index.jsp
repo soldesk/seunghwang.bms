@@ -809,7 +809,7 @@ ID, 비밀번호는 본인이 직접 사용하여야 하며 제 3자에게 이�
 	<ul class="nav nav-pills category_sub_list">
 		<li><a href="book/newBookList.jsp" target="content">신간 도서</a></li>
 		<li><a href="book/bestSellerList.jsp" target="content">베스트 셀러</a></li>
-		<li><a href="steadySellerList.jsp" target="content">스테디 셀러</a></li>
+		<li><a href="book/steadySellerList.jsp" target="content">스테디 셀러</a></li>
 		<li><a href="/seunghwang.bms/event/event_page.html" target="content">이벤트</a></li>
 	</ul>
 </div>

@@ -150,8 +150,8 @@ textarea{width: 600px; height: 60px; resize:none;}
 			</table>
 			<div id="buyButt">
 				<button type="button" id="buttSize1" class="btn btn-default"><span class="glyphicon glyphicon-thumbs-up"></span></button>
-				<button type="button" id="buttSize1" class="btn btn-default" onclick="location.href='../order/order_basket.html'"><span class="glyphicon glyphicon-shopping-cart"></span></button>
-				<button type="button" id="buttSize2" class="btn btn-danger" onclick="location.href='../order/order_book.html'">구매하기</button>
+				<button type="submit" id="buttSize1" class="btn btn-default" formaction="../order/addCart.ct"><span class="glyphicon glyphicon-shopping-cart"></span></button>
+				<button type="submit" id="buttSize2" class="btn btn-danger" formaction="../order/getOrder.do">구매하기</button>
 			</div>
 		</div>
 	</div>
