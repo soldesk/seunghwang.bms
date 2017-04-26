@@ -45,6 +45,9 @@
 	ReviewDao reviewDao = new ReviewDaoImpl(reviewMapper);
 	ReviewService reviewService = new ReviewServiceImpl(reviewDao);
 	List<Review> reviews = reviewService.getBookReviews(bookId);
+	double AvgGrade = reviewService.getAvgGrade(bookId);
+	
+	System.out.println("AVGGRADE :" + AvgGrade);
 	
 	//리뷰 수정 삭제를 위한 로그인 체크 기능
 	HttpSession sess = request.getSession(false);
