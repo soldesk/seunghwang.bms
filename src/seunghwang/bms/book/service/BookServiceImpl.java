@@ -50,11 +50,12 @@ public class BookServiceImpl implements BookService{
 		return bookDao.findNewBooks(date);
 	}
 	
-	public List<Book> findBestSellers(Date date) {
-		return bookDao.findBestSellers(date);
+	public List<Book> findBestSellers() {
+		
+		return bookDao.findBestSellers();
 	}
 	
-	public List<Book> findSteadySellers(Date date) {
-		return bookDao.findSteadySellers(date);
+	public List<Book> findSteadySellers() {
+		return bookDao.findSteadySellers();
 	}
 }

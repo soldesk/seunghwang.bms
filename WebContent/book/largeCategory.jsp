@@ -368,5 +368,6 @@ a.item-green-hover:hover, a.item-green-hover:focus {
 		</div>
 <% } %>
 	</div>
+	</div>
 </body>
 </html>

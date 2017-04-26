@@ -4,6 +4,12 @@
 <%@ page import="seunghwang.bms.login.domain.User" %> 
 <%@ page import="seunghwang.bms.book.domain.Book" %>
 <%@ page import="javax.servlet.http.HttpSession" %>
+<%
+	String len0 = request.getParameter("length0");
+	String len1 = request.getParameter("length1"); 
+	String len2 = request.getParameter("length2");
+%>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -70,9 +76,34 @@ textarea{resize: none; width: 500px; height: 55px;}
 .table-pay{width: 750px; margin-left: 400px;}
 .tbody_border{border-bottom: 1px solid #ddd;}
   </style>
+ <script>
+    function send(){
+    	
+    	if(document.frm.subject_name.value == ""){
+    		alert("구매자 이름을 입력하세요!!");
+    		document.frm.subject_name.focus();
+    		return false;
+    	}else if(document.frm.subject_address.value == ""){
+    		alert("구매자 주소를 입력하세요!!");
+    		document.frm.subject_address.focus();
+    		return false;
+    	}else if(document.frm.subject_phone.value == ""){
+    		alert("구매자 전화번호를 입력하세요");
+    		document.frm.subject_phone.focus();
+    		return false;
+    	}else if(document.frm.subject_memo.value == ""){
+    		alert("구매자 메모를 입력하세요");
+    		document.frm.subject_memo.focus();
+    		return false;
+    	}else{    	
+	    	document.frm.action="./orderPayment.do";
+	    	document.frm.submit();
+    	}
+    }
+ </script> 
 </head>
 <body>
-<form name="frm" method="post" action="orderPayment.do">
+<form name="frm" method="post">
 <input type="hidden" name="userId" value="${user.userId}"> 
 
 <div id="bookInfoSection" class="container-fluid">
@@ -102,8 +133,8 @@ textarea{resize: none; width: 500px; height: 55px;}
       </div>
       <div id="c2" class="panel-collapse collapse">
         <div class="panel-body list-group">
-        	<a href="/seunghwang.bms/order/orderHistory.do" class="list-group-item item-green-hover">구매내역</a>
-        	<a href="/seunghwang.bms/order/listCart.ct" class="list-group-item item-green-hover" target="content">장바구니</a>
+        	<a href="orderHistory.jsp" class="list-group-item item-green-hover">구매내역</a>
+        	<a href="orderBasket.jsp" class="list-group-item item-green-hover" target="content">장바구니</a>
         </div>
       </div>
     </div>
@@ -154,23 +185,51 @@ textarea{resize: none; width: 500px; height: 55px;}
 			</tbody>
 		</table>
 		</div>
-		<% int book_len = (Integer)request.getAttribute("book_len");
-		   int book_sum = 0;
-		   
-       for(int i=0; i<book_len; i++ ){
+	   <% int book_len = (Integer)request.getAttribute("book_len");
+		  String[] bookAmount=  new String[book_len];
+		  String[] bookPrice= new String[book_len];
+		  bookAmount = request.getParameterValues("bookAmount");		 
+	  	  bookPrice	 = request.getParameterValues("bookPrice");
+          String[] amounts = new String[book_len];
+          String[] price = new String[book_len];
+          boolean bool1=true;
+          boolean bool2=true;
+          boolean bool3=true;
+		 for(int i=0; i<book_len; i++){
+			 
+			 if(bool1 && !len0.equals("")){
+				amounts[i] = bookAmount[0];
+			    price[i]  = bookPrice[0];
+			    bool1 =false;
+			 }else if(bool2 && !len1.equals("")){
+				 amounts[i] = bookAmount[1];
+				 price[i]  = bookPrice[1];	
+				 bool2 =false;
+			 }else if(bool3 && !len2.equals("")){
+				 amounts[i] = bookAmount[2];
+				 price[i]  = bookPrice[2];	
+				 bool3 =false;
+			 }		
+System.out.println( amounts[i] +"//"+ price[i]);			 
+		 }
+		  int amount=0, book_sum = 0;		 
+		  
+       for(int i=0; i<book_len; i++ ){   	   
            Book book = (Book)request.getAttribute("books["+i+"]"); //배열 북정보 가져오기 
-           book_sum += book.getBookPrice(); //가격 합계
+           book_sum += Integer.parseInt(price[i]); //가격 합계
+           amount += Integer.parseInt(amounts[i]);
            
            Book book_send= new Book(); // 서블릿에 보낼 정보
            book_send.setBookId(book.getBookId());
            book_send.setBookName(book.getBookName());
-           book_send.setBookPrice(book.getBookPrice());
+           book_send.setBookPrice(Integer.parseInt(price[i]));
            book_send.setBookImage(book.getBookImage());
+           book_send.setBookAmount(Integer.parseInt(amounts[i]));
            
            HttpSession sess = request.getSession();
  		   sess.setAttribute("book_send["+i+"]", book_send);
  		   sess.setAttribute("book_length", book_len);
-
+   	   
        %>
 
 		<div id="book_info_body_goods">
@@ -187,14 +246,14 @@ textarea{resize: none; width: 500px; height: 55px;}
 	   			<tr><strong class="strong_position">상품 정보</strong>
 					<td rowspan="3"><img src="<%=book.getBookImage() %>" width="120px" height="150px"></td>
 					<td><%=book.getBookPrice() %>원</td>
-					<td>1</td>
+					<td><%=amounts[i] %></td>
 					<td>0원</td>
 					<td>재고 있음.</td>
 				</tr>
 				
 				<tr>
 					<td colspan="2">총 합계</td>
-					<td><%=book.getBookPrice() %>원</td>
+					<td><%=price[i] %>원</td>
 					<td></td>
 				</tr>
 		
@@ -208,7 +267,7 @@ textarea{resize: none; width: 500px; height: 55px;}
 					<td><strong>총 주문금액</strong></td>
 					<td><%=book_sum %>원</td>
 					<td>총 주문상품</td>
-					<td><%=book_len%>개</td>
+					<td><%=amount%>개</td>
 				</tr>
 				<tr>
 					<td><strong>할인</strong></td>
@@ -225,7 +284,7 @@ textarea{resize: none; width: 500px; height: 55px;}
 				</tr>
 			</tbody>
 		</table>
-	<button type="submit" class="btn btn-danger">결제하기</button>
+	<button type="button" class="btn btn-danger" onclick="send();">결제하기</button>
 </div>
 <input type="hidden" name="book_sum" value="<%=book_sum %>">
 </form>

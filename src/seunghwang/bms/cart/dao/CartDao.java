@@ -12,4 +12,5 @@ public interface CartDao {
 	List<Cart> listCart(Cart cart);
 	int cartCount(String userId);
 	int delCart(String cartId);
+	Book getBook(String bookId);
 }

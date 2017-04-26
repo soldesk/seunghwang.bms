@@ -137,31 +137,30 @@ textarea{resize: none; width: 500px; height: 60px;}
 			 </c:forEach>	
 				</tbody>
 			</table>
+			<c:if test="${count > 0}">
+			    <c:set var="pageCount" 
+			           value="${count / pageSize + ( count % pageSize == 0 ? 0 : 1)}" />
+			    <c:set var="startPage" value="${currentPage - (currentPage % 10) + 1}" />
+			    <c:set var="endPage" value="${startPage + 10}" />
+			    <c:if test="${endPage > pageCount}">
+			        <c:set var="endPage" value="${pageCount}" />
+			    </c:if>
+			    
+			    <center>
+			    <c:if test="${startPage > 10}">
+			        <a href="orderHistory.do?num=${startPage - 10}">[이전]</a>
+			    </c:if>
+			    
+			    <c:forEach var="i" begin="${startPage}" end="${endPage}">
+			        <a href="orderHistory.do?num=${i}">[${i}]</a>
+			    </c:forEach>
+			    
+			    <c:if test="${endPage < pageCount}">
+			        <a href="orderHistory.do?num=${startPage + 10}">[다음]</a>
+			    </c:if>
+			    </center>
+			</c:if> 			
 		</div>
-</div>
-
-<c:if test="${count > 0}">
-    <c:set var="pageCount" 
-           value="${count / pageSize + ( count % pageSize == 0 ? 0 : 1)}" />
-    <c:set var="startPage" value="${currentPage - (currentPage % 10) + 1}" />
-    <c:set var="endPage" value="${startPage + 10}" />
-    <c:if test="${endPage > pageCount}">
-        <c:set var="endPage" value="${pageCount}" />
-    </c:if>
-    
-    <center>
-    <c:if test="${startPage > 10}">
-        <a href="orderHistory.do?num=${startPage - 10}">[이전]</a>
-    </c:if>
-    
-    <c:forEach var="i" begin="${startPage}" end="${endPage}">
-        <a href="orderHistory.do?num=${i}">[${i}]</a>
-    </c:forEach>
-    
-    <c:if test="${endPage < pageCount}">
-        <a href="orderHistory.do?num=${startPage + 10}">[다음]</a>
-    </c:if>
-    </center>
-</c:if>    
+</div>   
 </body>
 </html>

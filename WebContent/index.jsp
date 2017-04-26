@@ -125,7 +125,7 @@
 	.category_sub_right{margin-top: -50px; margin-left: 1150px;}
 	#mypage{filter: drop-shadow(0 1px 1px rgba(0, 0, 0, .3)); font-weight: bold; color:white; font-size: 21px;}
 	/*바닥글*/
-	#footer{border-top: 1px solid  #e5e5e5; margin-top: 230px;height: 130px; padding-left: 680px; padding-top: 20px; filter: drop-shadow(0 1px 1px rgba(0, 0, 0, .3)); font-weight: bold; background: white;}
+	#footer{border-top: 1px solid  #e5e5e5; margin-top: 100%; height: 130px; padding-left: 680px; padding-top: 20px; filter: drop-shadow(0 1px 1px rgba(0, 0, 0, .3)); font-weight: bold; background: white;}
 	#footer0{width: 170px; max-width: none !important; }
 	#footer1{width: 100px;margin-left: 45px; max-width: none !important; }
 	#footer2{width: 100px; margin-left: 45px; max-width: none !important;}
@@ -426,26 +426,17 @@
           <button type="button" class="close" data-dismiss="modal">×</button>
           <h4 class="modal-title">로그인</h4>
         </div>
-  			<%
-				String userId="";
-				Cookie[] cookies = request.getCookies();
-				if(cookies != null)
-					for(Cookie cookie:cookies){
-						if(cookie.getName().equals("userId"))
-							userId = cookie.getValue();
-					}
-			%>
+  
         <div class="modal-body">
          <form action="/seunghwang.bms/signin.login" method="post">
     		<div class="form-group">
-      			<input type="text" class="form-control" name="id" required value="<%=userId %>" placeholder="아이디" tabindex=1>
+      			<input type="text" class="form-control" name="id" required  placeholder="아이디" tabindex=1>
     		</div>
     		<div class="form-group">
-      			<input type="password" class="form-control" name="pw" placeholder="비밀번호" tabindex=2 required>
+      			<input type="password" class="form-control" name="pw"  placeholder="비밀번호" tabindex=2 required>
     		</div>
-    		
     		<div class="form-group">
-      			 <label id="logon"><input type="checkbox" name="logon" value="아이디저장"> 아이디저장</label>
+      			 <label id="logon"><input type="checkbox" name="logon" value="아이디저장">아이디저장</label>
       			 <a href="/seunghwang.bms/login/id_find.html" id="idFind">아이디찾기</a>
       			 <a href="/seunghwang.bms/login/pw_find.jsp" id="pwFind">비밀번호찾기</a>
     		</div>
@@ -841,10 +832,10 @@ ID, 비밀번호는 본인이 직접 사용하여야 하며 제 3자에게 이�
 	</ul>
 </div>
 <div id="iframeSection" class="container-fluid">
-	<iframe src="/seunghwang.bms/main.jsp" id="the_iframe" onload="calcHeight();" name="content" title="게시판뷰" frameborder="0" scrolling="no" style="overflow-x:hidden; overflow:auto; min-height:500px;"></iframe>
+	<iframe src="/seunghwang.bms/main.jsp" id="the_iframe" onload="calcHeight();" name="content" title="게시판뷰" frameborder="0" scrolling="no" style="overflow-x:hidden; overflow:auto; min-height:2700px;"></iframe>
 </div>
 <br><br>
-	<div class="container-fluid" id="footer">
+<div class="container-fluid" id="footer">
 	<p id="footer0">INTERNET BOOK STORE</p>
 	<p id="footer1">BOOK KING</p>
 	<p id="footer2">ⓒKS TEAM.</p>

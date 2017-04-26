@@ -16,6 +16,6 @@ public interface BookService {
 	void updateBook(Book book); //책 수정
 	void deleteBook(String bookId); //책 삭제
 	List<Book> findNewBooks(Date date);
-	List<Book> findBestSellers(Date date);
-	List<Book> findSteadySellers(Date date);
+	List<Book> findBestSellers();
+	List<Book> findSteadySellers();
 }
