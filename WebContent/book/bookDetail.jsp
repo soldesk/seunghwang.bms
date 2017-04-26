@@ -49,7 +49,6 @@
 	//리뷰 수정 삭제를 위한 로그인 체크 기능
 	HttpSession sess = request.getSession(false);
 	
-				
 %>
 <html lang="ko">
 <head>
@@ -119,6 +118,7 @@ textarea{width: 600px; height: 60px; resize:none;}
 }
 #reviewTitle{width: 700px;}
 #reviewContent{width: 700px;}
+.reviewRemoveBtn{margin-left: 810px;}
   </style>
 </head>
 <body>
@@ -248,23 +248,20 @@ textarea{width: 600px; height: 60px; resize:none;}
         </h4>
       </div>
       <div id="<%= review.getReviewId()%>" class="panel-collapse collapse">
-        <div class="panel-body"><%= review.getReviewContent() %></div>
-       <% 
-       if(sess.getAttribute("authUser")!=null){
-    		User user = (User)sess.getAttribute("authUser");
-    		String idCheck = user.getUserId();
-    			if(review.getUserId() != null) {
-           			String reUserId = review.getUserId();
-           				if(reUserId == idCheck){
-           					        					
-       %>    					
-        <button type="button" class="btn btn-default" onclick="location.href='delReviewProc.jsp?reviewId=<%= review.getReviewId()%>&bookId=<%=bookId%>'">삭제</button>
-       <% 
-     					}
-       			}
-           }
+        <div class="panel-body"><%= review.getReviewContent().replaceAll("\r\n", "<br>") %></div>
+        <% 	
+        	String userId = "";
+        if (sess != null && sess.getAttribute("authUser") != null){	
+        	User user = (User)sess.getAttribute("authUser");
+    		userId = user.getUserId();
+        }else{ userId = "";}
+   	    	if(userId.equals(review.getUserId())){
+        %>
+        <button type="button" class="btn btn-default reviewRemoveBtn" onclick="location.href='delReviewProc.jsp?reviewId=<%= review.getReviewId()%>&bookId=<%=bookId%>&userId=<%=review.getUserId()%>'">삭제</button>
+       <% }
+        	
+       	%>
        
-       %>    					
        
       </div>
     </div>
