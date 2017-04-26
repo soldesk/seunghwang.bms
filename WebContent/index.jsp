@@ -125,7 +125,7 @@
 	.category_sub_right{margin-top: -50px; margin-left: 1150px;}
 	#mypage{filter: drop-shadow(0 1px 1px rgba(0, 0, 0, .3)); font-weight: bold; color:white; font-size: 21px;}
 	/*바닥글*/
-	#footer{border-top: 1px solid  #e5e5e5; margin-top: 230px;height: 130px; padding-left: 680px; padding-top: 20px; filter: drop-shadow(0 1px 1px rgba(0, 0, 0, .3)); font-weight: bold; background: white;}
+	#footer{border-top: 1px solid  #e5e5e5; margin-top: 100%; height: 130px; padding-left: 680px; padding-top: 20px; filter: drop-shadow(0 1px 1px rgba(0, 0, 0, .3)); font-weight: bold; background: white;}
 	#footer0{width: 170px; max-width: none !important; }
 	#footer1{width: 100px;margin-left: 45px; max-width: none !important; }
 	#footer2{width: 100px; margin-left: 45px; max-width: none !important;}
@@ -832,10 +832,10 @@ ID, 비밀번호는 본인이 직접 사용하여야 하며 제 3자에게 이�
 	</ul>
 </div>
 <div id="iframeSection" class="container-fluid">
-	<iframe src="/seunghwang.bms/main.jsp" id="the_iframe" onload="calcHeight();" name="content" title="게시판뷰" frameborder="0" scrolling="no" style="overflow-x:hidden; overflow:auto; min-height:500px;"></iframe>
+	<iframe src="/seunghwang.bms/main.jsp" id="the_iframe" onload="calcHeight();" name="content" title="게시판뷰" frameborder="0" scrolling="no" style="overflow-x:hidden; overflow:auto; min-height:2700px;"></iframe>
 </div>
 <br><br>
-	<div class="container-fluid" id="footer">
+<div class="container-fluid" id="footer">
 	<p id="footer0">INTERNET BOOK STORE</p>
 	<p id="footer1">BOOK KING</p>
 	<p id="footer2">ⓒKS TEAM.</p>
