@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ page import="seunghwang.bms.admin.domain.Admin"%>
-<%@ page import="seunghwang.bms.login.domain.User"%>
+    pageEncoding="UTF-8"%>
+<%@ page import ="seunghwang.bms.admin.domain.Admin" %>
+<%@ page import= "seunghwang.bms.login.domain.User" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -19,377 +19,120 @@
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script src="../../lib/jquery.js"></script>
 <script>
-	function sample6_execDaumPostcode() {
-		new daum.Postcode(
-				{
-					oncomplete : function(data) {
-						// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+    function sample6_execDaumPostcode() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 
-						// 각 주소의 노출 규칙에 따라 주소를 조합한다.
-						// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-						var fullAddr = ''; // 최종 주소 변수
-						var extraAddr = ''; // 조합형 주소 변수
+                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                var fullAddr = ''; // 최종 주소 변수
+                var extraAddr = ''; // 조합형 주소 변수
 
-						// 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-						if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-							fullAddr = data.roadAddress;
+                // 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                    fullAddr = data.roadAddress;
 
-						} else { // 사용자가 지번 주소를 선택했을 경우(J)
-							fullAddr = data.jibunAddress;
-						}
+                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                    fullAddr = data.jibunAddress;
+                }
 
-						// 사용자가 선택한 주소가 도로명 타입일때 조합한다.
-						if (data.userSelectedType === 'R') {
-							//법정동명이 있을 경우 추가한다.
-							if (data.bname !== '') {
-								extraAddr += data.bname;
-							}
-							// 건물명이 있을 경우 추가한다.
-							if (data.buildingName !== '') {
-								extraAddr += (extraAddr !== '' ? ', '
-										+ data.buildingName : data.buildingName);
-							}
-							// 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
-							fullAddr += (extraAddr !== '' ? ' (' + extraAddr
-									+ ')' : '');
-						}
+                // 사용자가 선택한 주소가 도로명 타입일때 조합한다.
+                if(data.userSelectedType === 'R'){
+                    //법정동명이 있을 경우 추가한다.
+                    if(data.bname !== ''){
+                        extraAddr += data.bname;
+                    }
+                    // 건물명이 있을 경우 추가한다.
+                    if(data.buildingName !== ''){
+                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                    }
+                    // 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
+                    fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
+                }
 
-						// 우편번호와 주소 정보를 해당 필드에 넣는다.
-						document.getElementById('sample6_postcode').value = data.zonecode; //5자리 새우편번호 사용
-						document.getElementById('sample6_address').value = fullAddr;
+                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                document.getElementById('sample6_postcode').value = data.zonecode; //5자리 새우편번호 사용
+                document.getElementById('sample6_address').value = fullAddr;
 
-						// 커서를 상세주소 필드로 이동한다.
-						document.getElementById('sample6_address2').focus();
-					}
-				}).open();
-	}
+                // 커서를 상세주소 필드로 이동한다.
+                document.getElementById('sample6_address2').focus();
+            }
+        }).open();
+    }
 </script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <link rel="icon" href="img/logo2.png">
 <title>BOOKING</title>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script
-	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <style>/*hotpink*/
-/*부트스트랩 유동성 비활성화*/
-.container-fluid {
-	width: 1580px;
-	max-width: none !important;
-	max-height: none !important;
-	background-color: hotpink;
-}
-
-body {
-	position: relative;
-	height: 100%;
-}
-/*고정바*/
-#top_menu {
-	padding-top: 50px;
-	height: 10%;
-	color: #fff;
-	background-color: #fff;
-}
-
-#category_sub {
-	background-color: #F6F6F6;
-	border-top: 1px solid #D5D5D5;
-	filter: drop-shadow(0 1px 1px rgba(0, 0, 0, .3));
-}
-
-#category_sub a {
-	color: #747474;
-	font-size: 15px;
-}
-
-#iframeSection {
-	height: 1500px;
-	color: hotpink;
-	background-color: white;
-}
-
-#logo {
-	margin-left: 230px;
-	font-weight: bold;
-	color: #fff;
-	filter: drop-shadow(0 1px 1px rgba(0, 0, 0, .3));
-	font-size: 26px;
-	margin-top: -15px;
-}
-
-#logo:hover {
-	color: #9d9d9d;
-	filter: drop-shadow(0 1px 1px rgba(0, 0, 0, .3));
-}
-
-#id {
-	font-weight: bold;
-	filter: drop-shadow(0 1px 1px rgba(0, 0, 0, .3));
-	font-size: 22px;
-	color: white;
-	margin-left: 400px;
-}
-
-#id:hover {
-	text-decoration: underline;
-	cursor: pointer;
-}
-
-#search {
-	margin-left: 6px;
-	margin-top: 8px;
-	height: 35px;
-	border: 1px solid white;
-	padding: 10px;
-	width: 250px;
-	border-top-left-radius: .5em;
-	border-bottom-left-radius: .5em;
-	border-top-right-radius: .5em;
-	border-bottom-right-radius: .5em;
-}
-
-a {
-	color: white;
-	font-size: 15px;
-	filter: drop-shadow(0 1px 1px rgba(0, 0, 0, .3));
-}
-
-a:hover {
-	text-decoration: none;
-}
-
-#allList {
-	filter: drop-shadow(0 1px 1px rgba(0, 0, 0, .3));
-	padding-top: 12px;
-}
-
-#search_button {
-	margin-top: 8px;
-	margin-left: 6px;
-}
-
-#search_button a {
-	font-size: 15px;
-	color: #747474;
-}
-
-#search_button a:focus {
-	text-decoration: none;
-}
-
-.selectSearch {
-	margin-top: 8px;
-	height: 35px;
-}
-/*카테고리*/
-#category {
-	margin-left: 220px;
-	width: 80%;
-	border: 2px solid white;
-	background-color: #fff;
-	margin-top: 10px;
-}
-
-.hiddenList a {
-	color: hotpink;
-}
-
-.hiddenList a:hover {
-	color: #62CEDB;
-}
-
-#navbar {
-	border: 0px solid;
-}
-
-.nav-tabs>li>a {
-	margin-right: 0px;
-}
-
-.navbar-inverse .navbar-toggle:focus, .navbar-inverse .navbar-toggle:hover
-	{
-	background-color: hotpink;
-	border: 1px solid white;
-}
-
-.navbar-inverse .navbar-toggle {
-	border-color: hotpink;
-}
-
-.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
-	border-color: hotpink;
-}
-
-.navbar-inverse {
-	background-color: hotpink;
-}
-
-.navbar-fixed-bottom .navbar-collapse, .navbar-fixed-top .navbar-collapse
-	{
-	max-height: none !important;
-}
-
-.navbar {
-	min-height: none !important;
-}
-
-.modal-dialog {
-	color: hotpink;
-}
-
-#faq {
-	margin-left: 165px;
-}
-/*로그인*/
-#idSize {
-	width: 300px;
-	height: 30px;
-}
-
-#usr {
-	width: 550px;
-	height: 40px;
-}
-
-#pwd {
-	width: 550px;
-	height: 40px;
-	margin-top: -12px;
-}
-
-#logon {
-	font-weight: normal;
-}
-
-.loginButt {
-	width: 550px;
-	height: 60px;
-}
-
-.loginGroup {
-	border-top: 1px solid #e5e5e5;
-	padding-top: 15px;
-}
-
-.requireFont {
-	color: hotpink;
-	font-size: 14px;
-}
-
-.logMenu {
-	background-color: white;
-	float: right;
-	margin-top: -50px;
-}
-
-#idFind {
-	margin-left: 260px;
-	font-size: 14px;
-	color: hotpink;
-}
-
-#pwFind {
-	font-size: 14px;
-	color: hotpink;
-}
-
-#joiner textarea {
-	width: 550px;
-	height: 150px;
-	color: black;
-	resize: none;
-}
-
-.joinButt {
-	width: 350px;
-	height: 30px;
-	margin-right: 120px;
-	background-color: transparent;
-	color: hotpink;
-}
-
-#novelCategory a {
-	font-size: 14px;
-}
-
-#novelCategory>li>a {
-	padding: 7px 9px;
-}
-
-#humanismCategory a {
-	font-size: 14px;
-}
-
-#socialCategory a {
-	font-size: 14px;
-}
-
-.categoryList {
-	background-color: white;
-}
-
-.category_sub_right {
-	margin-top: -50px;
-	margin-left: 1150px;
-}
-
-#mypage {
-	filter: drop-shadow(0 1px 1px rgba(0, 0, 0, .3));
-	font-weight: bold;
-	color: white;
-	font-size: 21px;
-}
-/*바닥글*/
-#footer {
-	border-top: 1px solid #e5e5e5;
-	margin-top: 230px;
-	height: 130px;
-	padding-left: 680px;
-	padding-top: 20px;
-	filter: drop-shadow(0 1px 1px rgba(0, 0, 0, .3));
-	font-weight: bold;
-	background: white;
-}
-
-#footer0 {
-	width: 170px;
-	max-width: none !important;
-}
-
-#footer1 {
-	width: 100px;
-	margin-left: 45px;
-	max-width: none !important;
-}
-
-#footer2 {
-	width: 100px;
-	margin-left: 45px;
-	max-width: none !important;
-}
-
-.category_sub_list {
-	margin-left: 240px;
-	width: 700px;
-}
-
-.btn-danger {
-	color: #fff;
-	background-color: hotpink;
-	border-color: hotpink;
-}
-
-.btn-danger:hover {
-	color: #FFB2F5;
-	background-color: hotpink;
-	border-color: hotpink;
-}
-
-.form-group input[type=text] {
+  	  	/*부트스트랩 유동성 비활성화*/
+	.container-fluid{width: 1580px; max-width: none !important; max-height: none !important; background-color: hotpink;}
+    body {position: relative; height: 100%;}
+    /*고정바*/
+    #top_menu {padding-top:50px;height:10%;color: #fff; background-color: #fff;}
+    #category_sub{background-color: #F6F6F6; border-top: 1px solid #D5D5D5; filter: drop-shadow(0 1px 1px rgba(0, 0, 0, .3));}
+    #category_sub a{color: #747474; font-size: 15px;}
+    #iframeSection {height: 1500px; color: hotpink; background-color: white;}
+    #logo {margin-left: 230px; font-weight:bold; color:#fff; filter: drop-shadow(0 1px 1px rgba(0, 0, 0, .3)); font-size: 26px; margin-top:-15px;}
+    #logo:hover{color:#9d9d9d; filter: drop-shadow(0 1px 1px rgba(0, 0, 0, .3));}
+    #id {font-weight:bold; filter: drop-shadow(0 1px 1px rgba(0, 0, 0, .3)); font-size: 22px; color: white; margin-left: 400px;}
+    #id:hover{text-decoration: underline; cursor: pointer;}
+    #search{margin-left: 6px; margin-top: 8px;height:35px; border:1px solid white;padding:10px; width:250px; border-top-left-radius: .5em; border-bottom-left-radius: .5em;
+    border-top-right-radius: .5em; border-bottom-right-radius: .5em;}
+    a {color:white; font-size: 15px; filter: drop-shadow(0 1px 1px rgba(0, 0, 0, .3));}
+    a:hover{text-decoration: none;}
+    #allList{filter: drop-shadow(0 1px 1px rgba(0, 0, 0, .3)); padding-top: 12px;}
+    #search_button{margin-top: 8px; margin-left: 6px;}
+    #search_button a{font-size: 15px; color: #747474;}
+    #search_button a:focus{text-decoration: none;}
+    .selectSearch{margin-top: 8px; height: 35px;}	
+      /*카테고리*/
+	#category{margin-left:220px;width:80%; border:2px solid white; background-color:#fff; margin-top: 10px;}
+	.hiddenList a{color: hotpink;}
+	.hiddenList a:hover{color: #62CEDB;}
+	#navbar{border:0px solid;}
+	.nav-tabs>li>a {margin-right: 0px;}
+	.navbar-inverse .navbar-toggle:focus, .navbar-inverse .navbar-toggle:hover {background-color: hotpink;border:1px solid white;}
+	.navbar-inverse .navbar-toggle {border-color: hotpink;}
+	.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {border-color: hotpink;}
+	.navbar-inverse{background-color: hotpink;}
+	.navbar-fixed-bottom .navbar-collapse, .navbar-fixed-top .navbar-collapse {max-height: none !important;}
+	.navbar {min-height: none !important;}
+	.modal-dialog{color: hotpink;}
+	#faq{margin-left: 165px;}
+	/*로그인*/
+	#idSize{width: 300px; height:30px;}
+	#usr{width: 550px; height:40px;}
+	#pwd{width: 550px; height:40px; margin-top: -12px;}
+	#logon{font-weight:normal;}
+	.loginButt{width: 550px; height:60px;}
+	.loginGroup{border-top:1px solid #e5e5e5;padding-top:15px;}
+	.requireFont{color: hotpink; font-size: 14px;}
+	.logMenu{background-color:white; float:right; margin-top:-50px;}
+	#idFind{margin-left: 260px; font-size: 14px; color: hotpink;}
+	#pwFind{font-size: 14px; color: hotpink;}
+	#joiner textarea{width:550px; height: 150px; color:black; resize:none;}
+	.joinButt{width: 350px; height:30px;margin-right:120px; background-color: transparent; color: hotpink;}
+	#novelCategory a{font-size:14px;}
+	#novelCategory>li>a {padding: 7px 9px;}
+	#humanismCategory a{font-size:14px; }
+	#socialCategory a{font-size:14px; }
+	.categoryList{background-color: white;}
+	.category_sub_right{margin-top: -50px; margin-left: 1150px;}
+	#mypage{filter: drop-shadow(0 1px 1px rgba(0, 0, 0, .3)); font-weight: bold; color:white; font-size: 21px;}
+	/*바닥글*/
+	#footer{border-top: 1px solid  #e5e5e5; margin-top: 230px;height: 130px; padding-left: 680px; padding-top: 20px; filter: drop-shadow(0 1px 1px rgba(0, 0, 0, .3)); font-weight: bold; background: white;}
+	#footer0{width: 170px; max-width: none !important; }
+	#footer1{width: 100px;margin-left: 45px; max-width: none !important; }
+	#footer2{width: 100px; margin-left: 45px; max-width: none !important;}
+	.category_sub_list{margin-left: 240px; width: 700px;}
+	.btn-danger {color: #fff; background-color: hotpink; border-color: hotpink;}
+	.btn-danger:hover {color: #FFB2F5; background-color: hotpink; border-color: hotpink;}
+	.form-group input[type=text]{
 	border-top-left-radius: .5em; /*왼쪽 상단 코너를 부드럽게 */
 	border-bottom-left-radius: .5em; /*왼쪽 하단 코너를 부드럽게*/
 	border-top-right-radius: .5em; /*오른족 상단 코너를 부드럽게*/
@@ -399,117 +142,51 @@ a:hover {
 	height: 34px;
 	color: black;
 }
-
-.form-group {
-	color: black;
+	.form-group {color: black;}
+	/*프레임*/
+	iframe{width: 1585px; margin-left: -20px; border: 0px solid black; height: 120%;}
+	.right_main_category{float: right; margin-right: 80px; margin-top: -47px;}
+	/*전체분야 목록 디자인*/
+	.panel-default>.panel-heading {
+    color: #333;
+    background-color: #fff;
+    border-color: #ddd;
 }
-/*프레임*/
-iframe {
-	width: 1585px;
-	margin-left: -20px;
-	border: 0px solid black;
-	height: 120%;
-}
-
-.right_main_category {
-	float: right;
-	margin-right: 80px;
-	margin-top: -47px;
-}
-/*전체분야 목록 디자인*/
-.panel-default>.panel-heading {
-	color: #333;
-	background-color: #fff;
-	border-color: #ddd;
-}
-
-.ease {
+.ease{
 	width: 130px;
 	height: 30px;
 	padding: 5px;
 	color: hotpink;
 	background-color: #fff;
 	border-radius: 5px;
-	text-align: center;
+	text-align:center;
 	font-weight: bold;
 	z-index: 99;
 	font-size: 20px;
 	position: absolute;
 	transition: 0.1s ease;
 }
-
-#allCategory {
+#allCategory{
 	filter: drop-shadow(0 1px 1px rgba(0, 0, 0, .3));
 	font-size: 15px;
 	font-weight: normal;
 	margin-top: 5px;
 }
-
-.ease1 {
-	margin-left: 60px;
-	margin-top: 30px;
-	padding-top: 20px;
-}
-
-.ease1 a {
-	width: 120px;
-}
-
-.ease2 {
-	margin-left: 205px;
-	margin-top: -260px;
-}
-
-.ease2 a {
-	width: 120px;
-}
-
-.ease3 {
-	margin-left: 350px;
-	margin-top: -301px;
-}
-
-.ease3 a {
-	width: 120px;
-}
-
-.ease4 {
-	margin-left: 500px;
-	margin-top: -217px;
-}
-
-.ease4 a {
-	width: 120px;
-}
-
-.ease5 {
-	margin-left: 650px;
-	margin-top: -260px;
-}
-
-.ease5 a {
-	width: 120px;
-}
-
-.ease6 {
-	margin-left: 800px;
-	margin-top: -260px;
-}
-
-.ease6 a {
-	width: 120px;
-}
-
-.ease7 {
-	margin-left: 945px;
-	margin-top: -303px;
-}
-
-.ease7 a {
-	width: 130px;
-}
-
-#ex:hover .ease {
+.ease1 {margin-left: 60px; margin-top: 30px; padding-top: 20px;}
+.ease1 a{width: 120px;}
+.ease2 {margin-left: 205px; margin-top: -260px;}
+.ease2 a{width: 120px;}
+.ease3 {margin-left: 350px; margin-top: -301px;}
+.ease3 a{width: 120px;}
+.ease4 {margin-left: 500px; margin-top: -217px;}
+.ease4 a{width: 120px;}
+.ease5 {margin-left: 650px; margin-top: -260px;}
+.ease5 a{width: 120px;}
+.ease6 {margin-left: 800px; margin-top: -260px;}
+.ease6 a{width: 120px;}
+.ease7 {margin-left: 945px; margin-top: -303px;}
+.ease7 a{width: 130px;}
+#ex:hover .ease{
 	height: 395px;
 	width: 1130px;
 	z-index: 99;
@@ -518,196 +195,230 @@ iframe {
 	color: white;
 	position: absolute;
 }
-
-.ease:hover div {
+.ease:hover div{
 	visibility: visible;
 }
-
-.ease div {
+.ease div{
 	visibility: hidden;
 	position: relative;
 }
-
-.ease p {
+.ease p{
 	font-size: 15px;
 	filter: drop-shadow(0 1px 1px rgba(0, 0, 0, .3));
 	font-weight: normal;
 	margin-top: 4px;
 }
-
-#item-main {
-	background-color: hotpink;
-	color: white;
-}
-
-.item-hover {
-	font-size: 16px;
-}
-
-#left-subcategory-margin-left {
-	margin-left: 130px;
-}
-
-.all-ease {
-	background-color: white;
-	width: 0px;
-	height: 0px;
-	margin-left: -7px;
-	transition: 0.1s ease;
-	margin-top: 80px;
-}
-
-.all-ease a {
-	color: hotpink;
-}
-
-#ease:hover .all-ease {
-	width: 1110px;
-	height: 347px;
-	margin-top: -20px;
-	margin-left: 3px;
-}
-
-#circle {
-	margin-top: -55px;
-	margin-left: -60px;
-	position: absolute;
-	z-index: -1;
-	width: 2000px;
-}
-
-#circle div {
+#item-main {background-color: hotpink; color: white;}
+.item-hover{font-size: 16px;}
+#left-subcategory-margin-left{margin-left: 130px;}
+.all-ease{background-color: white; width: 0px; height: 0px; margin-left: -7px; transition: 0.1s ease; margin-top: 80px;}
+.all-ease a{color: hotpink;}
+#ease:hover .all-ease{width:1110px; height: 347px; margin-top: -20px; margin-left: 3px;}
+#circle{margin-top: -55px; margin-left: -60px; position: absolute; z-index: -1; width: 2000px;}
+#circle div{
 	display: inline-block;
-	width: 35px;
+	width: 35px; 
 	height: 70px;
 	background-color: hotpink;
 	border-radius: 50px;
 }
-
-#userWelcome {
+#userWelcome{
 	margin-left: 200px;
 }
-
-#userWelcome a {
+#userWelcome a{
 	color: white;
 	font-weight: bold;
 }
-
-#userWelcome a:hover {
+#userWelcome a:hover{
 	text-decoration: underline;
 }
-
 .navbar-inverse
-.navbar-brand {
+.navbar-brand{
 	color: #fff;
 	font-weight: bold;
 	font-size: 21px;
 }
-
-#readAdmin {
+#readAdmin{
 	font-size: 17.5px;
 	margin-top: 2px;
 }
-
-<<<<<<< HEAD
-#userEmail {
-	width: 150px;
-	float: left;
-	margin-top: 10px;
-}
-
-#userEmail2 {
-	width: 150px;
-	margin-top: -34px;
-	margin-left: 180px;
-}
-
-#userAt {
-	margin-top: 15px;
-	margin-left: 155px;
-}
-
-#selectHeight {
-	margin-left: 350px;
-	height: 30px;
-	margin-top: -30px;
-}
-
-#birthYear {
-	margin-top: 10px;
-}
-</style>
+#userEmail{width: 150px; float:left; margin-top: 10px;}
+#userEmail2{width: 150px; margin-top: -34px; margin-left: 180px;}
+#userAt{margin-top: 15px; margin-left: 155px;}
+#selectHeight{margin-left: 350px; height:30px; margin-top: -30px;}
+#birthYear{margin-top: 10px;}
+  </style>
 </head>
-<body data-spy="scroll" data-target=".navbar">
-	<nav class="navbar navbar-inverse navbar-fixed-top" id="navbar">
-	<div class="container-fluid">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse"
-				data-target="#myNavbar">
-				<span class="icon-bar"></span> <span class="icon-bar"></span> <span
-					class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="index.jsp" id="logo"><img
-				src="/seunghwang.bms/img/logo1.png" /></a>
+<body data-spy="scroll" data-target=".navbar">	
+<nav class="navbar navbar-inverse navbar-fixed-top" id="navbar">
+  <div class="container-fluid">
+    <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+   </button>
+        <a class="navbar-brand" href="index.jsp" id="logo"><img src="/seunghwang.bms/img/logo1.png"/></a>
+    </div>
+	<div>
+	 <div class="collapse navbar-collapse" id="myNavbar">
+    	<form action="book/searchBookList.jsp" method="post" target="content">
+    	<ul class="nav navbar-nav">
+    		<li>
+    			<select class="selectSearch" name="searchType">
+					<option value="total">전체</option>
+					<option value="bookName">책이름</option>
+					<option value="bookPublisher">출판사</option>
+					<option value="bookWriter">작가</option>
+					<option value="publicationDate">출판일 기준</option>
+				</select>
+			</li>
+ 	   		<li><input type="text" name="searchBook" id="search" placeholder="검색"/></li>
+ 	   		<li><input type="submit" class="btn btn-default" id="search_button" value="검색"/>
+		</ul>
+		</form>
+	 	<% 
+			HttpSession sess = request.getSession(false);
+	 		if (sess == null || sess.getAttribute("authUser") == null){ %>
+	 		<ul class="nav navbar-nav">
+				<li><a class="navbar-brand" id="id" data-toggle="modal" data-target="#login">로그인</a></li>
+			</ul>
+	 	
+	 	<% } else if(sess.getAttribute("authUser").getClass().getSimpleName().equals("Admin")){ %>
+	 		<ul class="nav navbar-nav" id="userWelcome">
+	 		<li class="navbar-brand" id="readAdmin">관리자님</li> 
+	 			<li><a class="navbar-brand" id="mypage" href="admin/userManage.jsp" target="content">관리페이지</a></li>
+	 			<li><a class="navbar-brand" onclick="reLoad()" href="/seunghwang.bms/signOut.login">로그아웃</a></li> 
+	 		</ul>
+	 	<%} else if(sess.getAttribute("authUser")!=null) { 	 		
+	 	%>
+			<ul class="nav navbar-nav" id="userWelcome">
+				<li class="navbar-brand">
+					<% User user = (User)sess.getAttribute("authUser"); %>
+					<%= user.getUserName()%>님
+					</li> 
+				<li> <a class="navbar-brand" id="mypage" href="/seunghwang.bms/login/login_info.jsp" target="content">MyPage</a> </li>
+				<li><a class="navbar-brand" onclick="reLoad()" href="/seunghwang.bms/signOut.login">로그아웃</a></li>
+			</ul>
+		<% } %>
+	<%@ include file="login/alert.jsp" %>
+	</div>
+    </div>
+    <div id="circle">
+		<div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+		<div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+	</div>
+  </div>
+</nav>
+<div id="top_menu" class="container-fluid">
+<div class="container-fluid" id="category">
+		<ul class="nav nav-pills">
+		<li><div id="ex">
+		<div class="ease" id="ease"><p><span class="glyphicon glyphicon-align-justify"></span> 전체분야</p>
+		<div class="all-ease">
+			<div class="ease1">
+			<a class="list-group-item item-hover disabled" id="item-main">소설</a>
+        	<a href="book/middleCategory.jsp?categoryId=NK" class="list-group-item item-hover" target="content">한국소설</a>
+        	<a href="book/middleCategory.jsp?categoryId=NA" class="list-group-item item-hover" target="content">영미소설</a>
+        	<a href="book/middleCategory.jsp?categoryId=NJ" class="list-group-item item-hover" target="content">일본소설</a>
+        	<a href="book/middleCategory.jsp?categoryId=NF" class="list-group-item item-hover" target="content">프랑스소설</a>
+        	<a href="book/middleCategory.jsp?categoryId=NC" class="list-group-item item-hover" target="content">중국소설</a>
 		</div>
-		<div>
-			<div class="collapse navbar-collapse" id="myNavbar">
-				<form action="book/searchBookList.jsp" method="post"
-					target="content">
-					<ul class="nav navbar-nav">
-						<li><select class="selectSearch" name="searchType">
-								<option value="total">전체</option>
-								<option value="bookName">책이름</option>
-								<option value="bookPublisher">출판사</option>
-								<option value="bookWriter">작가</option>
-								<option value="publicationDate">출판일 기준</option>
-						</select></li>
-						<li><input type="text" name="searchBook" id="search"
-							placeholder="검색" required/></li>
-						<li><input type="submit" class="btn btn-default"
-							id="search_button" value="검색" />
-					</ul>
-				</form>
-				<%
-					HttpSession sess = request.getSession(false);
-					if (sess == null || sess.getAttribute("authUser") == null) {
-				%>
-				<ul class="nav navbar-nav">
-					<li><a class="navbar-brand" id="id" data-toggle="modal"
-						data-target="#login">로그인</a></li>
-				</ul>
+		<div class="ease2">
+			<a class="list-group-item item-hover disabled" id="item-main">경제/경영</a>
+        	<a href="book/middleCategory.jsp?categoryId=MG" class="list-group-item item-hover" target="content">경영일반</a>
+        	<a href="book/middleCategory.jsp?categoryId=MT" class="list-group-item item-hover" target="content">경영이론</a>
+        	<a href="book/middleCategory.jsp?categoryId=BM" class="list-group-item item-hover" target="content">경영관리</a>
+        	<a href="book/middleCategory.jsp?categoryId=EG" class="list-group-item item-hover" target="content">경제일반</a>
+        	<a href="book/middleCategory.jsp?categoryId=ET" class="list-group-item item-hover" target="content">경제이론</a>
+        	<a href="book/middleCategory.jsp?categoryId=CE" class="list-group-item item-hover" target="content">기업경제</a>
+		</div>
+		<div class="ease3">
+			<a class="list-group-item item-hover disabled" id="item-main">인문</a>
+        	<a href="book/middleCategory.jsp?categoryId=HP" class="list-group-item item-hover" target="content">심리학</a>
+        	<a href="book/middleCategory.jsp?categoryId=HPD" class="list-group-item item-hover" target="content">교육학</a>
+        	<a href="book/middleCategory.jsp?categoryId=HPS" class="list-group-item item-hover" target="content">철학</a>
+        	<a href="book/middleCategory.jsp?categoryId=HG" class="list-group-item item-hover" target="content">인문학일반</a>
+		</div>
+		<div class="ease4">
+			<a class="list-group-item item-hover disabled" id="item-main">역사/문화</a>
+        	<a href="book/middleCategory.jsp?categoryId=HSG" class="list-group-item item-hover" target="content">역사일반</a>
+        	<a href="book/middleCategory.jsp?categoryId=HWH" class="list-group-item item-hover" target="content">세계사</a>
+        	<a href="book/middleCategory.jsp?categoryId=HOH" class="list-group-item item-hover" target="content">동양사</a>
+        	<a href="book/middleCategory.jsp?categoryId=HKH" class="list-group-item item-hover" target="content">한국사</a>
+        	<a href="book/middleCategory.jsp?categoryId=HM" class="list-group-item item-hover" target="content">신화</a>
+		</div>
+		<div class="ease5">
+			<a class="list-group-item item-hover disabled" id="item-main">정치/사회</a>
+        	<a href="book/middleCategory.jsp?categoryId=PP" class="list-group-item item-hover" target="content">정치/외교</a>
+        	<a href="book/middleCategory.jsp?categoryId=PA" class="list-group-item item-hover" target="content">행정/정책</a>
+        	<a href="book/middleCategory.jsp?categoryId=PD" class="list-group-item item-hover" target="content">국방/군사</a>
+        	<a href="book/middleCategory.jsp?categoryId=PL" class="list-group-item item-hover" target="content">법학</a>
+        	<a href="book/middleCategory.jsp?categoryId=PS" class="list-group-item item-hover" target="content">사회학</a>
+		</div>
+		<div class="ease6">
+			<a class="list-group-item item-hover disabled" id="item-main">과학</a>
+        	<a href="book/middleCategory.jsp?categoryId=ST" class="list-group-item item-hover" target="content">과학이론</a>
+        	<a href="book/middleCategory.jsp?categoryId=SR" class="list-group-item item-hover" target="content">교양과학</a>
+        	<a href="book/middleCategory.jsp?categoryId=SP" class="list-group-item item-hover" target="content">물리학</a>
+        	<a href="book/middleCategory.jsp?categoryId=SC" class="list-group-item item-hover" target="content">화학</a>
+        	<a href="book/middleCategory.jsp?categoryId=SB" class="list-group-item item-hover" target="content">생물학</a>
+        	<a href="book/middleCategory.jsp?categoryId=SE" class="list-group-item item-hover" target="content">지구과학</a>
+		</div>
+		<div class="ease7">
+			<a class="list-group-item item-hover disabled" id="item-main">컴퓨터/IT</a>
+        	<a href="book/middleCategory.jsp?categoryId=CC" class="list-group-item item-hover" target="content">컴퓨터공학</a>
+        	<a href="book/middleCategory.jsp?categoryId=CO" class="list-group-item item-hover" target="content">OS</a>
+        	<a href="book/middleCategory.jsp?categoryId=CN" class="list-group-item item-hover" target="content">네트워크</a>
+        	<a href="book/middleCategory.jsp?categoryId=CD" class="list-group-item item-hover" target="content">데이터베이스</a>
+        	<a href="book/middleCategory.jsp?categoryId=CS" class="list-group-item item-hover" target="content">보안</a>
+        	<a href="book/middleCategory.jsp?categoryId=CW" class="list-group-item item-hover" target="content">웹프로그래밍</a>
+		</div>
+			</div>
+		</div>
+	</div></li>
+			<li class="hiddenList" id="left-subcategory-margin-left">
+				<a href="book/largeCategory.jsp?largeCategory=소설" target="content">
+					<span class="glyphicon glyphicon-leaf"></span> 소설
+				</a>
+			</li>
+			<li class="hiddenList">
+				<a href="book/largeCategory.jsp?largeCategory=경제/경영" target="content">
+					<span class="glyphicon glyphicon-usd"></span> 경제/경영
+				</a>
+			</li>
+			<li class="hiddenList">
+				<a href="book/largeCategory.jsp?largeCategory=인문" target="content">
+					<span class="glyphicon glyphicon-user"></span> 인문
+				</a>
+			</li>
+			<li class="hiddenList">
+				<a href="book/largeCategory.jsp?largeCategory=역사/문화" target="content">
+					<span class="glyphicon glyphicon-header"></span> 역사/문화
+				</a>
+			</li>
+			<li class="hiddenList">
+				<a href="book/largeCategory.jsp?largeCategory=정치/사회" target="content">
+					<span class="glyphicon glyphicon-comment"></span> 정치/사회
+				</a>
+			</li>
+			<li class="hiddenList">
+				<a href="book/largeCategory.jsp?largeCategory=과학" target="content">
+					<span class="glyphicon glyphicon-magnet"></span> 과학
+				</a>
+			</li>
+			<li class="hiddenList">
+				<a href="book/largeCategory.jsp?largeCategory=컴퓨터/IT" target="content">
+					<span class="glyphicon glyphicon-phone"></span> 컴퓨터/IT
+				</a>
+			</li>
+			<li class="hiddenList" id="faq"><a href="customerService/faq/faqList.jsp" target="content"><span class="glyphicon glyphicon-phone-alt"></span> 고객센터</a></li>
+		</ul>
+	</div>
+	<div class="container-fluid logMenu">
+	
+	<div class="modal fade" id="login">
 
-				<%
-					} else if (sess.getAttribute("authUser").getClass().getSimpleName()
-							.equals("Admin")) {
-				%>
-				<ul class="nav navbar-nav" id="userWelcome">
-					<li class="navbar-brand" id="readAdmin">관리자님</li>
-					<li><a class="navbar-brand" id="mypage"
-						href="admin/userManage.jsp" target="content">관리페이지</a></li>
-					<li><a class="navbar-brand" onclick="reLoad()"
-						href="/seunghwang.bms/signOut.login">로그아웃</a></li>
-				</ul>
-				<%
-					} else if (sess.getAttribute("authUser") != null) {
-				%>
-				<ul class="nav navbar-nav" id="userWelcome">
-					<li class="navbar-brand">
-						<%
-							User user = (User) sess.getAttribute("authUser");
-						%> <%=user.getUserName()%>님
-					</li>
-					<li><a class="navbar-brand" id="mypage"
-						href="/seunghwang.bms/login/login_info.jsp" target="content">MyPage</a>
-					</li>
-					<li><a class="navbar-brand" onclick="reLoad()"
-						href="/seunghwang.bms/signOut.login">로그아웃</a></li>
-				</ul>
-				<%
-					}
-				%>
-				<%@ include file="login/alert.jsp"%>
-=======
     <div class="modal-dialog">    
       <!-- Modal content-->
       <div class="modal-content">
@@ -732,255 +443,28 @@ iframe {
 			<div class="btn-group btn-group-lg loginGroup">
 				<button type="submit" class="btn btn-danger loginButt" tabindex=3>Login</button>
 			</div>
-		</div>
-		<div id="circle">
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-		</div>
-	</div>
-	</nav>
-	<div id="top_menu" class="container-fluid">
-		<div class="container-fluid" id="category">
-			<ul class="nav nav-pills">
-				<li><div id="ex">
-						<div class="ease" id="ease">
-							<p>
-								<span class="glyphicon glyphicon-align-justify"></span> 전체분야
-							</p>
-							<div class="all-ease">
-								<div class="ease1">
-									<a class="list-group-item item-hover disabled" id="item-main">소설</a>
-									<a href="book/middleCategory.jsp?categoryId=NK"
-										class="list-group-item item-hover" target="content">한국소설</a> <a
-										href="book/middleCategory.jsp?categoryId=NA"
-										class="list-group-item item-hover" target="content">영미소설</a> <a
-										href="book/middleCategory.jsp?categoryId=NJ"
-										class="list-group-item item-hover" target="content">일본소설</a> <a
-										href="book/middleCategory.jsp?categoryId=NF"
-										class="list-group-item item-hover" target="content">프랑스소설</a>
-									<a href="book/middleCategory.jsp?categoryId=NC"
-										class="list-group-item item-hover" target="content">중국소설</a>
-								</div>
-								<div class="ease2">
-									<a class="list-group-item item-hover disabled" id="item-main">경제/경영</a>
-									<a href="book/middleCategory.jsp?categoryId=MG"
-										class="list-group-item item-hover" target="content">경영일반</a> <a
-										href="book/middleCategory.jsp?categoryId=MT"
-										class="list-group-item item-hover" target="content">경영이론</a> <a
-										href="book/middleCategory.jsp?categoryId=BM"
-										class="list-group-item item-hover" target="content">경영관리</a> <a
-										href="book/middleCategory.jsp?categoryId=EG"
-										class="list-group-item item-hover" target="content">경제일반</a> <a
-										href="book/middleCategory.jsp?categoryId=ET"
-										class="list-group-item item-hover" target="content">경제이론</a> <a
-										href="book/middleCategory.jsp?categoryId=CE"
-										class="list-group-item item-hover" target="content">기업경제</a>
-								</div>
-								<div class="ease3">
-									<a class="list-group-item item-hover disabled" id="item-main">인문</a>
-									<a href="book/middleCategory.jsp?categoryId=HP"
-										class="list-group-item item-hover" target="content">심리학</a> <a
-										href="book/middleCategory.jsp?categoryId=HPD"
-										class="list-group-item item-hover" target="content">교육학</a> <a
-										href="book/middleCategory.jsp?categoryId=HPS"
-										class="list-group-item item-hover" target="content">철학</a> <a
-										href="book/middleCategory.jsp?categoryId=HG"
-										class="list-group-item item-hover" target="content">인문학일반</a>
-								</div>
-								<div class="ease4">
-									<a class="list-group-item item-hover disabled" id="item-main">역사/문화</a>
-									<a href="book/middleCategory.jsp?categoryId=HSG"
-										class="list-group-item item-hover" target="content">역사일반</a> <a
-										href="book/middleCategory.jsp?categoryId=HWH"
-										class="list-group-item item-hover" target="content">세계사</a> <a
-										href="book/middleCategory.jsp?categoryId=HOH"
-										class="list-group-item item-hover" target="content">동양사</a> <a
-										href="book/middleCategory.jsp?categoryId=HKH"
-										class="list-group-item item-hover" target="content">한국사</a> <a
-										href="book/middleCategory.jsp?categoryId=HM"
-										class="list-group-item item-hover" target="content">신화</a>
-								</div>
-								<div class="ease5">
-									<a class="list-group-item item-hover disabled" id="item-main">정치/사회</a>
-									<a href="book/middleCategory.jsp?categoryId=PP"
-										class="list-group-item item-hover" target="content">정치/외교</a>
-									<a href="book/middleCategory.jsp?categoryId=PA"
-										class="list-group-item item-hover" target="content">행정/정책</a>
-									<a href="book/middleCategory.jsp?categoryId=PD"
-										class="list-group-item item-hover" target="content">국방/군사</a>
-									<a href="book/middleCategory.jsp?categoryId=PL"
-										class="list-group-item item-hover" target="content">법학</a> <a
-										href="book/middleCategory.jsp?categoryId=PS"
-										class="list-group-item item-hover" target="content">사회학</a>
-								</div>
-								<div class="ease6">
-									<a class="list-group-item item-hover disabled" id="item-main">과학</a>
-									<a href="book/middleCategory.jsp?categoryId=ST"
-										class="list-group-item item-hover" target="content">과학이론</a> <a
-										href="book/middleCategory.jsp?categoryId=SR"
-										class="list-group-item item-hover" target="content">교양과학</a> <a
-										href="book/middleCategory.jsp?categoryId=SP"
-										class="list-group-item item-hover" target="content">물리학</a> <a
-										href="book/middleCategory.jsp?categoryId=SC"
-										class="list-group-item item-hover" target="content">화학</a> <a
-										href="book/middleCategory.jsp?categoryId=SB"
-										class="list-group-item item-hover" target="content">생물학</a> <a
-										href="book/middleCategory.jsp?categoryId=SE"
-										class="list-group-item item-hover" target="content">지구과학</a>
-								</div>
-								<div class="ease7">
-									<a class="list-group-item item-hover disabled" id="item-main">컴퓨터/IT</a>
-									<a href="book/middleCategory.jsp?categoryId=CC"
-										class="list-group-item item-hover" target="content">컴퓨터공학</a>
-									<a href="book/middleCategory.jsp?categoryId=CO"
-										class="list-group-item item-hover" target="content">OS</a> <a
-										href="book/middleCategory.jsp?categoryId=CN"
-										class="list-group-item item-hover" target="content">네트워크</a> <a
-										href="book/middleCategory.jsp?categoryId=CD"
-										class="list-group-item item-hover" target="content">데이터베이스</a>
-									<a href="book/middleCategory.jsp?categoryId=CS"
-										class="list-group-item item-hover" target="content">보안</a> <a
-										href="book/middleCategory.jsp?categoryId=CW"
-										class="list-group-item item-hover" target="content">웹프로그래밍</a>
-								</div>
-							</div>
-						</div>
-					</div></li>
-				<li class="hiddenList" id="left-subcategory-margin-left"><a
-					href="book/largeCategory.jsp?largeCategory=소설" target="content">
-						<span class="glyphicon glyphicon-leaf"></span> 소설
-				</a></li>
-				<li class="hiddenList"><a
-					href="book/largeCategory.jsp?largeCategory=경제/경영" target="content">
-						<span class="glyphicon glyphicon-usd"></span> 경제/경영
-				</a></li>
-				<li class="hiddenList"><a
-					href="book/largeCategory.jsp?largeCategory=인문" target="content">
-						<span class="glyphicon glyphicon-user"></span> 인문
-				</a></li>
-				<li class="hiddenList"><a
-					href="book/largeCategory.jsp?largeCategory=역사/문화" target="content">
-						<span class="glyphicon glyphicon-header"></span> 역사/문화
-				</a></li>
-				<li class="hiddenList"><a
-					href="book/largeCategory.jsp?largeCategory=정치/사회" target="content">
-						<span class="glyphicon glyphicon-comment"></span> 정치/사회
-				</a></li>
-				<li class="hiddenList"><a
-					href="book/largeCategory.jsp?largeCategory=과학" target="content">
-						<span class="glyphicon glyphicon-magnet"></span> 과학
-				</a></li>
-				<li class="hiddenList"><a
-					href="book/largeCategory.jsp?largeCategory=컴퓨터/IT" target="content">
-						<span class="glyphicon glyphicon-phone"></span> 컴퓨터/IT
-				</a></li>
-				<li class="hiddenList" id="faq"><a
-					href="customerService/faq/faqList.jsp" target="content"><span
-						class="glyphicon glyphicon-phone-alt"></span> 고객센터</a></li>
-			</ul>
-		</div>
-		<div class="container-fluid logMenu">
-
-			<div class="modal fade" id="login">
-
-				<div class="modal-dialog">
-					<!-- Modal content-->
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal">×</button>
-							<h4 class="modal-title">로그인</h4>
-						</div>
-
-						<div class="modal-body">
-							<form action="/seunghwang.bms/signin.login" method="post">
-								<div class="form-group">
-									<input type="text" class="form-control" name="id" required
-										placeholder="아이디" tabindex=1>
-								</div>
-								<div class="form-group">
-									<input type="password" class="form-control" name="pw"
-										placeholder="비밀번호" tabindex=2 required>
-								</div>
-								<div class="form-group">
-									<label id="logon"><input type="checkbox" name="logon"
-										value="로그인상태유지">로그인 상태유지</label> <a
-										href="/seunghwang.bms/login/id_find.html" id="idFind">아이디찾기</a>
-									<a href="/seunghwang.bms/login/pw_find.jsp" id="pwFind">비밀번호찾기</a>
-								</div>
-								<div class="btn-group btn-group-lg loginGroup">
-									<button type="submit" class="btn btn-danger loginButt"
-										tabindex=3>Login</button>
-								</div>
-							</form>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-default joinButt"
-								data-toggle="modal" data-target="#joiner" data-dismiss="modal">
-								아직 HAWNG 회원이 아니세요? 회원가입 <span
-									class="glyphicon glyphicon-hand-right"></span>
-							</button>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="modal fade" id="joiner">
-				<div class="modal-dialog">
-					<!-- Modal content-->
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal">×</button>
-							<h4 class="modal-title">이용약관</h4>
-						</div>
-						<div class="modal-body">
-							<form>
-								<div class="form-group">
-									<textarea readonly>
+		</form>
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-default joinButt" data-toggle="modal" data-target="#joiner" data-dismiss="modal">
+		        아직 HAWNG 회원이 아니세요? 회원가입 <span class="glyphicon glyphicon-hand-right"></span>
+        </button>
+        </div>
+      </div>      
+    </div>
+  </div>
+  	<div class="modal fade" id="joiner">
+    <div class="modal-dialog">    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">×</button>
+          <h4 class="modal-title">이용약관</h4>
+        </div>
+        <div class="modal-body">
+        <form>
+    		<div class="form-group">
+    			<textarea readonly>
     			 이용약관 v2.7 
 제1장 총 칙
 제1조 [목 적]
@@ -1235,147 +719,126 @@ ID, 비밀번호는 본인이 직접 사용하여야 하며 제 3자에게 이�
 변경 이용약관 시행일자 : 2016년 11월 11일
 본 약관에 대한 저작권은 리디 주식회사에 있으며, 무단복제 및 배포를 금합니다.
 </textarea>
-									<br> <label class="requireFont"><input
-										type="checkbox" name="logon" value="이용약관"> 위에 해당하는
-										이용약관을 모두 읽고 이에 동의합니다.</label>
-								</div>
-								<div class="btn-group btn-group-lg loginGroup">
-									<button type="button" class="btn btn-danger loginButt"
-										data-toggle="modal" data-target="#userJoin"
-										data-dismiss="modal">다음단계</button>
-								</div>
-							</form>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-default"
-								data-dismiss="modal">닫기</button>
-						</div>
-					</div>
-				</div>
+				<br>
+				<label class="requireFont"><input type="checkbox" name="logon" value="이용약관"> 위에 해당하는 이용약관을 모두 읽고 이에 동의합니다.</label>
+    		</div>
+			<div class="btn-group btn-group-lg loginGroup">
+				<button type="button" class="btn btn-danger loginButt" data-toggle="modal" data-target="#userJoin" data-dismiss="modal">다음단계</button>
 			</div>
-		</div>
-		<div class="modal fade" id="userJoin">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal">×</button>
-						<h4 class="modal-title">회원가입</h4>
-					</div>
-					<div class="modal-body">
-						<form name="submitAction"
-							action="/seunghwang.bms/loginSignUpAction.login" method="post">
-							<div class="form-group">
-								<input type="text" id="idSize" name="userId" placeholder="아이디"
-									tabindex=1 required> <input type="button"
-									id="idCheckButton" value="중복확인" required />
-							</div>
-							<div class="form-group">
-								<input type="password" class="form-control" id="user_pswd"
-									name="userPw" required placeholder="비밀번호" tabindex=2> <span
-									id="pwdMsg"></span> <input type="password" class="form-control"
-									id="user_pswd2" name="userPw2" required placeholder="비밀번호 확인"
-									tabindex=3 /> <span id="pwdMsg2"></span>
-							</div>
-							<div class="form-group">
-								<input type="text" id="sample6_postcode" id="userPost"
-									name="userPost" placeholder="우편번호"> <input
-									type="button" onclick="sample6_execDaumPostcode()"
-									value="우편번호 찾기" required><br> <input type="text"
-									id="sample6_address" id="userAddress1" name="userAddress1"
-									placeholder="주소" required> <input type="text"
-									id="sample6_address2" id="userAddress2" name="userAddress2"
-									placeholder="상세주소" required>
-
-
-								<!-- 	<input type="text" class="form-control" name="userEmail" placeholder="이메일주소" tabindex=4><br>
+  		</form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+        </div>
+      </div>      
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="userJoin" >
+    				<div class="modal-dialog">    
+      				<div class="modal-content">
+        			<div class="modal-header">
+          				<button type="button" class="close" data-dismiss="modal">×</button>
+          				<h4 class="modal-title">회원가입</h4>
+        			</div>
+        			<div class="modal-body">
+        			<form name="submitAction" action="/seunghwang.bms/loginSignUpAction.login" method="post">
+		    		<div class="form-group">
+		      			<input type="text" id="idSize" name="userId" placeholder="아이디" tabindex=1 required>
+		      			<input type="button"  id="idCheckButton" value="중복확인" required />
+		    		</div>
+		    		<div class="form-group">
+		      			<input type="password" class="form-control"  id="user_pswd" name="userPw" required placeholder="비밀번호" tabindex=2>
+		      			<span id="pwdMsg"></span>
+		      			
+		      			<input type="password" class="form-control"   id="user_pswd2"name="userPw2" required placeholder="비밀번호 확인" tabindex=3/>
+		    			<span id="pwdMsg2"></span>
+		    		</div>	
+		    		<div class="form-group">	
+		    		<input type="text" id="sample6_postcode" id="userPost" name="userPost" placeholder="우편번호">
+						<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" required><br>
+						<input type="text" id="sample6_address" id="userAddress1" name="userAddress1" placeholder="주소" required>
+						<input type="text" id="sample6_address2" id="userAddress2" name="userAddress2"  placeholder="상세주소" required>
+		    		
+		    		
+		      		<!-- 	<input type="text" class="form-control" name="userEmail" placeholder="이메일주소" tabindex=4><br>
 		      			<input type="text" id="sample2_postcode" name="userPost" placeholder="우편번호">
 						<input type="button" class="btn btn-default"onclick="sample2_execDaumPostcode()" value="우편번호 찾기"><br>
 						<input type="text" id="sample2_address" placeholder="한글주소">
 						<input type="text" id="sample2_addressEnglish" placeholder="영문주소"> -->
-							</div>
-							<div class="form-group">
-								<input type="text" class="form-control" id="userName"
-									name="userName" placeholder="이름" tabindex=5 required> <input
-									type="text" class="form-control" id="userEmail"
-									name="userEmail" placeholder="이메일주소" tabindex=6 required>
-								<p id="userAt">@</p>
-								<input type="text" class="form-control" id="userEmail2"
-									name="userEmail2" placeholder="이메일주소" tabindex=6 required>
-								<select class="emailSelect" name="userEmail3" id="selectHeight">
-									<option value="naver.com">naver.com</option>
-									<option value="daum.net">daum.net</option>
-									<option value="gmail.com">gmail.com</option>
-									<option value="nate.com">nate.com</option>
-									<option value="korea.com">korea.com</option>
-									<option value="1">직접입력</option>
-								</select> <input type="text" class="form-control" placeholder="출생년도"
-									tabindex=7 id="birthYear" required /> <input type="text"
-									class="form-control" id="userPhone" name="userPhone"
-									placeholder="핸드폰번호" tabindex=8 required>
+		    		</div>
+		    		<div class="form-group">
+		      			<input type="text" class="form-control" id="userName" name="userName" placeholder="이름" tabindex=5 required>
+		      			<input type="text" class="form-control" id="userEmail" name="userEmail" placeholder="이메일주소"    tabindex=6 required><p id="userAt">@</p>
+		      			<input type="text" class="form-control" id="userEmail2" name="userEmail2" placeholder="이메일주소" tabindex=6 required>
+		      					<select class="emailSelect" name="userEmail3" id="selectHeight">
+										<option value="naver.com">naver.com</option>
+										<option value="daum.net">daum.net</option>
+										<option value="gmail.com">gmail.com</option>
+										<option value="nate.com">nate.com</option>
+										<option value="korea.com">korea.com</option>
+										<option value="1">직접입력</option>
+									</select>
+		      			<input type="text" class="form-control" placeholder="출생년도" tabindex=7 id="birthYear"required/>
+		      			<input type="text" class="form-control" id="userPhone" name="userPhone" placeholder="핸드폰번호" tabindex=8 required>
+		      			
+		    		</div>
+		    		<div class="form-group">
+		    		<table class="table table-hover">
+						<tbody>
+							<tr>
+								<td><strong>성별</strong></td>
+								<td>
+									<label>남 <input type="radio" name="gender" value="male" checked></label>
+									<label>여 <input type="radio" name="gender" value="female"></label>
+								</td>
+							</tr>
+							<tr>
+								<td><strong>문자 광고수신 여부</strong></td>
+								<td>
+									<label>수신 <input type="radio" name="messageAd" value="messageAgree" checked></label>
+									<label>미수신 <input type="radio" name="messageAd" value="messageDiss"></label>
+								</td>
+							</tr>
+							<tr>
+								<td><strong>이메일 광고수신 여부</strong></td>
+								<td>
+									<label>수신 <input type="radio" name="emailAd" value="emailAgree" checked></label>
+									<label>미수신 <input type="radio" name="emailAd" value="emailDiss"></label>
+								</td>
+							</tr>
 
-							</div>
-							<div class="form-group">
-								<table class="table table-hover">
-									<tbody>
-										<tr>
-											<td><strong>성별</strong></td>
-											<td><label>남 <input type="radio" name="gender"
-													value="male" checked></label> <label>여 <input
-													type="radio" name="gender" value="female"></label></td>
-										</tr>
-										<tr>
-											<td><strong>문자 광고수신 여부</strong></td>
-											<td><label>수신 <input type="radio"
-													name="messageAd" value="messageAgree" checked></label> <label>미수신
-													<input type="radio" name="messageAd" value="messageDiss">
-											</label></td>
-										</tr>
-										<tr>
-											<td><strong>이메일 광고수신 여부</strong></td>
-											<td><label>수신 <input type="radio" name="emailAd"
-													value="emailAgree" checked></label> <label>미수신 <input
-													type="radio" name="emailAd" value="emailDiss"></label></td>
-										</tr>
-
-									</tbody>
-								</table>
-							</div>
-							<div class="btn-group btn-group-lg loginGroup">
-								<button type="submit" class="btn btn-danger loginButt"
-									tabindex=7>가입 완료</button>
-							</div>
-						</form>
+						</tbody>
+					</table>
+		    		</div>
+					<div class="btn-group btn-group-lg loginGroup">
+						<button type="submit"  class="btn btn-danger loginButt" tabindex=7>가입 완료</button>
 					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-					</div>
+  					</form>
+        		</div>
+				<div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
 				</div>
-			</div>
+			</div>      
 		</div>
 	</div>
-	<div class="container-fluid" id="category_sub">
-		<ul class="nav nav-pills category_sub_list">
-			<li><a href="book/newBookList.jsp" target="content">신간 도서</a></li>
-			<li><a href="book/bestSellerList.jsp" target="content">베스트
-					셀러</a></li>
-			<li><a href="book/steadySellerList.jsp" target="content">스테디
-					셀러</a></li>
-			<li><a href="/seunghwang.bms/event/event_page.html"
-				target="content">이벤트</a></li>
-		</ul>
-	</div>
-	<div id="iframeSection" class="container-fluid">
-		<iframe src="/seunghwang.bms/main.jsp" id="the_iframe"
-			onload="calcHeight();" name="content" title="게시판뷰" frameborder="0"
-			scrolling="no"
-			style="overflow-x: hidden; overflow: auto; min-height: 500px;"></iframe>
-	</div>
-	<br>
-	<br>
+</div>
+<div class="container-fluid" id="category_sub">
+	<ul class="nav nav-pills category_sub_list">
+		<li><a href="book/newBookList.jsp" target="content">신간 도서</a></li>
+		<li><a href="book/bestSellerList.jsp" target="content">베스트 셀러</a></li>
+		<li><a href="steadySellerList.jsp" target="content">스테디 셀러</a></li>
+		<li><a href="/seunghwang.bms/event/event_page.html" target="content">이벤트</a></li>
+	</ul>
+</div>
+<div id="iframeSection" class="container-fluid">
+	<iframe src="/seunghwang.bms/main.jsp" id="the_iframe" onload="calcHeight();" name="content" title="게시판뷰" frameborder="0" scrolling="no" style="overflow-x:hidden; overflow:auto; min-height:500px;"></iframe>
+</div>
+<br><br>
 	<div class="container-fluid" id="footer">
-		<p id="footer0">INTERNET BOOK STORE</p>
-		<p id="footer1">BOOK KING</p>
-		<p id="footer2">ⓒKS TEAM.</p>
-	</div>
+	<p id="footer0">INTERNET BOOK STORE</p>
+	<p id="footer1">BOOK KING</p>
+	<p id="footer2">ⓒKS TEAM.</p>
+</div>
 </body>
 </html>
