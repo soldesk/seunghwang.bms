@@ -23,6 +23,8 @@
 <%@ page import="seunghwang.bms.review.service.ReviewServiceImpl" %>
 <%@ page import="java.util.List" %>
 
+<!-- 2017 04 25 추가됨  -->
+<%@ page import ="javax.servlet.http.*,seunghwang.bms.login.domain.User" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <% 
@@ -38,11 +40,16 @@
 	Book book = bookService.searchBook(bookId);
 	Detail bookDetail = detailService.searchDetail(bookId);
 	
+	//리뷰 기능
 	ReviewMapper reviewMapper = Configuration.getMapper(ReviewMapper.class);
 	ReviewDao reviewDao = new ReviewDaoImpl(reviewMapper);
 	ReviewService reviewService = new ReviewServiceImpl(reviewDao);
 	List<Review> reviews = reviewService.getBookReviews(bookId);
-		
+	
+	//리뷰 수정 삭제를 위한 로그인 체크 기능
+	HttpSession sess = request.getSession(false);
+	
+				
 %>
 <html lang="ko">
 <head>
@@ -242,8 +249,23 @@ textarea{width: 600px; height: 60px; resize:none;}
       </div>
       <div id="<%= review.getReviewId()%>" class="panel-collapse collapse">
         <div class="panel-body"><%= review.getReviewContent() %></div>
+       <% 
+       if(sess.getAttribute("authUser")!=null){
+    		User user = (User)sess.getAttribute("authUser");
+    		String idCheck = user.getUserId();
+    			if(review.getUserId() != null) {
+           			String reUserId = review.getUserId();
+           				if(reUserId == idCheck){
+           					        					
+       %>    					
         <button type="button" class="btn btn-default" onclick="location.href='delReviewProc.jsp?reviewId=<%= review.getReviewId()%>&bookId=<%=bookId%>'">삭제</button>
-      	
+       <% 
+     					}
+       			}
+           }
+       
+       %>    					
+       
       </div>
     </div>
     </div>
@@ -258,8 +280,6 @@ textarea{width: 600px; height: 60px; resize:none;}
 <% 
 	}
 %>
-
-
 </div>
 </body>
 </html>
